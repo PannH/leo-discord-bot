@@ -19,7 +19,7 @@ export default new Command(async (ctx) => {
 }, {
    name: 'ping',
    description: 'Display the average latency.',
-   category: 'UTILITY',
+   category: 'INFORMATION',
    type: 'SLASH',
    memberPermissions: [],
    clientPermissions: [],

@@ -44,14 +44,14 @@ export class LeoClient extends Client {
 
    get customEmojis(): CustomEmojis {
       return {
-         dot: this.emojis.cache.get(process.env.EMOJI_DOT),
-         signal: this.emojis.cache.get(process.env.EMOJI_SIGNAL)
+         dot: this.emojis.cache.get(process.env.EMOJI_DOT)
       }
    };
 
    get customImages(): CustomImages {
       return {
-         ERROR: 'https://media.discordapp.net/attachments/1009558939001696296/1009606047314477086/error.png'
+         SIGNAL: process.env.IMAGE_SIGNAL,
+         ERROR: process.env.IMAGE_ERROR
       }
    };
 

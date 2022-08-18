@@ -2,6 +2,7 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import { HandlerManager } from './HandlerManager';
 import type { Colors } from '../typings/Colors';
 import type { CustomEmojis } from '../typings/CustomEmojis';
+import type { CustomImages } from '../typings/CustomImages';
 
 export class LeoClient extends Client {
 
@@ -35,7 +36,9 @@ export class LeoClient extends Client {
    get colors(): Colors {
       return {
          PRIMARY: 0x2776ff,
-         SECONDARY: 0x141415
+         SECONDARY: 0x141415,
+         ERROR: 0xdd2e44,
+         SUCCESS: 0x77b255
       };
    };
 
@@ -43,6 +46,12 @@ export class LeoClient extends Client {
       return {
          dot: this.emojis.cache.get(process.env.EMOJI_DOT),
          signal: this.emojis.cache.get(process.env.EMOJI_SIGNAL)
+      }
+   };
+
+   get customImages(): CustomImages {
+      return {
+         ERROR: 'https://media.discordapp.net/attachments/1009558939001696296/1009606047314477086/error.png'
       }
    };
 

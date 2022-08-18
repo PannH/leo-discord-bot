@@ -1,3 +1,4 @@
+import { EmbedBuilder } from '@discordjs/builders';
 import type { User, GuildMember, Guild, GuildTextBasedChannel } from 'discord.js';
 import type { LeoClient } from './LeoClient';
 import type { CommandInteraction } from 'discord.js';
@@ -54,6 +55,20 @@ export class CommandContext {
    get executedTimestamp(): number {
 
       return this.interaction.createdTimestamp;
+
+   };
+
+   async errorReply(title: string, message: string): Promise<void> {
+
+      const errorEmbed = new EmbedBuilder()
+         .setColor(this.client.colors.ERROR)
+         .setAuthor({ name: title, iconURL: this.client.customImages.ERROR })
+         .setDescription(message);
+
+      return void await this.interaction.reply({
+         embeds: [errorEmbed],
+         ephemeral: true
+      });
 
    };
    

@@ -7,8 +7,8 @@ import type { CustomImages } from '../typings/CustomImages';
 
 export class LeoClient extends Client {
 
-   handlers: HandlerManager;
-   prisma: PrismaDatabase;
+   public handlers: HandlerManager;
+   public prisma: PrismaDatabase;
 
    constructor() {
 

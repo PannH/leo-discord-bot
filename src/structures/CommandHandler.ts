@@ -20,7 +20,7 @@ export class CommandHandler {
    /**
     * @description Cache the commands.
     */
-   prepare(): this {
+   public prepare(): this {
 
       if (this.cached)
          throw new Error('The command handler has already been prepared.');
@@ -48,7 +48,7 @@ export class CommandHandler {
    /**
     * @description Deploy the cached slash commands to client's guilds.
     */
-   async deploy(): Promise<typeof this.cache> {
+   public async deploy(): Promise<typeof this.cache> {
 
       if (!this.cached)
          throw new Error('The command handler must be prepared.');

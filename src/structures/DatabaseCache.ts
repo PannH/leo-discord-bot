@@ -4,8 +4,8 @@ import type { User } from '@prisma/client'
 export class DatabaseCache {
 
    private models: string[];
-   database: PrismaDatabase;
-   user: User[];
+   public database: PrismaDatabase;
+   public user: User[];
 
    constructor(database: PrismaDatabase) {
 
@@ -17,7 +17,7 @@ export class DatabaseCache {
    /**
     * @description Initialize the database's cache
     */
-   async initialize(): Promise<this> {
+   public async initialize(): Promise<this> {
 
       for (let model of this.models) {
 
@@ -29,7 +29,7 @@ export class DatabaseCache {
 
    };
 
-   async update(model: string): Promise<void> {
+   public async update(model: string): Promise<void> {
 
       if (!this.models.includes(model))
          throw new Error('The specified model doesn\'t exist.');

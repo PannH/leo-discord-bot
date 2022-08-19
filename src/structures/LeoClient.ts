@@ -29,14 +29,14 @@ export class LeoClient extends Client {
    /**
     * @description Login the client to Discord.
     */
-   async start(): Promise<this> {
+   public async start(): Promise<this> {
 
       await this.login(process.env.CLIENT_TOKEN);
       return this;
 
    };
    
-   get colors(): Colors {
+   public get colors(): Colors {
       return {
          PRIMARY: 0x2776ff,
          SECONDARY: 0x141415,
@@ -45,13 +45,13 @@ export class LeoClient extends Client {
       };
    };
 
-   get customEmojis(): CustomEmojis {
+   public get customEmojis(): CustomEmojis {
       return {
          dot: this.emojis.cache.get(process.env.EMOJI_DOT)
       }
    };
 
-   get customImages(): CustomImages {
+   public get customImages(): CustomImages {
       return {
          SIGNAL: process.env.IMAGE_SIGNAL,
          ERROR: process.env.IMAGE_ERROR

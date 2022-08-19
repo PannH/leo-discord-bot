@@ -4,7 +4,7 @@ import { LeoClient } from './LeoClient';
 
 export class PrismaDatabase extends PrismaClient {
 
-   cache: DatabaseCache;
+   public cache: DatabaseCache;
 
    constructor() {
 

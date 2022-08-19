@@ -20,7 +20,7 @@ export class EventHandler {
    /**
     * @description Cache the events.
     */
-   prepare(): this {
+   public prepare(): this {
 
       if (this.cached)
          throw new Error('The event handler has already been prepared.');
@@ -50,7 +50,7 @@ export class EventHandler {
    /**
     * @description Listen to the cached events.
     */
-   async handle(): Promise<typeof this.cache> {
+   public async handle(): Promise<typeof this.cache> {
 
       if (!this.cached)
          throw new Error('The event handler must be prepared.');

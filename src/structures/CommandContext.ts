@@ -16,49 +16,49 @@ export class CommandContext {
 
    };
    
-   get me(): GuildMember {
+   public get me(): GuildMember {
 
       return this.interaction.guild.members.cache.get(this.client.user.id);
       
    };
 
-   get executor(): User {
+   public get executor(): User {
 
       return this.interaction.user;
 
    };
 
-   get member(): GuildMember {
+   public get member(): GuildMember {
 
       return this.interaction.guild.members.cache.get(this.interaction.user.id);
 
    };
 
-   get guild(): Guild {
+   public get guild(): Guild {
 
       return this.interaction.guild;
 
    };
 
-   get channel(): GuildTextBasedChannel {
+   public get channel(): GuildTextBasedChannel {
 
       return this.interaction.channel;
 
    };
 
-   get command(): Command {
+   public get command(): Command {
 
       return this.client.handlers.commands.cache.find((c) => c.data.name === this.interaction.commandName);
 
    };
 
-   get executedTimestamp(): number {
+   public get executedTimestamp(): number {
 
       return this.interaction.createdTimestamp;
 
    };
 
-   async errorReply(title: string, message: string): Promise<void> {
+   public async errorReply(title: string, message: string): Promise<void> {
 
       const errorEmbed = new EmbedBuilder()
          .setColor(this.client.colors.ERROR)

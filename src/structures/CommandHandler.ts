@@ -6,7 +6,7 @@ import type { Command } from './Command';
 
 export class CommandHandler {
 
-   private cached: boolean = false;
+   private cached: boolean;
    public client: LeoClient;
    public cache: Collection<Snowflake, Command>;
 
@@ -14,6 +14,7 @@ export class CommandHandler {
 
       this.client = client;
       this.cache = new Collection();
+      this.cached = false;
 
    };
 

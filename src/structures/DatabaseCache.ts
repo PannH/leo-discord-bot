@@ -10,7 +10,7 @@ export class DatabaseCache {
    constructor(database: PrismaDatabase) {
 
       this.database = database;
-      this.models = ['user'];
+      this.models = [];
 
    };
 

@@ -6,7 +6,7 @@ import type { LeoClient } from './LeoClient';
 
 export class EventHandler {
 
-   private cached: boolean = false;
+   private cached: boolean;
    public client: LeoClient;
    public cache: Collection<Snowflake, Event>;
 
@@ -14,6 +14,7 @@ export class EventHandler {
 
       this.client = client;
       this.cache = new Collection();
+      this.cached = false;
 
    };
 

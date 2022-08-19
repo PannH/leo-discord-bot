@@ -9,6 +9,6 @@ export default new Event('ready', async (client) => {
    client.handlers.commands
       .prepare()
       .deploy()
-         .then((commands) => Logger.info(`Deployed ${commands.size} slash commands`));
+      .then((commands) => Logger.info(`Deployed ${commands.size} slash commands`));
 
 });

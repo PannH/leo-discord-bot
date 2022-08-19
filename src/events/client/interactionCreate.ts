@@ -29,6 +29,8 @@ export default new Event('interactionCreate', async (client, interaction: Comman
 
          command.run(ctx);
 
+         break;
+
       };
 
       default:

@@ -1,12 +1,14 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { HandlerManager } from './HandlerManager';
+import { PrismaDatabase } from './PrismaDatabase';
 import type { Colors } from '../typings/Colors';
 import type { CustomEmojis } from '../typings/CustomEmojis';
 import type { CustomImages } from '../typings/CustomImages';
 
 export class LeoClient extends Client {
 
-   public handlers: HandlerManager;
+   handlers: HandlerManager;
+   prisma: PrismaDatabase;
 
    constructor() {
 
@@ -20,6 +22,7 @@ export class LeoClient extends Client {
       });
 
       this.handlers = new HandlerManager(this);
+      this.prisma = new PrismaDatabase();
 
    };
 

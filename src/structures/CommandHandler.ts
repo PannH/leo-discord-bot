@@ -50,6 +50,9 @@ export class CommandHandler {
     */
    async deploy(): Promise<typeof this.cache> {
 
+      if (!this.cached)
+         throw new Error('The command handler must be prepared.');
+
       this.client.guilds.cache
          .filter((g) => g.id !== process.env.SUPPORT_GUILD_ID)
          .forEach((g) => {

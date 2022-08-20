@@ -2,6 +2,7 @@ import type { PermissionResolvable, ApplicationCommandData } from 'discord.js';
 
 export type CommandData = {
    name: string;
+   aliases: string[];
    description: string;
    category: 'ADMINISTRATION' | 'MODERATION' | 'INFORMATION' | 'UTILITY' | 'PRIVATE'
    type: 'SLASH' | 'PRIVATE';

@@ -4,6 +4,8 @@ import { PrismaDatabase } from './PrismaDatabase';
 import type { Colors } from '../typings/Colors';
 import type { CustomEmojis } from '../typings/CustomEmojis';
 import type { CustomImages } from '../typings/CustomImages';
+import type { Links } from '../typings/Links';
+import type { User } from 'discord.js';
 
 export class LeoClient extends Client {
 
@@ -35,6 +37,19 @@ export class LeoClient extends Client {
       return this;
 
    };
+
+   public get owner(): User {
+      return this.users.cache.get(process.env.OWNER_ID);
+   };
+
+   public get links(): Links {
+      return {
+         WEBSITE: process.env.LINK_WEBSITE,
+         SUPPORT: process.env.LINK_SUPPORT,
+         ADMIN_INVITE: process.env.LINK_ADMIN_INVITE,
+         EDITABLE_PERMS_INVITE: process.env.LINK_EDITABLE_PERMS_INVITE
+      };
+   };
    
    public get colors(): Colors {
       return {
@@ -53,8 +68,11 @@ export class LeoClient extends Client {
 
    public get customImages(): CustomImages {
       return {
+         ERROR: process.env.IMAGE_ERROR,
          SIGNAL: process.env.IMAGE_SIGNAL,
-         ERROR: process.env.IMAGE_ERROR
+         IMAGE: process.env.IMAGE_IMAGE,
+         INFO: process.env.IMAGE_INFO,
+         LINK: process.env.IMAGE_LINK
       }
    };
 

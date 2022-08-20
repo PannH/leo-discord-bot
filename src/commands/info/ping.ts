@@ -7,8 +7,8 @@ export default new Command(async (ctx) => {
       .setColor(ctx.client.colors.SECONDARY)
       .setAuthor({ name: 'Average Latency', iconURL: ctx.client.customImages.SIGNAL })
       .setDescription(
-         `${ctx.client.customEmojis.dot} Web Socket: *${(ctx.client.ws.ping / 1000).toFixed(2)}s*\n` +
-         `${ctx.client.customEmojis.dot} Reaction Time: *${((Date.now() - ctx.executedTimestamp) / 1000).toFixed(2)}s*`
+         `${ctx.client.customEmojis.dot} Web Socket: ${(ctx.client.ws.ping / 1000).toFixed(2)}s\n` +
+         `${ctx.client.customEmojis.dot} Reaction Time: ${((Date.now() - ctx.executedTimestamp) / 1000).toFixed(2)}s`
       );
 
    ctx.interaction.reply({
@@ -18,6 +18,7 @@ export default new Command(async (ctx) => {
 
 }, {
    name: 'ping',
+   aliases: ['latence', 'latency'],
    description: 'Display the average latency.',
    category: 'INFORMATION',
    type: 'SLASH',

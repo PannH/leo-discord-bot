@@ -1,4 +1,7 @@
 export type CustomImages = {
-   SIGNAL: string;
    ERROR: string;
+   SIGNAL: string;
+   IMAGE: string;
+   INFO: string;
+   LINK: string;
 };

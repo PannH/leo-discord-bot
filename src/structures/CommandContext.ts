@@ -62,8 +62,8 @@ export class CommandContext {
 
       const errorEmbed = new EmbedBuilder()
          .setColor(this.client.colors.ERROR)
-         .setAuthor({ name: title, iconURL: this.client.customImages.ERROR })
-         .setDescription(message);
+         .setAuthor({ name: title })
+         .setDescription(`> ${message}`);
 
       return void await this.interaction.reply({
          embeds: [errorEmbed],

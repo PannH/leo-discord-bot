@@ -15,7 +15,7 @@ export default new Command(async (ctx) => {
 
 }, {
    name: 'invite',
-   aliases: ['link'],
+   aliases: ['link', 'invite link', 'invite url'],
    description: 'Get an invite link to invite the bot.',
    category: 'INFORMATION',
    clientPermissions: [],

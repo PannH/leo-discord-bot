@@ -1,10 +1,10 @@
 import { Event } from '../../structures/Event';
 import { CommandContext } from '../../structures/CommandContext';
 import { InteractionType } from 'discord.js';
-import type { CommandInteraction } from 'discord.js';
+import type { ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from '../../structures/Command';
 
-export default new Event('interactionCreate', async (client, interaction: CommandInteraction) => {
+export default new Event('interactionCreate', async (client, interaction: ChatInputCommandInteraction) => {
 
    switch (interaction.type) {
 

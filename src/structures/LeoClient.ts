@@ -62,7 +62,9 @@ export class LeoClient extends Client {
 
    public get customEmojis(): CustomEmojis {
       return {
-         dot: this.emojis.cache.get(process.env.EMOJI_DOT)
+         dot: this.emojis.cache.get(process.env.EMOJI_DOT),
+         checkmarkCircle: this.emojis.cache.get(process.env.EMOJI_CHECKMARK_CIRCLE),
+         xmarkCircle: this.emojis.cache.get(process.env.EMOJI_XMARK_CIRCLE)
       }
    };
 

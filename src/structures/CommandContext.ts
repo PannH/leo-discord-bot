@@ -1,15 +1,15 @@
 import { EmbedBuilder } from '@discordjs/builders';
 import type { User, GuildMember, Guild, GuildTextBasedChannel } from 'discord.js';
 import type { LeoClient } from './LeoClient';
-import type { CommandInteraction } from 'discord.js';
+import type { ChatInputCommandInteraction } from 'discord.js';
 import type { Command } from './Command';
 
 export class CommandContext {
 
    public client: LeoClient;
-   public interaction: CommandInteraction;
+   public interaction: ChatInputCommandInteraction;
 
-   constructor(client: LeoClient, interaction: CommandInteraction) {
+   constructor(client: LeoClient, interaction: ChatInputCommandInteraction) {
 
       this.client = client;
       this.interaction = interaction;
@@ -18,7 +18,7 @@ export class CommandContext {
    
    public get me(): GuildMember {
 
-      return this.interaction.guild.members.cache.get(this.client.user.id);
+      return this.interaction.guild.members.me;
       
    };
 

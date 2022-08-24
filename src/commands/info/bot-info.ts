@@ -10,11 +10,11 @@ export default new Command(async (ctx) => {
       .setThumbnail(ctx.client.user.displayAvatarURL())
       .addFields({
          name: 'Created by',
-         value: `\`${ctx.client.owner.tag}\``,
+         value: `[\`${ctx.client.owner.tag}\`](https://discord.com/users/${ctx.client.owner.id})`,
          inline: true
       }, {
          name: 'Version',
-         value: require('../../../package.json').version,
+         value: `\`${require('../../../package.json').version}\``,
          inline: true
       }, {
          name: 'Uptime',
@@ -38,7 +38,7 @@ export default new Command(async (ctx) => {
 
 }, {
    name: 'bot-info',
-   aliases: ['botinfo'],
+   aliases: ['botinfo', 'bot info'],
    description: 'Display information about the bot.',
    category: 'INFORMATION',
    clientPermissions: [],

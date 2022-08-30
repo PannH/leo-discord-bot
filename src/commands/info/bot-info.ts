@@ -23,9 +23,10 @@ export default new Command(async (ctx) => {
       }, {
          name: 'Links',
          value: `${ctx.client.customEmojis.dot} Support Server: [Join](${ctx.client.links.SUPPORT})\n` +
+                `${ctx.client.customEmojis.dot} GitHub Repository: [Go To](${ctx.client.links.GITHUB_REPO})\n` +
                 `${ctx.client.customEmojis.dot} Invite (As Admin): [Invite](${ctx.client.links.ADMIN_INVITE})\n` +
                 `${ctx.client.customEmojis.dot} Invite (Editable Perms): [Invite](${ctx.client.links.EDITABLE_PERMS_INVITE})\n` +
-                `${ctx.client.customEmojis.dot} Website: [leo.adkynet.com](${ctx.client.links.WEBSITE})`,
+                `${ctx.client.customEmojis.dot} Website: [leo.adkynet.eu](${ctx.client.links.WEBSITE})`,
          inline: true
       }, {
          name: 'Statistics',

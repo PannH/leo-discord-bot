@@ -8,7 +8,7 @@ export default new Command(async (ctx) => {
    const bannerURL = user.bannerURL({ extension: 'png', size: 4096 });
 
    if (!bannerURL)
-      return void ctx.errorReply('Invalid User', `The specified user (\`${user.tag}\`) does not have a banner.`);
+      return void ctx.errorReply('Invalid User', `The specified user does not have a banner.`);
 
    const bannerEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
@@ -19,7 +19,7 @@ export default new Command(async (ctx) => {
       type: ComponentType.ActionRow,
       components: [
          new ButtonBuilder()
-            .setLabel('Avatar URL')
+            .setLabel('Banner URL')
             .setStyle(ButtonStyle.Link)
             .setURL(bannerURL)
       ]
@@ -32,7 +32,7 @@ export default new Command(async (ctx) => {
 
 }, {
    name: 'banner',
-   aliases: [],
+   aliases: ['user-banner', 'user banner', 'userbanner'],
    description: 'Display someone\'s banner or yours.',
    category: 'INFORMATION',
    clientPermissions: [],

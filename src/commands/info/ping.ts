@@ -11,10 +11,7 @@ export default new Command(async (ctx) => {
          `${ctx.client.customEmojis.dot} Reaction Time: ${((Date.now() - ctx.executedTimestamp) / 1000).toFixed(2)}s`
       );
 
-   ctx.interaction.reply({
-      embeds: [pingEmbed],
-      ephemeral: true
-   });
+   ctx.interaction.reply({ embeds: [pingEmbed] });
 
 }, {
    name: 'ping',

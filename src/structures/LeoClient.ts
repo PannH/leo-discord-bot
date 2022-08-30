@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, TextChannel } from 'discord.js';
 import { HandlerManager } from './HandlerManager';
 import { PrismaDatabase } from './PrismaDatabase';
 import type { Colors } from '../typings/Colors';
@@ -6,6 +6,7 @@ import type { CustomEmojis } from '../typings/CustomEmojis';
 import type { CustomImages } from '../typings/CustomImages';
 import type { Links } from '../typings/Links';
 import type { User } from 'discord.js';
+import { CustomChannels } from '../typings/CustomChannels';
 
 export class LeoClient extends Client {
 
@@ -47,7 +48,8 @@ export class LeoClient extends Client {
          WEBSITE: process.env.LINK_WEBSITE,
          SUPPORT: process.env.LINK_SUPPORT,
          ADMIN_INVITE: process.env.LINK_ADMIN_INVITE,
-         EDITABLE_PERMS_INVITE: process.env.LINK_EDITABLE_PERMS_INVITE
+         EDITABLE_PERMS_INVITE: process.env.LINK_EDITABLE_PERMS_INVITE,
+         GITHUB_REPO: process.env.LINK_GITHUB_REPO
       };
    };
    
@@ -75,6 +77,12 @@ export class LeoClient extends Client {
          IMAGE: process.env.IMAGE_IMAGE,
          INFO: process.env.IMAGE_INFO,
          LINK: process.env.IMAGE_LINK
+      }
+   };
+
+   public get customChannels(): CustomChannels {
+      return {
+         errors: this.channels.cache.get(process.env.CHANNEL_ERRORS) as TextChannel
       }
    };
 

@@ -5,7 +5,7 @@ export default new Command(async (ctx) => {
 
    const inviteEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Invite Link: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.LINK })
+      .setAuthor({ name: `Invite Links: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.LINK })
       .setDescription(
          `${ctx.client.customEmojis.dot} Admin Permission: ${ctx.client.links.ADMIN_INVITE}\n` +
          `${ctx.client.customEmojis.dot} Editable Permissions: ${ctx.client.links.EDITABLE_PERMS_INVITE}`

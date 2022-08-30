@@ -9,7 +9,7 @@ export default new Command(async (ctx) => {
    const member = ctx.guild.members.cache.get(user.id);
 
    if (!member)
-      return void ctx.errorReply('Invalid User', `The specified user (${user.tag}) is not on the server.`);
+      return void ctx.errorReply('Invalid User', `The specified user is not in the server.`);
 
    const infoEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)

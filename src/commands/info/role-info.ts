@@ -13,7 +13,7 @@ export default new Command(async (ctx) => {
    const infoEmbed =  new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
       .setAuthor({ name: `Information: ${role.name}`, iconURL: ctx.client.customImages.INFO })
-      .setThumbnail(role.iconURL({ extension: 'png' }))
+      .setThumbnail(role.iconURL({ extension: 'png', size: 4096 }))
       .setDescription(role.toString())
       .addFields({
          name: 'Identifier',
@@ -40,7 +40,7 @@ export default new Command(async (ctx) => {
          value: role.hoist ? ctx.client.customEmojis.checkmarkCircle.toString() : ctx.client.customEmojis.xmarkCircle.toString(),
          inline: true
       }, {
-         name: 'Creation',
+         name: 'Creation Date',
          value: `${timestamp(role.createdTimestamp, 'f')} - ${timestamp(role.createdTimestamp, 'R')}`
       }, {
          name: 'Color',

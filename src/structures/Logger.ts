@@ -33,4 +33,12 @@ export class Logger {
 
    };
 
+   public static error(message: string): void {
+
+      return void console.log(
+         `[\u001b[38;5;1mERROR\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
+      );
+
+   };
+
 };

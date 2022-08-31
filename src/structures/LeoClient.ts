@@ -21,7 +21,8 @@ export class LeoClient extends Client {
             GatewayIntentBits.GuildIntegrations, GatewayIntentBits.GuildInvites,
             GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages,
             GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildWebhooks,
-            GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent]
+            GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent
+         ]
       });
 
       this.handlers = new HandlerManager(this);
@@ -49,7 +50,8 @@ export class LeoClient extends Client {
          SUPPORT: process.env.LINK_SUPPORT,
          ADMIN_INVITE: process.env.LINK_ADMIN_INVITE,
          EDITABLE_PERMS_INVITE: process.env.LINK_EDITABLE_PERMS_INVITE,
-         GITHUB_REPO: process.env.LINK_GITHUB_REPO
+         GITHUB_REPO: process.env.LINK_GITHUB_REPO,
+         LINKTREE: process.env.LINK_LINKTREE
       };
    };
    

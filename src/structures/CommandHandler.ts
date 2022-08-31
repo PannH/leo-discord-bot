@@ -26,11 +26,11 @@ export class CommandHandler {
       if (this.cached)
          throw new Error('The command handler has already been prepared.');
 
-      for (let dir of readdirSync(`./dist/commands`)) {
+      for (let dir of readdirSync(`./dist/handlers/commands`)) {
 
-         for (let fileName of readdirSync(`./dist/commands/${dir}`)) {
+         for (let fileName of readdirSync(`./dist/handlers/commands/${dir}`)) {
 
-            const command: Command = require(`../commands/${dir}/${fileName}`).default;
+            const command: Command = require(`../handlers/commands/${dir}/${fileName}`).default;
 
             command.id = SnowflakeUtil.generate().toString();
 

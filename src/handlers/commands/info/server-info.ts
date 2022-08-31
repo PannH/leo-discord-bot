@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 import { GuildPremiumTier } from 'discord.js';
-import { timestamp } from '../../functions/timestamp';
+import { timestamp } from '../../../functions/timestamp';
 
 export default new Command(async (ctx) => {
 

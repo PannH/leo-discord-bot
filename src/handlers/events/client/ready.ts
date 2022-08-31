@@ -1,5 +1,5 @@
-import { Event } from '../../structures/Event';
-import { Logger } from '../../structures/Logger';
+import { Event } from '../../../structures/Event';
+import { Logger } from '../../../structures/Logger';
 
 export default new Event('ready', async (client) => {
 

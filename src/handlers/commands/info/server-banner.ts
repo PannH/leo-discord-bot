@@ -1,4 +1,4 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
 import { ComponentType, ButtonStyle } from 'discord.js';
 

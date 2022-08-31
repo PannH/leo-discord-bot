@@ -12,6 +12,8 @@ client.handlers.events
    .handle()
    .then((events) => Logger.info(`Listening to ${events.size} events`));
 
+client.handlers.autocompletes.prepare();
+
 client.prisma.cache
    .initialize()
    .then(() => Logger.info('Initialized the database\'s cache'));

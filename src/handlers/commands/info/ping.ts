@@ -1,4 +1,4 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 
 export default new Command(async (ctx) => {

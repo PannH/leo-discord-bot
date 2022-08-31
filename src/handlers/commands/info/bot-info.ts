@@ -1,4 +1,4 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 import humanizeDuration from 'humanize-duration';
 
@@ -10,7 +10,7 @@ export default new Command(async (ctx) => {
       .setThumbnail(ctx.client.user.displayAvatarURL())
       .addFields({
          name: 'Created by',
-         value: `[\`${ctx.client.owner.tag}\`](https://discord.com/users/${ctx.client.owner.id})`,
+         value: `[\`${ctx.client.owner.tag}\`](${ctx.client.links.LINKTREE})`,
          inline: true
       }, {
          name: 'Version',

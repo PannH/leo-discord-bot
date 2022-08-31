@@ -1,5 +1,5 @@
-import { Event } from '../../structures/Event';
-import { Logger } from '../../structures/Logger';
+import { Event } from '../../../structures/Event';
+import { Logger } from '../../../structures/Logger';
 import { EmbedBuilder } from '@discordjs/builders';
 import { codeBlock } from 'discord.js';
 

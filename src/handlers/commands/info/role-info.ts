@@ -1,8 +1,8 @@
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
-import { Command } from '../../structures/Command';
-import { percentage } from '../../functions/percentage';
-import { timestamp } from '../../functions/timestamp';
+import { Command } from '../../../structures/Command';
+import { percentage } from '../../../functions/percentage';
+import { timestamp } from '../../../functions/timestamp';
 import hexToRGB from 'hex2rgb';
 import type { Role } from 'discord.js';
 

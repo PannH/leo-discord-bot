@@ -30,9 +30,9 @@ export class EventHandler {
 
       for (let dir of EVENT_DIRS) {
 
-         for (let fileName of readdirSync(`./dist/events/${dir}`)) {
+         for (let fileName of readdirSync(`./dist/handlers/events/${dir}`)) {
 
-            let event: Event = require(`../events/${dir}/${fileName}`).default;
+            let event: Event = require(`../handlers/events/${dir}/${fileName}`).default;
 
             event.id = SnowflakeUtil.generate().toString();
 

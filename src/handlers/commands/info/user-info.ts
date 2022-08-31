@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
-import { timestamp } from '../../functions/timestamp';
+import { timestamp } from '../../../functions/timestamp';
 
 export default new Command(async (ctx) => {
 

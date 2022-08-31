@@ -4,4 +4,5 @@ export type Links = {
    ADMIN_INVITE: string;
    EDITABLE_PERMS_INVITE: string;
    GITHUB_REPO: string;
+   LINKTREE: string;
 };

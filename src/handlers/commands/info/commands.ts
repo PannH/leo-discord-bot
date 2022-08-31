@@ -1,4 +1,4 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
 

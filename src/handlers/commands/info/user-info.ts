@@ -48,6 +48,14 @@ export default new Command(async (ctx) => {
    name: 'user-info',
    aliases: ['userinfo', 'user info', 'whois'],
    description: 'Display information about a user or you.',
+   formats: [
+      '/user-info `(user)`'
+   ],
+   examples: [
+      '/user-info',
+      '/user-info `user: @User`',
+      '/user-info `user: 123456789123456789`'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

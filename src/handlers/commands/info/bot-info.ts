@@ -41,6 +41,12 @@ export default new Command(async (ctx) => {
    name: 'bot-info',
    aliases: ['botinfo', 'bot info'],
    description: 'Display information about the bot.',
+   formats: [
+      '/bot-info`'
+   ],
+   examples: [
+      '/bot-info'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

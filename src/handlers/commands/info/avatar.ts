@@ -31,6 +31,14 @@ export default new Command(async (ctx) => {
    name: 'avatar',
    aliases: ['pp', 'pfp'],
    description: 'Display someone\'s avatar or yours.',
+   formats: [
+      '/avatar `(user)`'
+   ],
+   examples: [
+      '/avatar',
+      '/avatar `user: @User`',
+      '/avatar `user: 123456789123456789`'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

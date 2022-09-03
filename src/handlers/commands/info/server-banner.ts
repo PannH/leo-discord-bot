@@ -33,6 +33,12 @@ export default new Command(async (ctx) => {
    name: 'server-banner',
    aliases: ['serverbanner', 'server banner'],
    description: 'Display the server\'s banner.',
+   formats: [
+      '/server-banner'
+   ],
+   examples: [
+      '/server-banner'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

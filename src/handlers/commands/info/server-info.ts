@@ -69,6 +69,12 @@ export default new Command(async (ctx) => {
    name: 'server-info',
    aliases: ['serverinfo', 'server info'],
    description: 'Display information about the server.',
+   formats: [
+      '/server-info'
+   ],
+   examples: [
+      '/server-info'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

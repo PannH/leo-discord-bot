@@ -4,6 +4,8 @@ export type CommandData = {
    name: string;
    aliases: string[];
    description: string;
+   formats: string[];
+   examples: string[];
    category: 'ADMINISTRATION' | 'MODERATION' | 'INFORMATION' | 'UTILITY' | 'PRIVATE'
    type: 'SLASH' | 'PRIVATE';
    memberPermissions: PermissionResolvable[];

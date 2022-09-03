@@ -34,6 +34,14 @@ export default new Command(async (ctx) => {
    name: 'banner',
    aliases: ['user-banner', 'user banner', 'userbanner'],
    description: 'Display someone\'s banner or yours.',
+   formats: [
+      '/banner `(user)`'
+   ],
+   examples: [
+      '/banner',
+      '/banner `user: @User`',
+      '/banner `user: 123456789123456789`'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

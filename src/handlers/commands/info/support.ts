@@ -8,12 +8,21 @@ export default new Command(async (ctx) => {
       .setAuthor({ name: `Support Server: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.LINK })
       .setDescription(`${ctx.client.customEmojis.dot} Invite: ${ctx.client.links.SUPPORT}`);
 
-   ctx.interaction.reply({ embeds: [inviteEmbed] });
+   ctx.interaction.reply({
+      embeds: [inviteEmbed],
+      ephemeral: true
+   });
 
 }, {
    name: 'support',
    aliases: ['support server', 'support', 'support invite', 'support link'],
    description: 'Get an invite link to the support server.',
+   formats: [
+      '/support'
+   ],
+   examples: [
+      '/support'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

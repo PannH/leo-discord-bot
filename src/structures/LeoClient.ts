@@ -78,7 +78,9 @@ export class LeoClient extends Client {
          SIGNAL: process.env.IMAGE_SIGNAL,
          IMAGE: process.env.IMAGE_IMAGE,
          INFO: process.env.IMAGE_INFO,
-         LINK: process.env.IMAGE_LINK
+         LINK: process.env.IMAGE_LINK,
+         LIST: process.env.IMAGE_LIST,
+         QUESTION_MARK: process.env.IMAGE_QUESTION_MARK
       }
    };
 

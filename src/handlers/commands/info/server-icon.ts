@@ -33,6 +33,12 @@ export default new Command(async (ctx) => {
    name: 'server-icon',
    aliases: ['servericon', 'server icon'],
    description: 'Display the server\'s icon.',
+   formats: [
+      '/server-icon'
+   ],
+   examples: [
+      '/server-icon'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

@@ -11,12 +11,21 @@ export default new Command(async (ctx) => {
          `${ctx.client.customEmojis.dot} Reaction Time: ${((Date.now() - ctx.executedTimestamp) / 1000).toFixed(2)}s`
       );
 
-   ctx.interaction.reply({ embeds: [pingEmbed] });
+   ctx.interaction.reply({
+      embeds: [pingEmbed],
+      ephemeral: true
+   });
 
 }, {
    name: 'ping',
    aliases: ['latence', 'latency'],
    description: 'Display the average latency.',
+   formats: [
+      '/ping'
+   ],
+   examples: [
+      '/ping'
+   ],
    category: 'INFORMATION',
    type: 'SLASH',
    memberPermissions: [],

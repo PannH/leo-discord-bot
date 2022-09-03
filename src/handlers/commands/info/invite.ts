@@ -11,12 +11,21 @@ export default new Command(async (ctx) => {
          `${ctx.client.customEmojis.dot} Editable Permissions: ${ctx.client.links.EDITABLE_PERMS_INVITE}`
       );
 
-   ctx.interaction.reply({ embeds: [inviteEmbed] });
+   ctx.interaction.reply({
+      embeds: [inviteEmbed],
+      ephemeral: true
+   });
 
 }, {
    name: 'invite',
    aliases: ['link', 'invite link', 'invite url'],
    description: 'Get an invite link to invite the bot.',
+   formats: [
+      '/invite'
+   ],
+   examples: [
+      '/invite'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

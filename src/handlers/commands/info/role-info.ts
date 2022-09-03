@@ -54,6 +54,13 @@ export default new Command(async (ctx) => {
    name: 'role-info',
    aliases: ['roleinfo', 'role info'],
    description: 'Display information about a role.',
+   formats: [
+      '/role-info `[role]`'
+   ],
+   examples: [
+      '/role-info `role: @Role`',
+      '/role-info `role: 123456789123456789`'
+   ],
    category: 'INFORMATION',
    clientPermissions: [],
    memberPermissions: [],

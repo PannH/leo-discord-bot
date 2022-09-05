@@ -78,13 +78,13 @@ export default new Command(async (ctx) => {
    ],
    examples: [
       '/permissions member `user: @User`',
-      '/permissions member `user: @123456789123456789`',
+      '/permissions member `user: 123456789123456789`',
       '/permissions role `role: @Role`',
-      '/permissions role `role: @123456789123456789`',
+      '/permissions role `role: 123456789123456789`',
    ],
    category: 'INFORMATION',
-   clientPermissions: [],
-   memberPermissions: [],
+   clientPermissions: ['ManageRoles'],
+   memberPermissions: ['ManageRoles'],
    type: 'SLASH',
    slashData: {
       name: 'permissions',

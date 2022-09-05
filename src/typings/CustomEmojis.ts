@@ -4,4 +4,5 @@ export type CustomEmojis = {
    dot: GuildEmoji;
    checkmarkCircle: GuildEmoji;
    xmarkCircle: GuildEmoji;
+   bell: GuildEmoji;
 };

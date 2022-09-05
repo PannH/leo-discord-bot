@@ -64,11 +64,11 @@ export class CommandContext {
          .setColor(this.client.colors.ERROR)
          .setAuthor({ name: title })
          .setDescription(`> ${message}`);
-
-      return void await this.interaction.reply({
-         embeds: [errorEmbed],
-         ephemeral: true
-      });
+         
+      if (this.interaction.replied || this.interaction.deferred)
+         return void await this.interaction.editReply({ embeds: [errorEmbed] });
+      else 
+         return void await this.interaction.reply({ embeds: [errorEmbed], ephemeral: true });
 
    };
    

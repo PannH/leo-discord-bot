@@ -10,10 +10,10 @@ client.start();
 client.handlers.events
    .prepare()
    .handle()
-   .then((events) => Logger.info(`Listening to ${events.size} events`));
+   .then((events) => Logger.debug(`Listening to ${events.size} events`));
 
 client.handlers.autocompletes.prepare();
 
 client.prisma.cache
    .initialize()
-   .then(() => Logger.info('Initialized the database\'s cache'));
+   .then(() => Logger.debug('Initialized the database\'s cache'));

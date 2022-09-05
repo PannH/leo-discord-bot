@@ -1,7 +1,6 @@
 import { Autocomplete } from '../../structures/Autocomplete';
 import { categoryNames } from '../../utils/categoryNames';
 import type { ApplicationCommandOptionChoiceData } from 'discord.js';
-import type { Command } from '../../structures/Command';
 
 export default new Autocomplete('help', async (client, interaction) => {
 
@@ -30,7 +29,9 @@ export default new Autocomplete('help', async (client, interaction) => {
 
       const foundCommands = client.handlers.commands.cache.filter((c) => c.data.name === input || c.data.aliases.find((a) => a === input)?.length >= 1 || c.data.name.includes(input) || c.data.aliases.find((a) => a.includes(input))?.length >= 1);
 
-      choices = mapCommands(foundCommands);
+      choices = !foundCommands.size
+                  ? [{ name: 'No command found.', value: '' }]
+                  : mapCommands(foundCommands);
 
    };
 

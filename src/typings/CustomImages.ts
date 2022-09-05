@@ -6,4 +6,5 @@ export type CustomImages = {
    LINK: string;
    LIST: string;
    QUESTION_MARK: string;
+   TOOLS: string;
 };

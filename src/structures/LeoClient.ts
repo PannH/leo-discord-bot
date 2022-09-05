@@ -68,7 +68,8 @@ export class LeoClient extends Client {
       return {
          dot: this.emojis.cache.get(process.env.EMOJI_DOT),
          checkmarkCircle: this.emojis.cache.get(process.env.EMOJI_CHECKMARK_CIRCLE),
-         xmarkCircle: this.emojis.cache.get(process.env.EMOJI_XMARK_CIRCLE)
+         xmarkCircle: this.emojis.cache.get(process.env.EMOJI_XMARK_CIRCLE),
+         bell: this.emojis.cache.get(process.env.EMOJI_BELL)
       }
    };
 
@@ -80,7 +81,8 @@ export class LeoClient extends Client {
          INFO: process.env.IMAGE_INFO,
          LINK: process.env.IMAGE_LINK,
          LIST: process.env.IMAGE_LIST,
-         QUESTION_MARK: process.env.IMAGE_QUESTION_MARK
+         QUESTION_MARK: process.env.IMAGE_QUESTION_MARK,
+         TOOLS: process.env.IMAGE_TOOLS
       }
    };
 

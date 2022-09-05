@@ -23,20 +23,34 @@ export class Logger {
    };
 
    /**
-    * @description Log a message as an information.
+    * @description Log a message as a debug message.
     */
-   public static info(message: string): void {
+   public static debug(message: string): void {
 
       return void console.log(
-         `[\u001b[38;5;6mINFO\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
+         `[\u001b[38;5;6mDEBUG\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
    };
 
+   /**
+    * @description Log a message as an error.
+    */
    public static error(message: string): void {
 
       return void console.log(
          `[\u001b[38;5;1mERROR\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
+      );
+
+   };
+
+   /**
+    * @description Log a message as a success message.
+    */
+   public static success(message: string): void {
+
+      return void console.log(
+         `[\u001b[38;5;2mSUCCESS\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
    };

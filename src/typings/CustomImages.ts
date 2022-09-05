@@ -7,4 +7,6 @@ export type CustomImages = {
    LIST: string;
    QUESTION_MARK: string;
    TOOLS: string;
+   QUESTION_MARK_CIRCLE: string;
+   ARROW_ROTATE: string;
 };

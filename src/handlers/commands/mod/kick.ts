@@ -35,7 +35,7 @@ export default new Command(async (ctx) => {
 
       try {
          await member.send({ content: `${ctx.client.customEmojis.bell} You have been kicked from the server \`${ctx.guild.name}\` with reason: \`${reason ?? 'No reason'}\`.` });
-      } catch (error) {
+      } catch (_) {
          return;
       };
 

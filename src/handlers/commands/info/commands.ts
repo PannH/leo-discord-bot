@@ -14,7 +14,7 @@ export default new Command(async (ctx) => {
          .setAuthor({ name: `Commands (${categoryNames[category]})`, iconURL: ctx.client.customImages.LIST })
          .setDescription(
             commands
-               .map((c) => `${ctx.client.customEmojis.dot} \`/${c.data.name}\`: ${c.data.description}`)
+               .map((c) => `${ctx.client.customEmojis.dot} ${c.mention(ctx.guild)}: ${c.data.description}`)
                .join('\n')
          ) :
       new EmbedBuilder()
@@ -26,7 +26,7 @@ export default new Command(async (ctx) => {
                   name: categoryNames[cat],
                   value: commands
                      .filter((c) => c.data.category === cat)
-                     .map((c) => `\`/${c.data.name}\``)
+                     .map((c) => c.mention(ctx.guild))
                      .join(', ')
                }
             })

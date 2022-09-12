@@ -7,7 +7,8 @@
       "start:dev": "tsc && node dist/index.js",
       "start:prod": "node dist/index.js",
       "build": "tsc",
-      "prisma:migrate": "npx prisma migrate dev --name migration"
+      "prisma:migrate": "npx prisma migrate dev --name migration",
+      "prisma:format": "npx prisma format"
    },
    "repository": {
       "type": "git",

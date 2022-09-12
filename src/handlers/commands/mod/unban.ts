@@ -4,8 +4,8 @@ import { EmbedBuilder } from '@discordjs/builders';
 
 export default new Command(async (ctx) => {
 
-   const userID = ctx.interaction.options.getString('query');
-   const ban = (await ctx.guild.bans.fetch()).get(userID);
+   const userId = ctx.interaction.options.getString('query');
+   const ban = (await ctx.guild.bans.fetch()).get(userId);
    const reason = ctx.interaction.options.getString('reason');
 
    if (!ban)

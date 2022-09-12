@@ -6,3 +6,14 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Warn {
+  id          String   @unique
+  userId      String   @map(name: "user_id")
+  guildId     String   @map(name: "guild_id")
+  moderatorId String   @map(name: "moderator_id")
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  reason      String
+
+  @@map(name: "warns")
+}

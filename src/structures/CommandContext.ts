@@ -1,7 +1,8 @@
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
-import { User, GuildMember, Guild, GuildTextBasedChannel, ComponentType, ChatInputCommandInteraction, ButtonStyle } from 'discord.js';
+import { User, GuildMember, Guild, GuildTextBasedChannel, ComponentType, ChatInputCommandInteraction, ButtonStyle, ButtonComponent } from 'discord.js';
 import type { LeoClient } from './LeoClient';
 import type { Command } from './Command';
+import type { Embed, ActionRow } from 'discord.js';
 
 export class CommandContext {
 
@@ -98,10 +99,12 @@ export class CommandContext {
             new ButtonBuilder()
                .setCustomId('request.confirm')
                .setStyle(ButtonStyle.Primary)
+               .setEmoji({ id: this.client.customEmojis.checkmark.id })
                .setLabel('Confirm'),
             new ButtonBuilder()
                .setCustomId('request.cancel')
                .setStyle(ButtonStyle.Secondary)
+               .setEmoji({ id: this.client.customEmojis.xmark.id })
                .setLabel('Cancel')
          ]
       };
@@ -139,6 +142,86 @@ export class CommandContext {
          return undefined;
 
       };
+
+   };
+
+   public async embedPagination(embeds: Embed[], ephemeral: boolean): Promise<void> {
+
+      let currentPageIndex = 0;
+
+      const lastPageIndex = embeds.length - 1
+
+      const self = this;
+      function generateComponents(currentPageIndex: number, maxPageIndex: number): any {
+
+         return [{
+            type: ComponentType.ActionRow,
+            components: [
+               new ButtonBuilder()
+                  .setCustomId('pages.first')
+                  .setEmoji({ id: self.client.customEmojis.doubleArrowLeft.id })
+                  .setStyle(ButtonStyle.Primary)
+                  .setDisabled(currentPageIndex === 0),
+               new ButtonBuilder()
+                  .setCustomId('pages.previous')
+                  .setEmoji({ id: self.client.customEmojis.arrowLeft.id })
+                  .setStyle(ButtonStyle.Primary)
+                  .setDisabled(currentPageIndex === 0),
+               new ButtonBuilder()
+                  .setCustomId('pages.count')
+                  .setLabel(`${currentPageIndex + 1} / ${maxPageIndex + 1}`)
+                  .setStyle(ButtonStyle.Secondary)
+                  .setDisabled(true),
+               new ButtonBuilder()
+                  .setCustomId('pages.next')
+                  .setEmoji({ id: self.client.customEmojis.arrowRight.id })
+                  .setStyle(ButtonStyle.Primary)
+                  .setDisabled(currentPageIndex === maxPageIndex),
+               new ButtonBuilder()
+                  .setCustomId('pages.last')
+                  .setEmoji({ id: self.client.customEmojis.doubleArrowRight.id })
+                  .setStyle(ButtonStyle.Primary)
+                  .setDisabled(currentPageIndex === maxPageIndex),
+            ]
+         }];
+
+      };
+
+      if (this.interaction.deferred || this.interaction.replied)
+         await this.interaction.editReply({
+            embeds: [embeds[currentPageIndex]],
+            components: generateComponents(currentPageIndex, lastPageIndex)
+         });
+      else 
+         await this.interaction.reply({
+            embeds: [embeds[currentPageIndex]],
+            components: generateComponents(currentPageIndex, lastPageIndex),
+            ephemeral
+         });
+
+      const buttonCollector = this.interaction.channel.createMessageComponentCollector({
+         filter: (inter) => ['pages.first', 'pages.previous', 'pages.next', 'pages.last'].includes(inter.customId) && inter.user.id === this.interaction.user.id,
+         componentType: ComponentType.Button,
+         time: (30 * 1000 * 60)
+      });
+
+      buttonCollector.on('collect', async (buttonInteraction) => {
+
+         if (buttonInteraction.customId === 'pages.first')
+            currentPageIndex = 0;
+         else if (buttonInteraction.customId === 'pages.previous')
+            currentPageIndex--;
+         else if (buttonInteraction.customId === 'pages.next')
+            currentPageIndex++;
+         else if (buttonInteraction.customId === 'pages.last')
+            currentPageIndex = lastPageIndex;
+
+         buttonInteraction.update({
+            embeds: [embeds[currentPageIndex]],
+            components: generateComponents(currentPageIndex, lastPageIndex)
+         });
+
+      });
 
    };
    

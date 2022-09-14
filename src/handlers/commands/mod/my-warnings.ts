@@ -1,8 +1,9 @@
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 import { timestamp } from '../../../functions/timestamp';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const warns = ctx.client.prisma.cache.warn
                   .filter((w) => w.userId === ctx.executor.id && w.guildId === ctx.guild.id)

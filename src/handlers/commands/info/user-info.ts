@@ -2,8 +2,9 @@ import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
 import { timestamp } from '../../../functions/timestamp';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const user = ctx.interaction.options.getUser('user') ?? ctx.executor;
    const member = ctx.guild.members.cache.get(user.id);

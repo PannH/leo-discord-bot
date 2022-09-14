@@ -5,8 +5,9 @@ import { percentage } from '../../../functions/percentage';
 import { timestamp } from '../../../functions/timestamp';
 import hexToRGB from 'hex2rgb';
 import type { Role } from 'discord.js';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const role = ctx.interaction.options.getRole('role') as Role;
 

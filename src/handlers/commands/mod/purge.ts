@@ -2,8 +2,9 @@ import { ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 import type { Message } from 'discord.js';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const subCommand = ctx.interaction.options.getSubcommand();
    const amount = ctx.interaction.options.getInteger('amount') ?? 100;

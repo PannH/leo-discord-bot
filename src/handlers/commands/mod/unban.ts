@@ -1,8 +1,9 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const userId = ctx.interaction.options.getString('query');
    const ban = (await ctx.guild.bans.fetch()).get(userId);

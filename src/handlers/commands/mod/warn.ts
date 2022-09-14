@@ -1,9 +1,10 @@
 import { ApplicationCommandOptionType, SnowflakeUtil } from 'discord.js';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 import type { GuildMember } from 'discord.js';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const member = ctx.interaction.options.getMember('user') as GuildMember;
    const reason = ctx.interaction.options.getString('reason');

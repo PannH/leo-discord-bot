@@ -1,8 +1,9 @@
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
 import { ComponentType, ButtonStyle } from 'discord.js';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const bannerURL = ctx.guild.bannerURL({ extension: 'png', size: 4096 });
 

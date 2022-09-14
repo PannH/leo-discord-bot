@@ -2,9 +2,10 @@ import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
 import humanizeDuration from 'humanize-duration';
+import type { CommandContext } from '../../../structures/CommandContext';
 import type { GuildMember } from 'discord.js';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const member = ctx.interaction.options.getMember('user') as GuildMember;
    const duration = ctx.interaction.options.getNumber('duration');

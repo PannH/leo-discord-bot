@@ -3,8 +3,9 @@ import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
 import { categoryNames } from '../../../utils/categoryNames';
 import { permissionNames } from '../../../utils/permissionNames';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const commandId = ctx.interaction.options.getString('command');
    const command = ctx.client.handlers.commands.cache.get(commandId);

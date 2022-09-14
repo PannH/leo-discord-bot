@@ -1,8 +1,9 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType, ButtonStyle, ComponentType } from 'discord.js';
 import { ButtonBuilder, EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const user = ctx.interaction.options.getUser('user') ?? ctx.executor;
    const avatarURL = user.displayAvatarURL({ extension: 'png', size: 4096 });

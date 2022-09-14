@@ -1,9 +1,10 @@
 import { ApplicationCommandOptionType, ChannelType } from 'discord.js';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 import type { TextChannel } from 'discord.js';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const channel = (ctx.interaction.options.getChannel('channel') ?? ctx.channel) as TextChannel;
 

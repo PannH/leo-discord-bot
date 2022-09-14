@@ -2,9 +2,10 @@ import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType, Role } from 'discord.js';
 import { permissionNames } from '../../../utils/permissionNames';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 import type { GuildMember } from 'discord.js';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const subCommand = ctx.interaction.options.getSubcommand();
 

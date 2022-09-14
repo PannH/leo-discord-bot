@@ -30,6 +30,18 @@ export class Logger {
       return void console.log(
          `[\u001b[38;5;6mDEBUG\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
+      
+
+   };
+
+   /**
+    * @description Log a message as a piece of information.
+    */
+   public static info(message: string): void {
+
+      return void console.log(
+         `[\u001b[38;5;12mINFO\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
+      );
 
    };
 

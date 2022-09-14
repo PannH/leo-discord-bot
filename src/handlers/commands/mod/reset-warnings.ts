@@ -1,8 +1,9 @@
 import { ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const user = ctx.interaction.options.getUser('user');
    const warns = ctx.client.prisma.cache.warn.filter((w) => w.userId === user.id && w.guildId === ctx.guild.id);

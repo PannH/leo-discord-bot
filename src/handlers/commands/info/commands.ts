@@ -2,8 +2,9 @@ import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
 import { categoryNames } from '../../../utils/categoryNames';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const category = ctx.interaction.options.getString('category');
    const commands = category ? ctx.client.handlers.commands.cache.filter((c) => c.data.category === category) : ctx.client.handlers.commands.cache;

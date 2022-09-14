@@ -1,8 +1,8 @@
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
-import { User, GuildMember, Guild, GuildTextBasedChannel, ComponentType, ChatInputCommandInteraction, ButtonStyle, ButtonComponent } from 'discord.js';
+import { User, GuildMember, Guild, GuildTextBasedChannel, ComponentType, ChatInputCommandInteraction, ButtonStyle } from 'discord.js';
 import type { LeoClient } from './LeoClient';
 import type { Command } from './Command';
-import type { Embed, ActionRow } from 'discord.js';
+import type { Embed } from 'discord.js';
 
 export class CommandContext {
 

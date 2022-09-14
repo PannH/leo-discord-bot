@@ -2,8 +2,9 @@ import { ApplicationCommandOptionType } from 'discord.js';
 import { timestamp } from '../../../functions/timestamp';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const user = ctx.interaction.options.getUser('user');
    const warnId = ctx.interaction.options.getString('identifier');

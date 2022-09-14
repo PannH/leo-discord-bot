@@ -1,4 +1,5 @@
 import { Event } from './Event';
+import { RESTEvent } from './RESTEvent';
 import { Collection, SnowflakeUtil } from 'discord.js';
 import { readdirSync } from 'fs';
 import type { Snowflake } from 'discord.js';
@@ -8,7 +9,7 @@ export class EventHandler {
 
    private cached: boolean;
    public client: LeoClient;
-   public cache: Collection<Snowflake, Event>;
+   public cache: Collection<Snowflake, (Event | RESTEvent)>;
 
    constructor(client: LeoClient) {
 
@@ -32,7 +33,7 @@ export class EventHandler {
 
          for (let fileName of readdirSync(`./dist/handlers/events/${dir}`)) {
 
-            let event: Event = require(`../handlers/events/${dir}/${fileName}`).default;
+            let event: (Event | RESTEvent) = require(`../handlers/events/${dir}/${fileName}`).default;
 
             event.id = SnowflakeUtil.generate().toString();
 
@@ -56,9 +57,12 @@ export class EventHandler {
       if (!this.cached)
          throw new Error('The event handler must be prepared.');
 
-      this.cache.forEach((event) => {
+      this.cache.forEach((event: any) => {
 
-         this.client.addListener(event.name, event.run.bind(null, this.client));
+         if (event.rest)
+            this.client.rest.addListener(event.name, event.run.bind(null, this.client));
+         else
+            this.client.addListener(event.name, event.run.bind(null, this.client));
 
       });
 

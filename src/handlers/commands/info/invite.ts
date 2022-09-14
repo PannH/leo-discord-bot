@@ -1,7 +1,8 @@
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const inviteEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)

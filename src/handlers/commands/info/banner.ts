@@ -1,8 +1,9 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType, ComponentType, ButtonStyle } from 'discord.js';
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
+import type { CommandContext } from '../../../structures/CommandContext';
 
-export default new Command(async (ctx) => {
+export default new Command(async (ctx: CommandContext) => {
 
    const user = await ctx.client.users.fetch(ctx.interaction.options.getUser('user') ?? ctx.executor, { force: true });
    const bannerURL = user.bannerURL({ extension: 'png', size: 4096 });

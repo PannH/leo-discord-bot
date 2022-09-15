@@ -1,10 +1,10 @@
 import { Event } from '../../../structures/Event';
-import type { Message } from 'discord.js';
 import { PrivateCommandContext } from '../../../structures/PrivateCommandContext';
+import type { Message } from 'discord.js';
 
 export default new Event('messageCreate', async (client, message: Message) => {
 
-   if (!message.content.startsWith(process.env.COMMAND_PREFIX) || message.author.bot || !message.guild)
+   if (!message.content.startsWith(process.env.COMMAND_PREFIX) || !message.guild || message.author.id !== client.owner.id)
       return;
 
    const commandContext = new PrivateCommandContext(client, message);

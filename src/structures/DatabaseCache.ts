@@ -1,16 +1,17 @@
 import { PrismaDatabase } from './PrismaDatabase';
-import type { Warn } from '@prisma/client'
+import type { Afk, Warn } from '@prisma/client'
 
 export class DatabaseCache {
 
    private models: string[];
    public database: PrismaDatabase;
    public warn: Warn[];
+   public afk: Afk[];
 
    constructor(database: PrismaDatabase) {
 
       this.database = database;
-      this.models = ['warn'];
+      this.models = ['warn', 'afk'];
 
    };
 

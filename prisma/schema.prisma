@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Warnings
 model Warn {
   id          String   @unique
   userId      String   @map(name: "user_id")
@@ -16,4 +17,15 @@ model Warn {
   reason      String
 
   @@map(name: "warns")
+}
+
+// AFKs
+model Afk {
+  id        String   @unique
+  userId    String   @map(name: "user_id")
+  guildId   String   @map(name: "guild_id")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  reason    String
+
+  @@map(name: "afks")
 }

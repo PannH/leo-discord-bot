@@ -59,7 +59,7 @@ export default new Event('messageCreate', async (client, message: Message) => {
 
       const afkEmbed = new EmbedBuilder()
          .setColor(client.colors.SECONDARY)
-         .setDescription(`${user} is AFK since ${timestamp(afk.createdAt.getTime(), 'f')} with reason: \`${afk.reason}\`.`);
+         .setDescription(`${user} is AFK and will probably not respond. AFK since ${timestamp(afk.createdAt.getTime(), 'f')} with reason: \`${afk.reason}\`.`);
 
       await message.reply({
          embeds: [afkEmbed],

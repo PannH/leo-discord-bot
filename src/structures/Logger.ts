@@ -67,4 +67,15 @@ export class Logger {
 
    };
 
+   /**
+    * @description Log a message as a warning message.
+    */
+   public static warn(message: string): void {
+
+      return void console.log(
+         `[\u001b[38;5;3mWARN\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
+      );
+
+   };
+
 };

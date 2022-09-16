@@ -96,7 +96,8 @@ export class LeoClient extends Client {
 
    public get customChannels(): CustomChannels {
       return {
-         errors: this.channels.cache.get(process.env.CHANNEL_ERRORS) as TextChannel
+         errors: this.channels.cache.get(process.env.CHANNEL_ERRORS) as TextChannel,
+         guildLogs: this.channels.cache.get(process.env.CHANNEL_GUILD_LOGS) as TextChannel
       }
    };
 

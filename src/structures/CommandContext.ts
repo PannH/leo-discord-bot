@@ -1,5 +1,6 @@
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
 import { User, GuildMember, Guild, GuildTextBasedChannel, ComponentType, ChatInputCommandInteraction, ButtonStyle } from 'discord.js';
+import { v4 as uuid } from 'uuid';
 import type { LeoClient } from './LeoClient';
 import type { Command } from './Command';
 import type { Embed } from 'discord.js';
@@ -93,16 +94,21 @@ export class CommandContext {
          .setAuthor({ name: 'Confirmation Request', iconURL: this.client.customImages.QUESTION_MARK_CIRCLE })
          .setDescription(`> ${message}`);
 
+      const componentIds = {
+         'request.confirm': uuid(),
+         'request.cancel': uuid()
+      };
+
       const confirmButtonsRow = {
          type: ComponentType.ActionRow,
          components: [
             new ButtonBuilder()
-               .setCustomId('request.confirm')
+               .setCustomId(componentIds['request.confirm'])
                .setStyle(ButtonStyle.Primary)
                .setEmoji({ id: this.client.customEmojis.checkmark.id })
                .setLabel('Confirm'),
             new ButtonBuilder()
-               .setCustomId('request.cancel')
+               .setCustomId(componentIds['request.cancel'])
                .setStyle(ButtonStyle.Secondary)
                .setEmoji({ id: this.client.customEmojis.xmark.id })
                .setLabel('Cancel')
@@ -117,17 +123,12 @@ export class CommandContext {
       try {
          
          const response = await this.channel.awaitMessageComponent({
-            filter: (inter) => ['request.confirm', 'request.cancel'].includes(inter.customId) && inter.user.id === this.executor.id,
+            filter: (inter) => Object.values(componentIds).includes(inter.customId) && inter.user.id === this.executor.id,
             componentType: ComponentType.Button,
             time: (10 * 1000 * 60)
          });
 
-         const confirmation = {
-            'request.confirm': true,
-            'request.cancel': false
-         };
-
-         return confirmation[response.customId];
+         return response.customId === componentIds['request.confirm'] ? true : false;
 
       } catch (error) {
 
@@ -149,7 +150,14 @@ export class CommandContext {
 
       let currentPageIndex = 0;
 
-      const lastPageIndex = embeds.length - 1
+      const lastPageIndex = embeds.length - 1;
+
+      const componentIds = {
+         'pages.first': uuid(),
+         'pages.previous': uuid(),
+         'pages.next': uuid(),
+         'pages.last': uuid()
+      };
 
       const self = this;
       function generateComponents(currentPageIndex: number, maxPageIndex: number): any {
@@ -158,12 +166,12 @@ export class CommandContext {
             type: ComponentType.ActionRow,
             components: [
                new ButtonBuilder()
-                  .setCustomId('pages.first')
+                  .setCustomId(componentIds['pages.first'])
                   .setEmoji({ id: self.client.customEmojis.doubleArrowLeft.id })
                   .setStyle(ButtonStyle.Primary)
                   .setDisabled(currentPageIndex === 0),
                new ButtonBuilder()
-                  .setCustomId('pages.previous')
+                  .setCustomId(componentIds['pages.previous'])
                   .setEmoji({ id: self.client.customEmojis.arrowLeft.id })
                   .setStyle(ButtonStyle.Primary)
                   .setDisabled(currentPageIndex === 0),
@@ -173,12 +181,12 @@ export class CommandContext {
                   .setStyle(ButtonStyle.Secondary)
                   .setDisabled(true),
                new ButtonBuilder()
-                  .setCustomId('pages.next')
+                  .setCustomId(componentIds['pages.next'])
                   .setEmoji({ id: self.client.customEmojis.arrowRight.id })
                   .setStyle(ButtonStyle.Primary)
                   .setDisabled(currentPageIndex === maxPageIndex),
                new ButtonBuilder()
-                  .setCustomId('pages.last')
+                  .setCustomId(componentIds['pages.last'])
                   .setEmoji({ id: self.client.customEmojis.doubleArrowRight.id })
                   .setStyle(ButtonStyle.Primary)
                   .setDisabled(currentPageIndex === maxPageIndex),
@@ -200,23 +208,23 @@ export class CommandContext {
          });
 
       const buttonCollector = this.interaction.channel.createMessageComponentCollector({
-         filter: (inter) => ['pages.first', 'pages.previous', 'pages.next', 'pages.last'].includes(inter.customId) && inter.user.id === this.interaction.user.id,
+         filter: (inter) => Object.values(componentIds).includes(inter.customId) && inter.user.id === this.interaction.user.id,
          componentType: ComponentType.Button,
          time: (30 * 1000 * 60)
       });
 
       buttonCollector.on('collect', async (buttonInteraction) => {
 
-         if (buttonInteraction.customId === 'pages.first')
+         if (buttonInteraction.customId === componentIds['pages.first'])
             currentPageIndex = 0;
-         else if (buttonInteraction.customId === 'pages.previous')
+         else if (buttonInteraction.customId === componentIds['pages.previous'])
             currentPageIndex--;
-         else if (buttonInteraction.customId === 'pages.next')
+         else if (buttonInteraction.customId === componentIds['pages.next'])
             currentPageIndex++;
-         else if (buttonInteraction.customId === 'pages.last')
+         else if (buttonInteraction.customId === componentIds['pages.last'])
             currentPageIndex = lastPageIndex;
 
-         buttonInteraction.update({
+         await buttonInteraction.update({
             embeds: [embeds[currentPageIndex]],
             components: generateComponents(currentPageIndex, lastPageIndex)
          });

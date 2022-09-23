@@ -145,7 +145,7 @@ export default new Command(async (ctx: CommandContext) => {
          });
 
          if (!filteredMessages.length)
-            return void ctx.errorReply('No Message Found', 'No messages founds in this channel matching the filter');
+            return void ctx.errorReply('No Message Found', 'No message found in this channel matching the filter');
 
          try {
       

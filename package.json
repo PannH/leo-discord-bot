@@ -25,7 +25,8 @@
       "discord.js": "^14.2.0",
       "dotenv": "^16.0.1",
       "hex2rgb": "^2.2.0",
-      "humanize-duration": "^3.27.2"
+      "humanize-duration": "^3.27.2",
+      "uuid": "^9.0.0"
    },
    "devDependencies": {
       "@types/humanize-duration": "^3.27.1",

@@ -27,7 +27,7 @@ export class EventHandler {
       if (this.cached)
          throw new Error('The event handler has already been prepared.');
 
-      const EVENT_DIRS = ['client', 'afks', 'warns'];
+      const EVENT_DIRS = ['client', 'afks', 'warns', 'autoroles'];
 
       for (let dir of EVENT_DIRS) {
 

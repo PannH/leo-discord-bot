@@ -22,7 +22,7 @@ export default new Command(async (ctx: CommandContext) => {
          .setColor(ctx.client.colors.SECONDARY)
          .setAuthor({ name: `Commands`, iconURL: ctx.client.customImages.LIST })
          .addFields(
-            ['MODERATION', 'UTILITY', 'INFORMATION'].map((cat) => {
+            ['ADMINISTRATION', 'MODERATION', 'UTILITY', 'INFORMATION'].map((cat) => {
                return {
                   name: categoryNames[cat],
                   value: commands

@@ -29,3 +29,12 @@ model Afk {
 
   @@map(name: "afks")
 }
+
+// Autoroles
+model Autorole {
+  id      String @unique
+  roleId  String @map(name: "role_id")
+  guildId String @map(name: "guild_id")
+
+  @@map(name: "autoroles")
+}

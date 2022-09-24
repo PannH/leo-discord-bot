@@ -8,6 +8,7 @@
       "start:prod": "node dist/index.js",
       "build": "tsc",
       "prisma:migrate": "npx prisma migrate dev --name migration",
+      "prisma:deploy": "npx prisma migrate deploy",
       "prisma:format": "npx prisma format"
    },
    "repository": {

@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { DatabaseCache } from './DatabaseCache';
-import { LeoClient } from './LeoClient';
 
 export class PrismaDatabase extends PrismaClient {
 

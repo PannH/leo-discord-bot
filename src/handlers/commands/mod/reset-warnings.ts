@@ -25,7 +25,7 @@ export default new Command(async (ctx: CommandContext) => {
    if (!warns.length)
       return void ctx.errorReply('Invalid Member', 'The specified member does not have any warning.');
 
-   const confirmed = await ctx.confirmationRequest(`Are you sure about resetting **${warns.length}** warnings from **${user.tag}**.`);
+   const confirmed = await ctx.confirmationRequest(`Are you sure about resetting **${warns.length}** warning(s) from **${user.tag}**.`);
 
    if (confirmed === undefined)
       return;
@@ -46,7 +46,7 @@ export default new Command(async (ctx: CommandContext) => {
          const successEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
             .setAuthor({ name: 'Member Warnings Reset', iconURL: ctx.client.customImages.TOOLS })
-            .setDescription(`> Reset **${warns.length}** warnings from **${user.tag}**.`);
+            .setDescription(`> Reset **${warns.length}** warning(s) from **${user.tag}**.`);
    
          await ctx.interaction.editReply({
             embeds: [successEmbed],

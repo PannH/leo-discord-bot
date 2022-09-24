@@ -12,11 +12,12 @@ export default new Command(async (ctx: PrivateCommandContext) => {
    try {
 
       const output = await eval(code);
-      ctx.message.reply(`⬇️ Input\n${codeBlock(code, 'js')}\n↗️ Output (\`${typeof output}\`)\n${codeBlock(output)}`);
+
+      ctx.message.reply(`🖥️ Code Evaluation\n${codeBlock(`${code.split('\n').map((x) => `>>> ${x}`).join('\n')}\n${output}`)}`)
 
    } catch (err) {
-
-      ctx.message.reply(`⬇️ Input\n${codeBlock(code, 'js')}\n↗️ Output\n${codeBlock(String(err))}`);
+      
+      ctx.message.reply(`🖥️ Code Evaluation\n${codeBlock(`${code.split('\n').map((x) => `>>> ${x}`).join('\n')}\n${err}`)}`)
 
    };
 

@@ -272,7 +272,7 @@ export default new Command(async (ctx: CommandContext) => {
          type: ApplicationCommandOptionType.Subcommand
       }, {
          name: 'reset-score',
-         description: 'Reset your current best score.',
+         description: 'Reset your current best score to 0.',
          type: ApplicationCommandOptionType.Subcommand
       }]
    }

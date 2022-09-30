@@ -1,40 +1,48 @@
 generator client {
-  provider = "prisma-client-js"
+   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+   provider = "mysql"
+   url      = env("DATABASE_URL")
 }
 
 // Warnings
 model Warn {
-  id          String   @unique
-  userId      String   @map(name: "user_id")
-  guildId     String   @map(name: "guild_id")
-  moderatorId String   @map(name: "moderator_id")
-  createdAt   DateTime @default(now()) @map(name: "created_at")
-  reason      String
+   id          String   @unique
+   userId      String   @map(name: "user_id")
+   guildId     String   @map(name: "guild_id")
+   moderatorId String   @map(name: "moderator_id")
+   createdAt   DateTime @default(now()) @map(name: "created_at")
+   reason      String
 
-  @@map(name: "warns")
+   @@map(name: "warns")
 }
 
 // AFKs
 model Afk {
-  id        String   @unique
-  userId    String   @map(name: "user_id")
-  guildId   String   @map(name: "guild_id")
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  reason    String
+   id        String   @unique
+   userId    String   @map(name: "user_id")
+   guildId   String   @map(name: "guild_id")
+   createdAt DateTime @default(now()) @map(name: "created_at")
+   reason    String
 
-  @@map(name: "afks")
+   @@map(name: "afks")
 }
 
 // Autoroles
 model Autorole {
-  id      String @unique
-  roleId  String @map(name: "role_id")
-  guildId String @map(name: "guild_id")
+   id      String @unique
+   roleId  String @map(name: "role_id")
+   guildId String @map(name: "guild_id")
 
-  @@map(name: "autoroles")
+   @@map(name: "autoroles")
+}
+
+// Flag Guesser
+model FlagGuesserScore {
+   userId    String @unique @map(name: "user_id")
+   bestScore Int    @map(name: "best_score")
+
+   @@map(name: "flag_guesser_scores")
 }

@@ -9,4 +9,5 @@ export type CustomImages = {
    TOOLS: string;
    QUESTION_MARK_CIRCLE: string;
    ARROW_ROTATE: string;
+   FLAG: string;
 };

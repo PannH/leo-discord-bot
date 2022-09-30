@@ -6,7 +6,7 @@ export type CommandData = {
    description: string;
    formats: string[];
    examples: string[];
-   category: 'ADMINISTRATION' | 'MODERATION' | 'INFORMATION' | 'UTILITY' | 'PRIVATE'
+   category: 'ADMINISTRATION' | 'MODERATION' | 'INFORMATION' | 'UTILITY' | 'FUN' | 'PRIVATE',
    type: 'SLASH' | 'PRIVATE';
    memberPermissions: PermissionResolvable[];
    clientPermissions: PermissionResolvable[];

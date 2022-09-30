@@ -55,7 +55,6 @@ export class CommandHandler {
          throw new Error('The command handler must be prepared.');
 
       this.client.guilds.cache
-         .filter((g) => g.id !== process.env.SUPPORT_GUILD_ID)
          .forEach((g) => {
 
             g.commands.set(

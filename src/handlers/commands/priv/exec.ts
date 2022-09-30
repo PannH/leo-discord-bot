@@ -16,17 +16,6 @@ export default new Command(async (ctx: PrivateCommandContext) => {
 
    });
 
-   // try {
-
-   //    const output = await eval(code);
-   //    ctx.message.reply(`⬇️ Input\n${codeBlock(code, 'js')}\n↗️ Output (\`${typeof output}\`)\n${codeBlock(output)}`);
-
-   // } catch (err) {
-
-   //    ctx.message.reply(`⬇️ Input\n${codeBlock(code, 'js')}\n↗️ Output\n${codeBlock(String(err))}`);
-
-   // };
-
 }, {
    name: 'exec',
    aliases: [],

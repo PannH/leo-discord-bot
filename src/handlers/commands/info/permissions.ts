@@ -1,6 +1,6 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType, Role } from 'discord.js';
-import { permissionNames } from '../../../utils/permissionNames';
+import { PermissionNames } from '../../../utils/PermissionNames';
 import { EmbedBuilder } from '@discordjs/builders';
 import type { CommandContext } from '../../../structures/CommandContext';
 import type { GuildMember } from 'discord.js';
@@ -25,7 +25,7 @@ export default new Command(async (ctx: CommandContext) => {
             .setDescription(
                member.permissions
                   .toArray()
-                  .map((p) => `${ctx.client.customEmojis.dot} \`${permissionNames[p.toString()]}\``)
+                  .map((p) => `${ctx.client.customEmojis.dot} \`${PermissionNames[p.toString()]}\``)
                   .join('\n')
             )
             .setFooter({ text: `Hierarchical Position: ${member.guild.roles.cache.size - member.roles.highest.position}/${member.guild.roles.cache.size} (based on roles)` });
@@ -50,7 +50,7 @@ export default new Command(async (ctx: CommandContext) => {
             .setDescription(
                role.permissions
                   .toArray()
-                  .map((p) => `${ctx.client.customEmojis.dot} \`${permissionNames[p.toString()]}\``)
+                  .map((p) => `${ctx.client.customEmojis.dot} \`${PermissionNames[p.toString()]}\``)
                   .join('\n')
             )
             .setFooter({ text: `Hierarchical Position: ${role.guild.roles.cache.size - role.position}/${role.guild.roles.cache.size}` });

@@ -1,4 +1,4 @@
-export enum categoryNames {
+export enum CategoryNames {
    ADMINISTRATION = 'Administration',
    MODERATION = 'Moderation',
    INFORMATION = 'Information',

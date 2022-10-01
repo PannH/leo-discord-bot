@@ -1,7 +1,7 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
-import { categoryNames } from '../../../utils/categoryNames';
+import { CategoryNames } from '../../../utils/CategoryNames';
 import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
@@ -12,7 +12,7 @@ export default new Command(async (ctx: CommandContext) => {
    const commandsEmbed = category ?
       new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Commands (${categoryNames[category]})`, iconURL: ctx.client.customImages.LIST })
+         .setAuthor({ name: `Commands (${CategoryNames[category]})`, iconURL: ctx.client.customImages.LIST })
          .setDescription(
             commands
                .map((c) => `${ctx.client.customEmojis.dot} ${c.mention(ctx.guild)}: ${c.data.description}`)
@@ -24,7 +24,7 @@ export default new Command(async (ctx: CommandContext) => {
          .addFields(
             ['ADMINISTRATION', 'MODERATION', 'UTILITY', 'INFORMATION', 'FUN'].map((cat) => {
                return {
-                  name: categoryNames[cat],
+                  name: CategoryNames[cat],
                   value: commands
                      .filter((c) => c.data.category === cat)
                      .map((c) => c.mention(ctx.guild))

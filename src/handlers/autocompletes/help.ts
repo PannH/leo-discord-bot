@@ -1,5 +1,5 @@
 import { Autocomplete } from '../../structures/Autocomplete';
-import { categoryNames } from '../../utils/categoryNames';
+import { CategoryNames } from '../../utils/CategoryNames';
 import type { ApplicationCommandOptionChoiceData } from 'discord.js';
 
 export default new Autocomplete('help', async (client, interaction) => {
@@ -13,7 +13,7 @@ export default new Autocomplete('help', async (client, interaction) => {
       return commands
          .map((c) => {
             return {
-               name: `/${c.data.name} (${categoryNames[c.data.category]})`,
+               name: `/${c.data.name} (${CategoryNames[c.data.category]})`,
                value: c.id
             }
          })

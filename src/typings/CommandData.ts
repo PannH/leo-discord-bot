@@ -10,5 +10,6 @@ export type CommandData = {
    type: 'SLASH' | 'PRIVATE';
    memberPermissions: PermissionResolvable[];
    clientPermissions: PermissionResolvable[];
+   note?: string;
    slashData?: ApplicationCommandData;
 };

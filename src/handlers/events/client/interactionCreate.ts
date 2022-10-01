@@ -1,7 +1,7 @@
 import { Event } from '../../../structures/Event';
 import { CommandContext } from '../../../structures/CommandContext';
 import { AutocompleteInteraction, InteractionType } from 'discord.js';
-import { permissionNames } from '../../../utils/permissionNames';
+import { PermissionNames } from '../../../utils/PermissionNames';
 import type { ChatInputCommandInteraction, Interaction } from 'discord.js';
 import type { Command } from '../../../structures/Command';
 
@@ -21,14 +21,14 @@ export default new Event('interactionCreate', async (client, interaction: Intera
          );
 
          if (!!clientMissingPerms.length)
-            return void ctx.errorReply('Missing Permission', `I require the following permission(s) to run this command: ${clientMissingPerms.map((p) => `\`${permissionNames[p.toString()]}\``).join(', ')}`);
+            return void ctx.errorReply('Missing Permission', `I require the following permission(s) to run this command: ${clientMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')}`);
 
          const memberMissingPerms = command.data.memberPermissions.filter(
             (perm) => !commandInteraction.memberPermissions.has(perm)
          );
 
          if (!!memberMissingPerms.length)
-            return void ctx.errorReply('Missing Permission', `You must have the following permission(s) to use this command: ${memberMissingPerms.map((p) => `\`${permissionNames[p.toString()]}\``).join(', ')}`);
+            return void ctx.errorReply('Missing Permission', `You must have the following permission(s) to use this command: ${memberMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')}`);
 
          command.run(ctx);
 

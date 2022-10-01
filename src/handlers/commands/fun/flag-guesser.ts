@@ -1,10 +1,9 @@
 import { Command } from '../../../structures/Command';
-import { CommandContext } from '../../../structures/CommandContext';
 import { EmbedBuilder, ButtonBuilder } from '@discordjs/builders';
 import { ComponentType, ButtonStyle, ApplicationCommandOptionType } from 'discord.js';
 import { shuffleArray } from '../../../functions/shuffleArray';
-import { randomElement } from '../../../functions/randomElement';
 import { v4 as uuid } from 'uuid';
+import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
 

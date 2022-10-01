@@ -1,4 +1,4 @@
-export enum permissionNames {
+export enum PermissionNames {
    CreateInstantInvite = 'Create Invite',
    KickMembers = 'Kick Members',
    BanMembers = 'Ban Members',

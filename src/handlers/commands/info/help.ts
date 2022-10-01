@@ -1,8 +1,8 @@
 import { ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../../structures/Command';
 import { EmbedBuilder } from '@discordjs/builders';
-import { categoryNames } from '../../../utils/categoryNames';
-import { permissionNames } from '../../../utils/permissionNames';
+import { CategoryNames } from '../../../utils/CategoryNames';
+import { PermissionNames } from '../../../utils/PermissionNames';
 import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
@@ -15,7 +15,7 @@ export default new Command(async (ctx: CommandContext) => {
    
    const helpEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Command: /${command.data.name} (${categoryNames[command.data.category]})`, iconURL: ctx.client.customImages.QUESTION_MARK })
+      .setAuthor({ name: `Command: /${command.data.name} (${CategoryNames[command.data.category]})`, iconURL: ctx.client.customImages.QUESTION_MARK })
       .setDescription(`> ${command.data.description}`)
       .addFields({
          name: 'Formats',
@@ -29,9 +29,15 @@ export default new Command(async (ctx: CommandContext) => {
             .join('\n')
       }, {
          name: 'Required Permissions',
-         value: !command.data.memberPermissions.length ? 'None' : command.data.memberPermissions.map((p) => `\`${permissionNames[p.toString()]}\``).join(', ')
+         value: !command.data.memberPermissions.length ? 'None' : command.data.memberPermissions.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')
       })
       .setFooter({ text: 'Options: [required] (optional)' });
+
+   if (command.data.note)
+      helpEmbed.addFields({
+         name: `Note`,
+         value: command.data.note
+      });
 
    ctx.interaction.reply({
       embeds: [helpEmbed],

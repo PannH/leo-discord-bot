@@ -27,7 +27,8 @@
       "dotenv": "^16.0.1",
       "hex2rgb": "^2.2.0",
       "humanize-duration": "^3.27.2",
-      "uuid": "^9.0.0"
+      "uuid": "^9.0.0",
+      "weather-js": "^2.0.0"
    },
    "devDependencies": {
       "@types/humanize-duration": "^3.27.1",

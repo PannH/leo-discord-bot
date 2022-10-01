@@ -39,7 +39,7 @@ model Autorole {
    @@map(name: "autoroles")
 }
 
-// Flag Guesser
+// Flag Guesser Scores
 model FlagGuesserScore {
    userId    String @unique @map(name: "user_id")
    bestScore Int    @map(name: "best_score")

@@ -91,7 +91,8 @@ export class LeoClient extends Client {
          TOOLS: process.env.IMAGE_TOOLS,
          QUESTION_MARK_CIRCLE: process.env.IMAGE_QUESTION_MARK_CIRCLE,
          ARROW_ROTATE: process.env.IMAGE_ARROW_ROTATE,
-         FLAG: process.env.IMAGE_FLAG
+         FLAG: process.env.IMAGE_FLAG,
+         CLOUD: process.env.IMAGE_CLOUD
       }
    };
 

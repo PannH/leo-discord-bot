@@ -23,7 +23,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       const weatherEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Weather: ${location.name} (${current.day}, ${current.observationtime})` })
+         .setAuthor({ name: `Weather: ${location.name} (${current.day}, ${current.observationtime})`, iconURL: ctx.client.customImages.CLOUD })
          .setThumbnail(current.imageUrl)
          .addFields({
             name: 'Temperature',

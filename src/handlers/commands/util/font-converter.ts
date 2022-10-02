@@ -128,7 +128,7 @@ export default new Command(async (ctx: CommandContext) => {
 
    const componentCollector = ctx.channel.createMessageComponentCollector({
       filter: (inter) => Object.values(componentIds).includes(inter.customId) && inter.user.id === ctx.executor.id,
-      time: (15 * 1000 * 60)
+      time: (5 * 1000)
    });
 
    componentCollector.on('collect', async (inter) => {
@@ -187,6 +187,23 @@ export default new Command(async (ctx: CommandContext) => {
          }).catch(() => {});
 
       };
+
+   });
+
+   componentCollector.on('end', async () => {
+
+      const buttonRow = {
+         type: ComponentType.ActionRow,
+         components: [
+            new ButtonBuilder()
+               .setCustomId('.')
+               .setStyle(ButtonStyle.Secondary)
+               .setLabel('The buttons expired.')
+               .setDisabled(true)
+         ]
+      };
+
+      await ctx.interaction.editReply({ components: [buttonRow] });
 
    });
 

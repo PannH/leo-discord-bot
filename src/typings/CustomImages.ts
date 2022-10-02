@@ -10,4 +10,5 @@ export type CustomImages = {
    QUESTION_MARK_CIRCLE: string;
    ARROW_ROTATE: string;
    FLAG: string;
+   CLOUD: string;
 };

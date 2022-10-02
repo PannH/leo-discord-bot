@@ -128,7 +128,7 @@ export default new Command(async (ctx: CommandContext) => {
 
    const componentCollector = ctx.channel.createMessageComponentCollector({
       filter: (inter) => Object.values(componentIds).includes(inter.customId) && inter.user.id === ctx.executor.id,
-      time: (5 * 1000)
+      time: (15 * 1000 * 60)
    });
 
    componentCollector.on('collect', async (inter) => {

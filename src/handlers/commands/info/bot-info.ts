@@ -15,7 +15,7 @@ export default new Command(async (ctx: CommandContext) => {
          inline: true
       }, {
          name: 'Version',
-         value: `\`${require('../../../../package.json').version}\``,
+         value: `\`${ctx.client.version}\``,
          inline: true
       }, {
          name: 'Uptime',

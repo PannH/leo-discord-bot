@@ -103,4 +103,10 @@ export class LeoClient extends Client {
       }
    };
 
+   public get version(): string {
+
+      return require('../../package.json').version;
+      
+   };
+
 };

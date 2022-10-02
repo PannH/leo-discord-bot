@@ -5,11 +5,16 @@ export default new Event('ready', async (client) => {
 
    Logger.debug(`Client logged in as '${client.user.tag}'`);
 
+   const activityName = `/commands | ${client.guilds.cache.size} servers | v${client.version}`;
+
+   client.user.setActivity({ name: activityName });
+
+   // Auto-update the activity
    setInterval(() => {
-      client.user.setActivity({
-         name: `/commands | ${client.guilds.cache.size} servers`
-      });
-   }, 5 * 1000 * 60);
+
+      client.user.setActivity({ name: activityName });
+
+   }, 10 * 1000 * 60);
 
    // Handle commands
    client.handlers.commands

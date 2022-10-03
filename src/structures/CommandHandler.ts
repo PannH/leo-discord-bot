@@ -54,16 +54,15 @@ export class CommandHandler {
       if (!this.cached)
          throw new Error('The command handler must be prepared.');
 
-      this.client.guilds.cache
-         .forEach((g) => {
+      this.client.guilds.cache.forEach((g) => {
 
-            g.commands.set(
-               this.cache
-                  .filter((cmd) => cmd.data.category !== 'PRIVATE')
-                  .map((cmd) => cmd.data.slashData)
-            );
+         g.commands.set(
+            this.cache
+               .filter((cmd) => cmd.data.category !== 'PRIVATE')
+               .map((cmd) => cmd.data.slashData)
+         );
 
-         });
+      });
 
       return this.cache;
 

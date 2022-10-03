@@ -17,7 +17,7 @@ export default new Autocomplete('help', async (client, interaction) => {
                value: c.id
             }
          })
-         .slice(0, 11);
+         .slice(0, 10);
 
    };
 

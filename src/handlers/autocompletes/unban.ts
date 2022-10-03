@@ -16,7 +16,7 @@ export default new Autocomplete('unban', async (client, interaction) => {
                            name: `${b.user.tag} (reason: ${b.reason ?? 'No reason'})`,
                            value: b.user.id
                         };
-                     }).slice(0, 11);
+                     }).slice(0, 10);
 
    interaction.respond(choices);
 

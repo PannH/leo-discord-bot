@@ -4,7 +4,7 @@ import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
 
-   const addedCommands = ['flag-guesser', 'say', 'weather', 'font-converter', 'update'].map((commandName) => ctx.client.handlers.commands.cache.find((c) => c.data.name === commandName));
+   const addedCommands = ['chemical-element', 'poll'].map((commandName) => ctx.client.handlers.commands.cache.find((c) => c.data.name === commandName));
 
    const updateEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)

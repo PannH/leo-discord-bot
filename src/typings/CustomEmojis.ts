@@ -11,4 +11,7 @@ export type CustomEmojis = {
    doubleArrowRight: GuildEmoji;
    checkmark: GuildEmoji;
    xmark: GuildEmoji;
+   votePlus: GuildEmoji;
+   voteMinus: GuildEmoji;
+   voteNeutral: GuildEmoji;
 };

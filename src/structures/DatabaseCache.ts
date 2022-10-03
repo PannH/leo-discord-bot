@@ -1,5 +1,5 @@
 import { PrismaDatabase } from './PrismaDatabase';
-import type { Afk, Warn, Autorole } from '@prisma/client'
+import type { Afk, Warn, Autorole, FlagGuesserScore } from '@prisma/client'
 
 export class DatabaseCache {
 
@@ -8,11 +8,12 @@ export class DatabaseCache {
    public warn: Warn[];
    public afk: Afk[];
    public autorole: Autorole[];
+   public flagGuesserScore: FlagGuesserScore[];
 
    constructor(database: PrismaDatabase) {
 
       this.database = database;
-      this.models = ['warn', 'afk', 'autorole'];
+      this.models = ['warn', 'afk', 'autorole', 'flagGuesserScore'];
 
    };
 

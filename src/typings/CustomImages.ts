@@ -11,4 +11,5 @@ export type CustomImages = {
    ARROW_ROTATE: string;
    FLAG: string;
    CLOUD: string;
+   GRAPH: string;
 };

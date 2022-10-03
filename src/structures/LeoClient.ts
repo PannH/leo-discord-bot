@@ -75,7 +75,10 @@ export class LeoClient extends Client {
          doubleArrowLeft: this.emojis.cache.get(process.env.EMOJI_DOUBLE_ARROW_LEFT),
          doubleArrowRight: this.emojis.cache.get(process.env.EMOJI_DOUBLE_ARROW_RIGHT),
          checkmark: this.emojis.cache.get(process.env.EMOJI_CHECKMARK),
-         xmark: this.emojis.cache.get(process.env.EMOJI_XMARK)
+         xmark: this.emojis.cache.get(process.env.EMOJI_XMARK),
+         votePlus: this.emojis.cache.get(process.env.EMOJI_VOTE_PLUS),
+         voteMinus: this.emojis.cache.get(process.env.EMOJI_VOTE_MINUS),
+         voteNeutral: this.emojis.cache.get(process.env.EMOJI_VOTE_NEUTRAL)
       }
    };
 
@@ -92,7 +95,8 @@ export class LeoClient extends Client {
          QUESTION_MARK_CIRCLE: process.env.IMAGE_QUESTION_MARK_CIRCLE,
          ARROW_ROTATE: process.env.IMAGE_ARROW_ROTATE,
          FLAG: process.env.IMAGE_FLAG,
-         CLOUD: process.env.IMAGE_CLOUD
+         CLOUD: process.env.IMAGE_CLOUD,
+         GRAPH: process.env.IMAGE_GRAPH
       }
    };
 

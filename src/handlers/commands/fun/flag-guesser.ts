@@ -15,11 +15,7 @@ export default new Command(async (ctx: CommandContext) => {
 
          await ctx.interaction.deferReply();
 
-         const { bestScore } = await ctx.client.prisma.flagGuesserScore.findUnique({
-            where: {
-               userId: ctx.executor.id
-            }
-         }) ?? { bestScore: 0 };
+         const { bestScore } = ctx.client.prisma.cache.flagGuesserScore.find((x) => x.userId === ctx.executor.id) ?? { bestScore: 0 };
 
          const flags = shuffleArray(
             require('../../../../data/flags.json')
@@ -55,6 +51,8 @@ export default new Command(async (ctx: CommandContext) => {
                      userId: ctx.executor.id
                   }
                });
+
+               await ctx.client.prisma.cache.update('flagGuesserScore');
 
                return;
 
@@ -181,6 +179,8 @@ export default new Command(async (ctx: CommandContext) => {
                }
             });
 
+            await ctx.client.prisma.cache.update('flagGuesserScore');
+
          };
 
          break;
@@ -191,11 +191,7 @@ export default new Command(async (ctx: CommandContext) => {
 
          await ctx.interaction.deferReply({ ephemeral: true });
 
-         const { bestScore } = await ctx.client.prisma.flagGuesserScore.findUnique({
-            where: {
-               userId: ctx.executor.id
-            }
-         }) ?? { bestScore: 0 };
+         const { bestScore } = ctx.client.prisma.cache.flagGuesserScore.find((x) => x.userId === ctx.executor.id) ?? { bestScore: 0 };
 
          if (!bestScore)
             return void ctx.errorReply('Invalid Score', 'Your best score is already set to 0.');
@@ -212,6 +208,8 @@ export default new Command(async (ctx: CommandContext) => {
                   userId: ctx.executor.id
                }
             });
+
+            await ctx.client.prisma.cache.update('flagGuesserScore');
 
             const confirmEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)

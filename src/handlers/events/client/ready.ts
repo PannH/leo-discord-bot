@@ -5,14 +5,18 @@ export default new Event('ready', async (client) => {
 
    Logger.debug(`Client logged in as '${client.user.tag}'`);
 
-   const activityName = `/commands | ${client.guilds.cache.size} servers | v${client.version}`;
+   function getActivityName() {
 
-   client.user.setActivity({ name: activityName });
+      return `/commands | ${client.guilds.cache.size} servers | v${client.version}`;
+
+   };
+
+   client.user.setActivity({ name: getActivityName() });
 
    // Auto-update the activity
    setInterval(() => {
 
-      client.user.setActivity({ name: activityName });
+      client.user.setActivity({ name: getActivityName() });
 
    }, 10 * 1000 * 60);
 

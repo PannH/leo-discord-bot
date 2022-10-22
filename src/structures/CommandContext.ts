@@ -108,7 +108,7 @@ export class CommandContext {
 
       const confirmEmbed = new EmbedBuilder()
          .setColor(this.client.colors.SECONDARY)
-         .setAuthor({ name: 'Confirmation Request', iconURL: this.client.customImages.QUESTION_MARK_CIRCLE })
+         .setAuthor({ name: this.translate('common:confirmRequest'), iconURL: this.client.customImages.QUESTION_MARK_CIRCLE })
          .setDescription(`> ${message}`);
 
       const componentIds = {
@@ -123,12 +123,16 @@ export class CommandContext {
                .setCustomId(componentIds['request.confirm'])
                .setStyle(ButtonStyle.Primary)
                .setEmoji({ id: this.client.customEmojis.checkmark.id })
-               .setLabel('Confirm'),
+               .setLabel(
+                  this.translate('common:confirm')
+               ),
             new ButtonBuilder()
                .setCustomId(componentIds['request.cancel'])
                .setStyle(ButtonStyle.Secondary)
                .setEmoji({ id: this.client.customEmojis.xmark.id })
-               .setLabel('Cancel')
+               .setLabel(
+                  this.translate('common:cancel')
+               )
          ]
       };
 
@@ -149,7 +153,7 @@ export class CommandContext {
 
       } catch (error) {
 
-         confirmEmbed.setFooter({ text: '⏱️ No response, request cancelled...' });
+         confirmEmbed.setFooter({ text: `⏱️ ${this.translate('common:noResponseRequestCancelled')}` });
          confirmButtonsRow.components.forEach((c) => c.setDisabled(true));
 
          await this.interaction.editReply({
@@ -177,6 +181,7 @@ export class CommandContext {
       };
 
       const self = this;
+      
       function generateComponents(currentPageIndex: number, maxPageIndex: number): any {
 
          return [{

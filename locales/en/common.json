@@ -9,5 +9,9 @@
       "UTILITY": "Utility",
       "FUN": "Fun"
    },
-   "none": "None"
+   "none": "None",
+   "confirmRequest": "Confirmation Request",
+   "confirm": "Confirm",
+   "cancel": "Cancel",
+   "noResponseRequestCancelled": "No response, request cancelled."
 }

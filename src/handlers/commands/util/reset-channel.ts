@@ -9,7 +9,7 @@ export default new Command(async (ctx: CommandContext) => {
    const channel = (ctx.interaction.options.getChannel('channel') ?? ctx.channel) as TextChannel;
 
    const confirmed = await ctx.confirmationRequest(
-      ctx.translate('commands:resetChannel.resetConfirmRequest')
+      ctx.translate('commands:resetChannel.resetConfirmRequest', { channelMention: channel.toString() })
    );
 
    if (confirmed === undefined)

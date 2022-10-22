@@ -14,38 +14,47 @@ export default new Command(async (ctx: CommandContext) => {
    weather.find({ search: locationQuery, degreeType }, async (err, res) => {
 
       if (err)
-         return void ctx.errorReply('Unexpected Error', 'An error occured while trying to find the weather. Please, retry later.');
+         return void ctx.errorReply(
+            ctx.translate('common:unexpectedErrorTitle'),
+            ctx.translate('common:unexpectedErrorDescription')
+         );
 
       if (!res.length)
-         return void ctx.errorReply('No Weather Found', 'No weather was found from the given location.');
+         return void ctx.errorReply(
+            ctx.translate('commands:weather.errorTitles.noWeatherFound'),
+            ctx.translate('commands:weather.errorDescriptions.noWeatherFound')
+         );
       
       const { location, current } = res[0];
 
       const weatherEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Weather: ${location.name} (${current.day}, ${current.observationtime})`, iconURL: ctx.client.customImages.CLOUD })
+         .setAuthor({ name: `${ctx.translate('commands:weather.weather')}: ${location.name} (${current.day}, ${current.observationtime})`, iconURL: ctx.client.customImages.CLOUD })
          .setThumbnail(current.imageUrl)
          .addFields({
-            name: 'Temperature',
-            value: `${current.temperature}°${degreeType} (feels like ${current.feelslike}°${degreeType})`,
+            name: ctx.translate('commands:weather.temperature'),
+            value: `${current.temperature}°${degreeType} (${ctx.translate('commands:weather.feelsLike')} ${current.feelslike}°${degreeType})`,
             inline: true
          }, {
-            name: 'Sky',
+            name: ctx.translate('commands:weather.sky'),
             value: current.skytext,
             inline: true
          }, {
-            name: 'Timezone',
+            name: ctx.translate('commands:weather.timezone'),
             value: `${location.timezone < 0 ? `UTC${location.timezone}` : `UTC+${location.timezone}`}`,
             inline: true
          }, {
-            name: 'Wind Speed',
+            name: ctx.translate('commands:weather.windSpeed'),
             value: current.winddisplay,
             inline: true
          }, {
-            name: 'Humidity',
+            name: ctx.translate('commands:weather.humidity'),
             value: `${current.humidity}%`,
             inline: true
          });
+
+      if (ctx.language === 'fr')
+         weatherEmbed.setFooter({ text: 'Les données ne sont pas disponibles en français.' });
 
       await ctx.interaction.editReply({ embeds: [weatherEmbed] });
 

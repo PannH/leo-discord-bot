@@ -10,7 +10,10 @@ export default new Command(async (ctx: CommandContext) => {
    const foundElement = require('../../../../data/chemical_elements.json').find((el) => el.NAME.toLowerCase() === chemicalElementName);
 
    if (!foundElement)
-      return void ctx.errorReply('Invalid Chemical Element', 'The provided element is invalid. Wait for the autocomplete to prompt you an existing one.');
+      return void ctx.errorReply(
+         ctx.translate('commands:chemicalElement.errorTitles.invalidChemicalElement'),
+         ctx.translate('commands:chemicalElement.errorDescriptions.invalidChemicalElement')
+      );
 
    await ctx.interaction.deferReply();
 
@@ -20,36 +23,44 @@ export default new Command(async (ctx: CommandContext) => {
       
       const chemicalElementEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Chemical Element: ${data['name']} (${data['symbol']})` })
+         .setAuthor({ name: `${ctx.translate('commands:chemicalElement.chemicalElement')}: ${data['name']} (${data['symbol']})` })
          .setThumbnail(data['image'])
          .setDescription(`> ${data['summary']}`)
          .addFields({
-            name: 'Atomic Number',
+            name: ctx.translate('commands:chemicalElement.atomicNumber'),
             value: String(data['atomic_number']),
             inline: true
          }, {
-            name: 'Atomic Mass',
+            name: ctx.translate('commands:chemicalElement.atomicMass'),
             value: String(data['atomic_mass']),
             inline: true
          }, {
-            name: 'Phase',
+            name: ctx.translate('commands:chemicalElement.phase'),
             value: data['phase'],
             inline: true
          }, {
-            name: 'Period',
+            name: ctx.translate('commands:chemicalElement.period'),
             value: String(data['period']),
             inline: true
          }, {
-            name: 'Discovered By',
+            name: ctx.translate('commands:chemicalElement.discoveredBy'),
             value: data['discovered_by'],
             inline: true
          });
+
+      if (ctx.language === 'fr')
+         chemicalElementEmbed.setFooter({ text: 'Les données ne sont pas disponibles en français.' });
 
       await ctx.interaction.editReply({ embeds: [chemicalElementEmbed] });
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to get information about the chemical element. Please, retry later.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
+
+      ctx.client.emit('error', error);
 
    };
 

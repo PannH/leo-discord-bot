@@ -4,13 +4,13 @@ import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
 
-   const addedCommands = ['chemical-element', 'poll'].map((commandName) => ctx.client.handlers.commands.cache.find((c) => c.data.name === commandName));
+   const addedCommands = ['chemical-element', 'poll', 'language'].map((commandName) => ctx.client.handlers.commands.cache.find((c) => c.data.name === commandName));
 
    const updateEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Update Changes: ${ctx.client.version}`, iconURL: ctx.client.customImages.TOOLS })
+      .setAuthor({ name: `${ctx.translate('commands:update.updateChanges')}: ${ctx.client.version}`, iconURL: ctx.client.customImages.TOOLS })
       .addFields({
-         name: 'Added Commands',
+         name: ctx.translate('commands:update.addedCommands'),
          value: addedCommands
                   .map((c) => c.mention(ctx.guild))
                   .join(', ')

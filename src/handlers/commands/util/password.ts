@@ -18,10 +18,10 @@ export default new Command(async (ctx: CommandContext) => {
    const chars = [];
 
    if (uppercases)
-      chars.push(...allCharacters.UPPERCASES);
+      chars.push(...allCharacters.UPPERCASE_LETTERS);
 
    if (lowercases)
-      chars.push(...allCharacters.LOWERCASES);
+      chars.push(...allCharacters.LOWERCASE_LETTERS);
 
    if (numbers)
       chars.push(...allCharacters.NUMBERS);
@@ -47,9 +47,9 @@ export default new Command(async (ctx: CommandContext) => {
 
    const passwordsEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: 'Password Generator', iconURL: ctx.client.customImages.TOOLS })
-      .setDescription(`> Generated ${amount} password(s).\n${passwords.map((p) => `${ctx.client.customEmojis.dot} \`${p}\``).join('\n')}`)
-      .setFooter({ text: 'These passwords are randomly generated and usable for your own use.' });
+      .setAuthor({ name: ctx.translate('commands:password.passwordGenerator'), iconURL: ctx.client.customImages.TOOLS })
+      .setDescription(`${ctx.translate('commands:password.generatedPasswords', { count: passwords.length })}\n${passwords.map((p) => `${ctx.client.customEmojis.dot} \`${p}\``).join('\n')}`)
+      .setFooter({ text: ctx.translate('commands:password.thesePasswordsAreRandomlyGenerated') });
 
    ctx.interaction.reply({
       embeds: [passwordsEmbed],

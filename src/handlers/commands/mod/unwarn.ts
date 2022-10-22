@@ -15,19 +15,31 @@ export default new Command(async (ctx: CommandContext) => {
    const foundWarn = ctx.client.prisma.cache.warn.find((w) => w.id === warnId && w.userId === user.id && w.guildId === ctx.guild.id);
 
    if (user.id === ctx.executor.id)
-      return void ctx.errorReply('Invalid Member', 'You cannot remove a warning from yourself.');
+      return void ctx.errorReply(
+         ctx.translate('commands:unwarn.errorTitles.invalidMember'), 
+         ctx.translate('commands:unwarn.errorDescriptions.cannotUnwarnYourself')
+      );
 
    if (member) {
 
       if ((ctx.member.roles.highest.position <= member.roles.highest.position) && (ctx.guild.ownerId !== ctx.executor.id))
-         return void ctx.errorReply('Invalid Member', 'The provided member is hierarchically superior or equal to you.');
+         return void ctx.errorReply(
+            ctx.translate('commands:unwarn.errorTitles.invalidMember'), 
+            ctx.translate('commands:unwarn.errorDescriptions.memberHierSupOrEqual')
+         );
 
    };
 
    if (!foundWarn)
-      return void ctx.errorReply('Invalid Identifier', 'The specified member does not have any warning matching the given identifier.');
+      return void ctx.errorReply(
+         ctx.translate('commands:unwarn.errorTitles.invalidIdentifier'),
+         ctx.translate('commands:unwarn.errorDescriptions.noWarnFoundMatchingTheIdentifier')
+      );
 
-   const confirmed = await ctx.confirmationRequest(`Are you sure about removing the warning given ${timestamp(foundWarn.createdAt.getTime(), 'R')} with reason: \`${foundWarn.reason}\` ?`);
+   
+   const confirmed = await ctx.confirmationRequest(
+      ctx.translate('commands:unwarn.unwarnConfirmRequest', { timestamp: timestamp(foundWarn.createdAt.getTime(), 'R'), reason: foundWarn.reason ?? ctx.translate('common:none') })
+   );
 
    if (confirmed === undefined)
       return;
@@ -46,8 +58,10 @@ export default new Command(async (ctx: CommandContext) => {
 
          const successEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: 'Member Unwarn', iconURL: ctx.client.customImages.TOOLS })
-            .setDescription(`> Removed a warning from **${user.tag}**.`);
+            .setAuthor({ name: ctx.translate('commands:unwarn.memberUnwarn'), iconURL: ctx.client.customImages.TOOLS })
+            .setDescription(
+               ctx.translate('commands:unwarn.removedWarningFromMember', { userTag: user.tag })
+            );
    
          await ctx.interaction.editReply({
             embeds: [successEmbed],
@@ -55,14 +69,17 @@ export default new Command(async (ctx: CommandContext) => {
          });
    
          try {
-            await member.send({ content: `${ctx.client.customEmojis.bell} One of your warnings has been removed in the server \`${ctx.guild.name}\`.` });
+            await member.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:unwarn.oneOfYourWarningsHasBeenRemoved', { guildName: ctx.guild.name })}` });
          } catch (_) {
             return;
          };
 
       } catch (error) {
      
-         ctx.errorReply('Unexpected Error', 'An error occured while trying to unwarn the member. The error has been reported to the developer.');
+         ctx.errorReply(
+            ctx.translate('common:unexpectedErrorTitle'),
+            ctx.translate('common:unexpectedErrorDescription')
+         );
    
          ctx.client.emit('error', error);
 
@@ -72,8 +89,10 @@ export default new Command(async (ctx: CommandContext) => {
 
       const cancelEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Cancellation', iconURL: ctx.client.customImages.ARROW_ROTATE })
-         .setDescription('> The unwarn has been cancelled.');
+         .setAuthor({ name: ctx.translate('common:cancellation'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+         .setDescription(
+            ctx.translate('commands:unwarnCancel')
+         );
 
       await ctx.interaction.editReply({
          embeds: [cancelEmbed],

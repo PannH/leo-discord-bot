@@ -14,7 +14,7 @@ model Warn {
    guildId     String   @map(name: "guild_id")
    moderatorId String   @map(name: "moderator_id")
    createdAt   DateTime @default(now()) @map(name: "created_at")
-   reason      String
+   reason      String?
 
    @@map(name: "warns")
 }
@@ -25,7 +25,7 @@ model Afk {
    userId    String   @map(name: "user_id")
    guildId   String   @map(name: "guild_id")
    createdAt DateTime @default(now()) @map(name: "created_at")
-   reason    String
+   reason    String?
 
    @@map(name: "afks")
 }
@@ -45,4 +45,12 @@ model FlagGuesserScore {
    bestScore Int    @map(name: "best_score")
 
    @@map(name: "flag_guesser_scores")
+}
+
+// Languages
+model Language {
+   guildId String @unique @map(name: "guild_id")
+   lang    String
+
+   @@map(name: "languages")
 }

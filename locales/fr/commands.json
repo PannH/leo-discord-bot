@@ -1,0 +1,517 @@
+{
+   "autoroles": {
+      "errorTitles": {
+         "invalidRole": "Rôle Invalide",
+         "noRoleFound": "Aucun rôle trouvé",
+         "unexpected": "Erreur Inattendue"
+      },
+      "errorDescriptions": {
+         "roleAlreadyPresent": "Ce rôle est déjà présent dans les rôles automatiques.",
+         "cannotUseRole": "Le rôle {{roleMention}} ne peut pas être utilisé comme un rôle automatique.",
+         "botRole": "Un rôle de bot ne peut pas être utilisé comme un rôle automatique.",
+         "roleNotPresent": "Ce rôle n'est pas présent dans les rôles automatiques.",
+         "cannotAddRole": "Je ne peux pas ajouter ce rôle aux nouveaux membres.",
+         "noRoleFound": "Aucun rôle n'a été trouvé.",
+         "unexpected": "Une erreur est survenue lors de l'ajout du rôle automatique. Celle-ci a été signalée au développeur."
+      },
+      "autoroles": "Rôles automatiques",
+      "autoroleAddTitle": "Ajout du rôle automatique",
+      "autoroleAddDescription": "> Le rôle {{roleMention}} a été ajouté aux rôles automatiques et sera ajouté aux nouveaux membres.",
+      "autoroleRemoveTitle": "Suppression du rôle automatique",
+      "autoroleRemoveDescription": "> Le rôle {{roleMention}} a été supprimé des rôles automatiques et ne sera plus ajouté aux nouveaux membres."
+   },
+   "language": {
+      "languageNames": {
+         "english": "Anglais",
+         "french": "Français"
+      },
+      "errorTitles": {
+         "invalidLanguage": "Langue Invalide"
+      },
+      "errorDescriptions": {
+         "invalidLanguage": "Le bot est déjà configuré sur cette langue."
+      },
+      "languageSetTitle": "Configuration de la langue",
+      "languageSetDescription": "> La langue du bot pour ce serveur a été configurée sur **{{languageName}}**.",
+      "currentLanguageTitle": "Langue Actuelle",
+      "currentLanguageDescription": "> La langue du bot pour ce serveur est configurée sur **{{languageName}}**."
+   },
+   "flagGuesser": {
+      "player": "Joueur",
+      "winDescription": "> 🎉 Félicitations! Vous avez trouvé les **{{flagCount}}** drapeaux.",
+      "bestScore": "Meilleur Score",
+      "whichFlag": "> Quel est ce drapeau? 👇",
+      "currentScore": "Score Actuel",
+      "foundFlag": "Vous avez trouvé **{{flagName}}**.",
+      "loseDescription": "> Vous avez perdu... la bonne réponse était **{{rightAnswer}}**.",
+      "loseByTimeDescription": "> Vous avez perdu... Vous n'avez pas donné dans les 5 minutes données. La réponse était **{{answer}}**.",
+      "bestScoreBreak": "> 🎉 Vous avez battu votre ancien meilleur score ({{lastBestScore}})! Vous avez trouvé **{{score}}** drapeau(x).",
+      "foundFlags": "> Vous avez trouvé **{{score}}** drapeau(x).",
+      "errorTitles": {
+         "invalidScore": "Score Invalide"
+      },
+      "errorDescriptions": {
+         "invalidScore": "Votre meilleur score est déjà à 0."
+      },
+      "resetConfirmRequest": "Êtes-vous sûr de vouloir réinitialiser votre meilleur score actuel ({{currentBestScore}}) à 0?",
+      "scoreReset": "Réinitialisation de votre score",
+      "bestScoreReset": "> Votre meilleur score a été réinitialisé à 0.",
+      "bestScoreResetCancel": "> La réinitialisation de votre meilleur score a été annulée."
+   },
+   "avatar": {
+      "avatar": "Avatar",
+      "avatarURL": "URL de l'avatar"
+   },
+   "banner": {
+      "banner": "Bannière",
+      "bannerURL": "URL de la bannière",
+      "errorTitles": {
+         "invalidUser": "Utilisateur Invalide"
+      },
+      "errorDescriptions": {
+         "noBanner": "L'utilisateur spécifié n'a pas de bannière."
+      }
+   },
+   "botInfo": {
+      "information": "Informations",
+      "createdBy": "Créé par",
+      "version": "Version",
+      "uptime": "En-ligne depuis",
+      "links": "Liens",
+      "stats": "Statistiques",
+      "servers": "Serveurs",
+      "users": "Utilisateurs",
+      "supportServer": "Serveur de support",
+      "githubRepo": "Dépôt GitHub",
+      "inviteAsAdmin": "Invitation (en tant qu'administrateur)",
+      "inviteEditablePerms": "Invitation (permissions modifiables)",
+      "website": "Site web",
+      "join": "Rejoindre",
+      "goTo": "Aller à",
+      "invite": "Inviter"
+   },
+   "chemicalElement": {
+      "errorTitles": {
+         "invalidChemicalElement": "Elément Chimique Invalide"
+      },
+      "errorDescriptions": {
+         "invalidChemicalElement": "L'élement chimique spécifié est invalide. Veuilez attendre que l'autocomplétion vous en propose un existant."
+      },
+      "chemicalElement": "Elément Chimique",
+      "atomicNumber": "Numéro Atomique",
+      "atomicMass": "Masse Atomique",
+      "phase": "Phase",
+      "period": "Période",
+      "discoveredBy": "Découvert par"
+   },
+   "commands": {
+      "commands": "Commandes"
+   },
+   "help": {
+      "errorTitles": {
+         "invalidCommand": "Commande Invalide"
+      },
+      "errorDescriptions": {
+         "invalidCommand": "La commande spécifiée est invalide. Veuillez attendre que l'autocomplétion vous en propose une existante."
+      },
+      "command": "Commande",
+      "formats": "Formats",
+      "examples": "Exemples",
+      "requiredPerms": "Permissions Requises",
+      "options": "Options: [requise] (optionnelle)"
+   },
+   "invite": {
+      "inviteLinks": "Liens d'invitation",
+      "adminPerm": "Permission administrateur",
+      "editablePerms": "Permissions modifiables"
+   },
+   "movie": {
+      "errorTitles": {
+         "invalidTitle": "Titre Invalide"
+      },
+      "errorDescriptions": {
+         "noMovieFound": "Aucun(e) film / série n'a été trouvé(e) avec le titre donné."
+      },
+      "movieSeries": "Film / Série",
+      "mainActors": "Acteurs Principaux",
+      "director": "Directeur",
+      "writers": "Scénariste(s)",
+      "rating": "Note",
+      "genres": "Genres",
+      "country": "Pays",
+      "release": "Sortie"
+   },
+   "permissions": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur."
+      },
+      "memberPerms": "Permissions du membre",
+      "rolePerms": "Permissions du rôle",
+      "hierPosition": "Position hiérarchique",
+      "basedOnRoles": "basé sur les rôles"
+   },
+   "ping": {
+      "averageLatency": "Latence Moyenne",
+      "webSocket": "Web Socket",
+      "responseTime": "Temps de réponse"
+   },
+   "roleInfo": {
+      "information": "Informations",
+      "identifier": "Identifiant",
+      "members": "Membres",
+      "administrator": "Administrateur",
+      "mentionable": "Mentionnable",
+      "displayedSeparetly": "Affiché séparément",
+      "creationDate": "Date de création",
+      "color": "Couleur"
+   },
+   "serverBanner": {
+      "errorTitles": {
+         "invalidServer": "Serveur Invalide"
+      },
+      "errorDescriptions": {
+         "noBanner": "Ce serveur n'a pas de bannière."
+      },
+      "banner": "Bannière",
+      "bannerURL": "URL de la bannière"
+   },
+   "serverIcon": {
+      "errorTitles": {
+         "invalidServer": "Serveur Invalide"
+      },
+      "errorDescriptions": {
+         "noIcon": "Ce serveur n'a pas d'icône."
+      },
+      "icon": "Icône",
+      "iconURL": "URL de l'icône"
+   },
+   "serverInfo": {
+      "errorTitles": {
+         "unavailableServer": "Serveur Invalide"
+      },
+      "errorDescriptions": {
+         "unavailableData": "Les données du serveur sont indisponibles."
+      },
+      "tiers": ["Niveau 1", "Niveau 2", "Niveau 3"],
+      "information": "Informations",
+      "identifier": "Identifiant",
+      "owner": "Propriétaire",
+      "boostStatus": "Status des boosts",
+      "large": "Large",
+      "verified": "Vérifié",
+      "partnered": "Partenaire",
+      "creationDate": "Date de création",
+      "channelStats": "Statistiques des salons",
+      "memberStats": "Statistiques des membres",
+      "total": "Total",
+      "text": "Texte",
+      "voice": "Vocal",
+      "threads": "Threads",
+      "humans": "Humains",
+      "bots": "Bots",
+      "max": "max"
+   },
+   "support": {
+      "supportServer": "Serveur de support",
+      "invite": "Invitation"
+   },
+   "update": {
+      "updateChanges": "Changements",
+      "addedCommands": "Commandes ajoutées"
+   },
+   "userInfo": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur."
+      },
+      "information": "Informations",
+      "identifier": "Identifiant",
+      "accountType": "Type de compte",
+      "administrator": "Administrateur",
+      "accountCreation": "Création du compte",
+      "serverJoin": "Adhésion au serveur",
+      "leoPerms": "Permissions de Leo",
+      "system": "Système",
+      "bot": "Bot",
+      "human": "Humain",
+      "timeout": "Exclure",
+      "manage": "Gérer",
+      "kick": "Expulser",
+      "ban": "Bannir"
+   },
+   "ban": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable",
+         "invalidMember": "Membre Invalide",
+         "missingPerm": "Permission Manquante"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "cannotBanYourself": "Vous ne pouvez pas vous bannir vous-même.",
+         "cannotBanThisMember": "Je ne peux pas bannir ce membre.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous."
+      },
+      "memberBan": "Bannissement",
+      "memberHasBeenBanned": "> **{{userTag}}** a été banni du serveur avec comme raison: `{{reason}}`",
+      "youHaveBeenBanned": "Vous avez été banni du serveur `{{guildName}}` avec comme raison: `{{reason}}`."
+   },
+   "bans": {
+      "errorTitles": {
+         "noBanFound": "Aucun Bannissement Trouvé"
+      },
+      "errorDescriptions": {
+         "serverHasNoBan": "Ce serveur n'a aucun bannissement."
+      },
+      "bans": "Bannissements",
+      "ban": "Bannissement",
+      "user": "Utilisateur",
+      "reason": "Raison"
+   },
+   "kick": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable",
+         "invalidMember": "Membre Invalide",
+         "missingPerm": "Permission Manquante"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "cannotKickYourself": "Vous ne pouvez pas vous expulser vous-même.",
+         "cannotKickThisMember": "Je ne peux pas expulser ce membre.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous."
+      },
+      "memberKick": "Expulsion",
+      "memberHasBeenKicked": "> **{{userTag}}** a été expulsé du serveur avec comme raison: `{{reason}}`",
+      "youHaveBeenKicked": "Vous avez été expulsé du serveur `{{guildName}}` avec comme raison: `{{reason}}`."
+   },
+   "myWarnings": {
+      "errorTitles": {
+         "invalidMember": "Membre Invalide"
+      },
+      "errorDescriptions": {
+         "noWarning": "Vous n'avez aucun avertissement."
+      },
+      "yourWarnings": "Vos avertissements",
+      "warning": "Avertissement",
+      "date": "Date",
+      "moderator": "Modérateur",
+      "reason": "Raison"
+   },
+   "nickname": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable",
+         "missingPerm": "Permission Manquante",
+         "invalidNickname": "Pseudonyme Invalide",
+         "invalidMember": "Membre Invalide"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "cannotManageThisMember": "Je ne peux pas gérer ce membre.",
+         "noFancyChar": "Le pseudonyme de ce membre no contient aucun caractère fantaisiste à remplacer.",
+         "noNickname": "Ce membre n'a pas de pseudonyme."
+      },
+      "nicknameSet": "Modification du pseudonyme",
+      "nicknameHasBeenSet": "> {{memberMention}} a été renommé en `{{nickname}}` avec comme raison: `{{reason}}`.",
+      "yourNicknameHasBeenSet": "Vous avez été renommé dans le serveur `{{guildName}}` en `{{nickname}}` avec comme raison: `{{reason}}`.",
+      "renameConfirmRequest": "Êtes-vous sûr de vouloir renommer {{memberMention}} en `{{nickname}}` ?",
+      "nicknameNormalization": "Normalisation du pseudonyme",
+      "nicknameHasBeenNormalized": "Le pseuodnyme de {{memberMention}} a été normalisé en `{{nickname}}` avec comme raison: `{{reason}}`.",
+      "yourNicknameHasBeenNormalized": "Votre pseudonyme dans le serveur `{{guildName}}` a été normalisé en `{{nickname}}` avec comme raison: `{{reason}}`.",
+      "nicknameNormalizationCancel": "> La normalisation du pseudo a été annulée.",
+      "nicknameReset": "Réinitialisation du pseudonyme",
+      "nicknameHasBeenReset": "Le pseudonyme de {{memberMention}} a été réinitialisé avec comme raison: `{{reason}}`.",
+      "yourNicknameHasBeenReset": "Votre pseudonyme dans le serveur `{{guildName}}` a été réinitialisé avec comme raison: `{{reason}}`."
+   },
+   "purge": {
+      "errorTitles": {
+         "noMessageFound": "Aucun Message Trouvé"
+      },
+      "errorDescriptions": {
+         "noMessageFoundFromUser": "Il n'y a aucun message envoyé par cet utilisateur dans ce salon.",
+         "noMessageFoundMatchingText": "Il n'y a aucun message correspondant au texte donné dans ce salon.",
+         "noMessageFoundMatchingFilter": "Il n'y a aucun message correspondant au filtre donné."
+      },
+      "messagePurge": "Purge de messages",
+      "purgedMessages": "> Purge de **{{messageCount}}** message(s)."
+   },
+   "removeTimeout": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable",
+         "invalidMember": "Membre Invalide"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "memberNotTimedOut": "L'utilisateur mentionné n'est pas exclu."
+      },
+      "memberTimeoutRemove": "Exclusion du membre enlevée",
+      "timeoutHasBeenRemoved": "> L'exclusion de {{memberMention}} a été enlevée avec comme raison: `{{reason}}`.",
+      "yourTimeoutHasBeenRemoved": "Votre exclusion dans le serveur `{{guildName}}` a été enlevée avec comme raison: `{{reason}}`."
+   },
+   "resetWarnings": {
+      "errorTitles": {
+         "invalidMember": "Membre Invalide"
+      },
+      "errorDescriptions": {
+         "cannotResetYourWarns": "Vous ne pouvez pas réinitisaliser votre propre avertissements.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous.",
+         "noWarning": "L'utilisateur spécifié ne possède aucun avertissement."
+      },
+      "resetConfirmRequest": "Êtes-vous sûr de vouloir réinitialiser **{{warnCount}}** avertissement(s) de **{{userTag}}** ?",
+      "memberWarningsReset": "Réinitialisation des avertissements",
+      "resetWarningsFromUser": "> Réinitialisation de **{{warnCount}}** avertissement(s) de **{{userTag}}**.",
+      "yourWarningsHaveBeenReset": "Vos avertissements ({{warnCount}}) dans le serveur `{{guildName}}` ont été réinitialisés.",
+      "resetCancellation": "> La réinitialisation des avertissements a été annulée."
+   },
+   "timeout": {
+      "errorTitles": {
+         "memberNotFound": "Member Not Found",
+         "invalidMember": "Membre Invalide",
+         "missingPerm": "Permission Manquante",
+         "invalidDuration": "Durée Invalide"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "cannotTimeOutYourself": "Vous ne pouvez pas vous exclure vous-même.",
+         "cannotTimeOutAnAdmin": "Il est impossible d'exclure un administrateur.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous.",
+         "cannotTimeOutThisMember": "Je ne peux pas exclure ce membre.",
+         "alreadyTimedOut": "Le membre mentionné est déjà exclu.",
+         "timeoutDurationTooLong": "Il est impossible d'exclure un membre pour plus de 28 jours."
+      },
+      "memberTimeout": "Exclusion",
+      "memberHasBeenTimedOut": "> **{{userTag}}** a été exclu pendant `{{duration}}` avec comme raison: `{{reason}}`.",
+      "youHaveBeenTimedOut": "Vous avez été exclu dans le serveur `{{guildName}}` pendant `{{duration}}` avec comme raison: `{{reason}}`."
+   },
+   "unban": {
+      "errorTitles": {
+         "userNotFound": "Utilisateur Introuvable"
+      },
+      "errorDescriptions": {
+         "userNotFound": "L'utilisateur mentionné est introuvable dans les bannissements du serveur. Veuillez attendre que l'autocomplétion vous propose des bannissements existants."
+      },
+      "userUnban": "Débannissement",
+      "userHasBeenUnbanned": "> **{{userTag}}** a été débanni du serveur avec comme raison: `{{reason}}`.",
+      "youHaveBeenUnbanned": "Vous avez été débanni du serveur `{{guildName}}` avec comme raison: `{{reason}}`."
+   },
+   "unwarn": {
+      "errorTitles": {
+         "invalidMember": "Membre Invalide",
+         "invalidIdentifier": "Identifiant Invalide"
+      },
+      "errorDescriptions": {
+         "cannotUnwarnYourself": "Vous ne pouvez pas enlever un avertissement de vous-même.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous.",
+         "noWarnFoundMatchingTheIdentifier": "Aucun avertissement de ce membre n'a été trouvé avec cet identifiant."
+      },
+      "unwarnConfirmRequest": "Êtes-vous sûr de vouloir enlever l'avertissement donné {{timestamp}} avec comme raison: `{{reason}}` ?",
+      "memberUnwarn": "Suppression de l'avertissement",
+      "removedWarningFromMember": "> Suppression d'un avertissement de **{{userTag}}**.",
+      "oneOfYourWarningsHasBeenRemoved": "L'un de vos avertissements a été enlevé dans le serveur `{{guildName}}`.",
+      "unwarnCancel": "> La suppression de l'avertissement a été annulée."
+   },
+   "warn": {
+      "errorTitles": {
+         "memberNotFound": "Membre Introuvable",
+         "invalidMember": "Membre Invalide"
+      },
+      "errorDescriptions": {
+         "memberNotFound": "L'utilisateur mentionné est introuvable dans ce serveur.",
+         "cannotWarnABot": "Vous ne pouvez pas avertir un bot.",
+         "cannotWarnYourself": "Vous ne pouvez pas vous avertir vous-même.",
+         "memberHierSupOrEqual": "Le membre mentionné est hiérarchiquement supérieur ou égal à vous."
+      },
+      "memberWarn": "Avertissement",
+      "memberHasBeenWarned": "> {{userMention}} a reçu un avertissement avec comme raison: `{{reason}}`.",
+      "youHaveBeenWarned": "Vous avez reçu un avertissement dans le serveur `{{guildName}}` avec comme raison: `{{reason}}`."
+   },
+   "warnings": {
+      "errorTitles": {
+         "noWarnFound": "Aucun Avertissement Trouvé"
+      },
+      "errorDescriptions": {
+         "noWarnFound": "Aucun avertissement n'a été trouvé pour ce membre."
+      },
+      "warnings": "Avertissements",
+      "warning": "Avertissement",
+      "identifier": "Identifiant",
+      "date": "Date",
+      "moderator": "Modérateur",
+      "reason": "Raison",
+      "notFound": "Introuvable"
+   },
+   "afk": {
+      "errorTitles": {
+         "alreadyAfk": "Dejà AFK",
+         "notAfk": "Pas AFK",
+         "noAfkFound": "Aucun Membre AFK"
+      },
+      "errorDescriptions": {
+         "alreadyAfk": "Vous êtes déjà inscrit comme AFK sur ce serveur.",
+         "notAfk": "Vous n'êtes pas inscrit comme AFK sur ce serveur.",
+         "noAfkFound": "Aucun membre dans ce serveur n'est inscrit comme AFK."
+      },
+      "afkStatusSet": "Status AFK Défini",
+      "youAreNowAfk": "Vous êtes désormais inscrit comme AFK dans ce serveur avec comme raison: `{{reason}}`.",
+      "afkStatusUnset": "Status AFK Enlevé",
+      "youAreNotAfkAnymore": "Vous n'êtes plus inscrit comme AFK dans ce serveur. Vous l'avez été pendant `{{duration}}` avec comme raison: `{{reason}}`.",
+      "afkMembers": "Membres AFK",
+      "afkMember": "Membre AFK",
+      "user": "Utilisateur",
+      "since": "Depuis",
+      "reason": "Raison"
+   },
+   "fontConverter": {
+      "exampleText": "Texte d'exemple",
+      "fontConverter": "Convertisseur de police",
+      "converterDescription": "> Utilisez le bouton pour modifier le texte et le menu de sélection pour changer la police.",
+      "text": "Texte",
+      "convertedText": "Texte converti",
+      "selectAFont": "Séléctionner une police",
+      "editText": "Modifier le texte",
+      "fontConverterText": "Convertisseur de police - Texte",
+      "theButtonsHaveExpired": "Les boutons ont expirés."
+   },
+   "password": {
+      "passwordGenerator": "Générateur de mots de passe",
+      "generatedPasswords": "> Mot(s) de passe généré(s): {{count}}.",
+      "thesePasswordsAreRandomlyGenerated": "Ces mots de passe sont générés aléatoirement et sont utilisables pour votre usage personnel."
+   },
+   "poll": {
+      "sendingThePoll": "Envoi du sondage...",
+      "pollCreate": "Création du sondage",
+      "thePollHasBeenSent": "Le [sondage]({{messageUrl}}) a été envoyé dans le salon {{channelMention}}."
+   },
+   "resetChannel": {
+      "resetConfirmRequest": "Êtes-vous sûr de vouloir réinitialiser le salon {{channelMention}} et supprimer tous ses messages ?",
+      "channelReset": "Réinitialisation du salon",
+      "thisChannelHasBeenReset": "Ce salon a été réinitalisé par {{executorMention}}.",
+      "theChannelHasBeenReset": "Le salon {{channelMention}} a été réinitialisé.",
+      "resetCancel": "La réinitialisation du salon a été annulée."
+   },
+   "say": {
+      "messageContent": "Contenu du message",
+      "modalPlaceholder": "Salut @utilisateur, ...",
+      "sayMessageContent": "Say - Contenu du message",
+      "sendingMessage": "Envoi du message...",
+      "theMessageHasBeenSent": "> Le message a été envoyé dans le salon {{channelMention}}."
+   },
+   "weather": {
+      "errorTitles": {
+         "noWeatherFound": "Aucune Météo Trouvée"
+      },
+      "errorDescriptions": {
+         "noWeatherFound": "Aucune météo n'a été trouvée pour le lieu donné."
+      },
+      "weather": "Météo",
+      "temperature": "Température",
+      "sky": "Ciel",
+      "timezone": "Fuseau horaire",
+      "windSpeed": "Vitesse du vent",
+      "humidity": "Humidité",
+      "feelsLike": "ressenti:"
+   }
+}

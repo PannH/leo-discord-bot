@@ -13,19 +13,30 @@ export default new Command(async (ctx: CommandContext) => {
    const member = await ctx.guild.members.fetch(user.id);
 
    if (user.id === ctx.executor.id)
-      return void ctx.errorReply('Invalid Member', 'You cannot reset your own warnings.');
+      return void ctx.errorReply(
+         ctx.translate('commands:resetWarnings.errorTitles.invalidMember'),
+         ctx.translate('commands:resetWarnings.errorDescriptions.cannotResetYourWarns')
+      );
 
    if (member) {
 
       if ((ctx.member.roles.highest.position <= member.roles.highest.position) && (ctx.guild.ownerId !== ctx.executor.id))
-         return void ctx.errorReply('Invalid Member', 'The provided member is hierarchically superior or equal to you.');
+         return void ctx.errorReply(
+            ctx.translate('commands:resetWarnings.errorTitles.invalidMember'),
+            ctx.translate('commands:resetWarnings.errorDescriptions.memberHierSupOrEqual')
+         );
 
    };
 
    if (!warns.length)
-      return void ctx.errorReply('Invalid Member', 'The specified member does not have any warning.');
+      return void ctx.errorReply(
+         ctx.translate('commands:resetWarnings.errorTitles.invalidMember'),
+         ctx.translate('commands:resetWarnings.errorDescriptions.noWarning')
+      );
 
-   const confirmed = await ctx.confirmationRequest(`Are you sure about resetting **${warns.length}** warning(s) from **${user.tag}**.`);
+   const confirmed = await ctx.confirmationRequest(
+      ctx.translate('commands:resetWarnings.resetConfirmRequest', { warnCount: warns.length, userTag: user.tag })
+   );
 
    if (confirmed === undefined)
       return;
@@ -45,8 +56,10 @@ export default new Command(async (ctx: CommandContext) => {
 
          const successEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: 'Member Warnings Reset', iconURL: ctx.client.customImages.TOOLS })
-            .setDescription(`> Reset **${warns.length}** warning(s) from **${user.tag}**.`);
+            .setAuthor({ name: ctx.translate('commands:resetWarnings.memberWarningsReset'), iconURL: ctx.client.customImages.TOOLS })
+            .setDescription(
+               ctx.translate('commands:resetWarnings.resetWarningsFromUser', { warnCount: warns.length, userTag: user.tag })
+            );
    
          await ctx.interaction.editReply({
             embeds: [successEmbed],
@@ -54,14 +67,17 @@ export default new Command(async (ctx: CommandContext) => {
          });
    
          try {
-            await member.send({ content: `${ctx.client.customEmojis.bell} Your warnings (${warns.length}) have been reset in the server \`${ctx.guild.name}\`.` });
+            await member.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:resetWarnings.yourWarningsHaveBeenReset', { warnCount: warns.length, guildName: ctx.guild.name })}` });
          } catch (_) {
             return;
          };
 
       } catch (error) {
      
-         ctx.errorReply('Unexpected Error', 'An error occured while trying to reset the member\'s warnings. The error has been reported to the developer.');
+         ctx.errorReply(
+            ctx.translate('common:unexpectedErrorTitle'),
+            ctx.translate('common:unexpectedErrorDescription')
+         );
    
          ctx.client.emit('error', error);
          
@@ -71,8 +87,10 @@ export default new Command(async (ctx: CommandContext) => {
 
       const cancelEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Cancellation', iconURL: ctx.client.customImages.ARROW_ROTATE })
-         .setDescription('> The warning reset has been cancelled.');
+         .setAuthor({ name: ctx.translate('common:cancellation'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+         .setDescription(
+            ctx.translate('commands:resetWarnings.resetCancellation')
+         );
 
       await ctx.interaction.editReply({
          embeds: [cancelEmbed],

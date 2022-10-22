@@ -8,18 +8,23 @@ export default new Command(async (ctx: CommandContext) => {
    const bannerURL = ctx.guild.bannerURL({ extension: 'png', size: 4096 });
 
    if (!bannerURL)
-      return void ctx.errorReply('Invalid Server', 'The server does not have a banner.');
+      return void ctx.errorReply(
+         ctx.translate('commands:serverBanner.errorTitles.invalidServer'),
+         ctx.translate('commands:serverBanner.errorDescriptions.noBanner')
+      );
 
    const bannerEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Banner: ${ctx.guild.name}`, iconURL: ctx.client.customImages.IMAGE })
+      .setAuthor({ name: `${ctx.translate('commands:serverBanner.banner')}: ${ctx.guild.name}`, iconURL: ctx.client.customImages.IMAGE })
       .setImage(bannerURL);
 
    const bannerButtonRow = {
       type: ComponentType.ActionRow,
       components: [
          new ButtonBuilder()
-            .setLabel('Banner URL')
+            .setLabel(
+               ctx.translate('commands:serverBanner.bannerURL')
+            )
             .setStyle(ButtonStyle.Link)
             .setURL(bannerURL)
       ]

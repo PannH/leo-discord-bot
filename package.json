@@ -8,8 +8,7 @@
       "start:prod": "node dist/index.js",
       "build": "tsc",
       "prisma:migrate": "npx prisma migrate dev --name migration",
-      "prisma:deploy": "npx prisma migrate deploy",
-      "prisma:format": "npx prisma format"
+      "prisma:deploy": "npx prisma migrate deploy"
    },
    "repository": {
       "type": "git",
@@ -28,6 +27,7 @@
       "dotenv": "^16.0.1",
       "hex2rgb": "^2.2.0",
       "humanize-duration": "^3.27.2",
+      "i18next": "^21.9.2",
       "uuid": "^9.0.0",
       "weather-js": "^2.0.0"
    },

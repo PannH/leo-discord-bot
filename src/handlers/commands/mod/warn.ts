@@ -10,16 +10,28 @@ export default new Command(async (ctx: CommandContext) => {
    const reason = ctx.interaction.options.getString('reason');
 
    if (!member)
-      return void ctx.errorReply('Member Not Found', 'The specified member was not found in the server.');
+      return void ctx.errorReply(
+         ctx.translate('commands:warn.errorTitles.memberNotFound'),
+         ctx.translate('commands:warn.errorDescriptions.memberNotFound')
+      );
 
    if (member.user.bot)
-      return void ctx.errorReply('Invalid Member', 'You cannot warn a bot.');
+      return void ctx.errorReply(
+         ctx.translate('commands:warn.errorTitles.invalidMember'),
+         ctx.translate('commands:warn.errorDescriptions.cannotWarnABot')
+      );
 
    if (member.user.id === ctx.executor.id)
-      return void ctx.errorReply('Invalid Member', 'You cannot warn yourself.');
+      return void ctx.errorReply(
+         ctx.translate('commands:warn.errorTitles.invalidMember'),
+         ctx.translate('commands:warn.errorDescriptions.cannotWarnYourself')
+      );
 
    if ((ctx.member.roles.highest.position <= member.roles.highest.position) && (ctx.guild.ownerId !== ctx.executor.id))
-      return void ctx.errorReply('Invalid Member', 'The provided member is hierarchically superior or equal to you.');
+      return void ctx.errorReply(
+         ctx.translate('commands:warn.errorTitles.invalidMember'),
+         ctx.translate('commands:warn.errorDescriptions.memberHierSupOrEqual')
+      );
 
    await ctx.interaction.deferReply();
 
@@ -31,7 +43,7 @@ export default new Command(async (ctx: CommandContext) => {
             userId: member.user.id,
             guildId: ctx.guild.id,
             moderatorId: ctx.executor.id,
-            reason: reason ?? 'None'
+            reason
          }
       });
 
@@ -39,20 +51,25 @@ export default new Command(async (ctx: CommandContext) => {
 
       const successEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Member Warn', iconURL: ctx.client.customImages.TOOLS })
-         .setDescription(`> ${member} has been warned with reason: \`${reason ?? 'No reason'}\`.`);
+         .setAuthor({ name: ctx.translate('commands:warn.memberWarn'), iconURL: ctx.client.customImages.TOOLS })
+         .setDescription(
+            ctx.translate('commands:warn.memberHasBeenWarned', { userMention: member.toString(), reason: reason ?? ctx.translate('common:none') })
+         );
 
       await ctx.interaction.editReply({ embeds: [successEmbed] });
    
       try {
-         await member.send({ content: `${ctx.client.customEmojis.bell} You have been warned in the server \`${ctx.guild.name}\` with reason: \`${reason ?? 'No reason'}\`.` });
+         await member.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:warn.youHaveBeenWarned', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}` });
       } catch (_) {
          return;
       };
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to warn the member. The error has been reported to the developer.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
 
       ctx.client.emit('error', error);
 

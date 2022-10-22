@@ -17,3 +17,7 @@ client.handlers.autocompletes.prepare();
 client.prisma.cache
    .initialize()
    .then(() => Logger.debug('Initialized the database\'s cache'));
+
+client.locales
+   .initialize()
+   .then(() => Logger.debug('Initialized the locales'));

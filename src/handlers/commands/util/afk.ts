@@ -18,7 +18,10 @@ export default new Command(async (ctx: CommandContext) => {
          const reason = ctx.interaction.options.getString('reason');
 
          if (foundAfk)
-            return void ctx.errorReply('Already AFK', 'You are already set as AFK in this server.');
+            return void ctx.errorReply(
+               ctx.translate('commands:afk.errorTitles.alreadyAfk'),
+               ctx.translate('commands:afk.errorDescriptions.alreadyAfk')
+            );
          
          try {
             
@@ -27,7 +30,7 @@ export default new Command(async (ctx: CommandContext) => {
                   id: SnowflakeUtil.generate().toString(),
                   guildId: ctx.guild.id,
                   userId: ctx.executor.id,
-                  reason: reason ?? 'None'
+                  reason
                }
             });
 
@@ -35,8 +38,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'AFK Set', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> You're now set as AFK in this server with reason: \`${reason ?? 'No reason'}\``);
+               .setAuthor({ name: ctx.translate('commands:afk.afkStatusSet'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:afk.youAreNowAfk', { reason: reason ?? ctx.translate('common:none') })
+               );
       
             await ctx.interaction.reply({
                embeds: [successEmbed],
@@ -45,7 +50,10 @@ export default new Command(async (ctx: CommandContext) => {
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to set you as AFK. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 
@@ -60,7 +68,10 @@ export default new Command(async (ctx: CommandContext) => {
          const foundAfk = afks.find((afk) => afk.guildId === ctx.guild.id && afk.userId === ctx.executor.id);
 
          if (!foundAfk)
-            return void ctx.errorReply('Not AFK', 'You are not set as AFK in this server.');
+            return void ctx.errorReply(
+               ctx.translate('commands:afk.errorTitles.notAfk'),
+               ctx.translate('commands:afk.errorDescriptions.notAfk')
+            );
 
          try {
            
@@ -74,8 +85,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'AFK Unset', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> You have been unset from AFK. You have been AFK for \`${humanizeDuration(Date.now() - foundAfk.createdAt.getTime(), { largest: 2, maxDecimalPoints: 1 })}\`.`);
+               .setAuthor({ name: ctx.translate('commands:afk.afkStatusUnset'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:afk.youAreNotAfkAnymore', { duration: humanizeDuration(Date.now() - foundAfk.createdAt.getTime(), { largest: 2, maxDecimalPoints: 1, language: ctx.language }), reason: foundAfk.reason ?? ctx.translate('common:none') })
+               );
       
             await ctx.interaction.reply({
                embeds: [successEmbed],
@@ -84,7 +97,10 @@ export default new Command(async (ctx: CommandContext) => {
 
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to unset you from AFK. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 
@@ -97,11 +113,14 @@ export default new Command(async (ctx: CommandContext) => {
       case 'display': {
 
          if (!afks.length)
-            return void ctx.errorReply('No AFK Found', 'There is no AFK in this server.');
+            return void ctx.errorReply(
+               ctx.translate('commands:afk.errorTitles.noAfkFound'),
+               ctx.translate('commands:afk.errorDescriptions.noAfkFound')
+            );
 
          const baseEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: `AFKs: ${ctx.guild.name} (${afks.length})`, iconURL: ctx.client.customImages.LIST })
+            .setAuthor({ name: `${ctx.translate('commands:afk.afkMembers')}: ${ctx.guild.name} (${afks.length})`, iconURL: ctx.client.customImages.LIST })
             .setThumbnail(ctx.guild.iconURL({ extension: 'png', size: 4096 }));
 
          afks.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
@@ -123,10 +142,10 @@ export default new Command(async (ctx: CommandContext) => {
                   break;
       
                afkEmbeds[i] = pageEmbed.addFields({
-                  name: `AFK #${afkIndex + 1}`,
-                  value: `${ctx.client.customEmojis.dot} User: ${await ctx.client.users.fetch(afk.userId) ?? 'Not Found'}\n` +
-                         `${ctx.client.customEmojis.dot} Date: ${timestamp(afk.createdAt.getTime(), 'f')} - ${timestamp(afk.createdAt.getTime(), 'R')}\n` +
-                         `${ctx.client.customEmojis.dot} Reason: \`${afk.reason}\``
+                  name: `${ctx.translate('commands:afk.afkMember')} #${afkIndex + 1}`,
+                  value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:afk.user')}: ${await ctx.client.users.fetch(afk.userId) ?? 'Not Found'}\n` +
+                         `${ctx.client.customEmojis.dot} ${ctx.translate('commands:afk.since')}: ${timestamp(afk.createdAt.getTime(), 'f')} - ${timestamp(afk.createdAt.getTime(), 'R')}\n` +
+                         `${ctx.client.customEmojis.dot} ${ctx.translate('commands:afk.reason')}: \`${afk.reason ?? ctx.translate('common:none')}\``
                });
       
                afkIndex++;

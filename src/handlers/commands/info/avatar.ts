@@ -10,14 +10,16 @@ export default new Command(async (ctx: CommandContext) => {
 
    const avatarEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Avatar: ${user.tag}`, iconURL: ctx.client.customImages.IMAGE })
+      .setAuthor({ name: `${ctx.translate('commands:avatar.avatar')}: ${user.tag}`, iconURL: ctx.client.customImages.IMAGE })
       .setImage(avatarURL);
 
    const avatarButtonRow = {
       type: ComponentType.ActionRow,
       components: [
          new ButtonBuilder()
-            .setLabel('Avatar URL')
+            .setLabel(
+               ctx.translate('commands:avatar.avatarURL')
+            )
             .setStyle(ButtonStyle.Link)
             .setURL(avatarURL)
       ]

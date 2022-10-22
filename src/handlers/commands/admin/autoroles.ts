@@ -15,16 +15,34 @@ export default new Command(async (ctx: CommandContext) => {
          const role = ctx.interaction.options.getRole('role');
 
          if (autoroles.find((ar) => ar.roleId === role.id))
-            return void ctx.errorReply('Invalid Role', 'This role is already in the autoroles.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.roleAlreadyPresent')
+            );
 
          if (role.id === ctx.guild.roles.everyone.id)
-            return void ctx.errorReply('Invalid Role', 'The @everyone role cannot be used as an autorole.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.cannotUseRole', { roleMention: ctx.guild.roles.everyone.toString() })
+            );
+
+         if (role.id === ctx.guild.roles.premiumSubscriberRole.id)
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.cannotUseRole', { roleMention: ctx.guild.roles.premiumSubscriberRole.toString() })
+            );
 
          if (ctx.guild.members.cache.find((m) => m.roles.botRole?.id === role.id))
-            return void ctx.errorReply('Invalid Role', 'A bot role cannot be used as an autorole.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.botRole')
+            );
 
          if (role.position >= ctx.me.roles.highest.position)
-            return void ctx.errorReply('Invalid Role', 'I cannot add this role to new members.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.cannotAddRole')
+            );
 
          try {
             
@@ -40,8 +58,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Autorole Add', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> The role ${role} has been added to the autoroles and will be added to new members.`);
+               .setAuthor({ name: ctx.translate('commands:autoroles.autoroleAddTitle'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:autoroles.autoroleAddDescription', { roleMention: role.toString() })
+               );
       
             await ctx.interaction.reply({
                embeds: [successEmbed],
@@ -50,7 +70,10 @@ export default new Command(async (ctx: CommandContext) => {
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to add the role to the autoroles. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectederrorTitles'),
+               ctx.translate('common:unexpectederrorDescriptions')
+            );
       
             ctx.client.emit('error', error);
 
@@ -66,7 +89,10 @@ export default new Command(async (ctx: CommandContext) => {
          const foundAutorole = autoroles.find((ar) => ar.roleId === role.id);
 
          if (!foundAutorole)
-            return void ctx.errorReply('Invalid Role', 'This role is not in the autoroles.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.invalidRole'),
+               ctx.translate('commands:autoroles.errorDescriptions.roleNotPresent')
+            );
 
          try {
             
@@ -80,8 +106,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Autorole Remove', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> The role ${role} has been removed from the autoroles and will not be added to new members anymore.`);
+               .setAuthor({ name: ctx.translate('commands:autoroles.autoroleRemoveTitle'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:autoroles.autoroleRemoveDescription', { roleMention: role.toString() })
+               );
       
             await ctx.interaction.reply({
                embeds: [successEmbed],
@@ -90,7 +118,10 @@ export default new Command(async (ctx: CommandContext) => {
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to remove the role from the autoroles. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('unexpectederrorTitles'),
+               ctx.translate('unexpectederrorDescriptions')
+            );
       
             ctx.client.emit('error', error);
 
@@ -103,13 +134,16 @@ export default new Command(async (ctx: CommandContext) => {
       case 'display': {
 
          if (!autoroles.length)
-            return void ctx.errorReply('No Role Found', 'This server does not have any autorole.');
+            return void ctx.errorReply(
+               ctx.translate('commands:autoroles.errorTitles.noRoleFound'),
+               ctx.translate('commands:autoroles.errorDescriptions.noRoleFound')
+            );
 
          await ctx.interaction.deferReply({ ephemeral: true });
 
          const baseEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: `Autoroles: ${ctx.guild.name} (${autoroles.length})`, iconURL: ctx.client.customImages.LIST })
+            .setAuthor({ name: `${ctx.translate('commands:autoroles.autoroles')}: ${ctx.guild.name} (${autoroles.length})`, iconURL: ctx.client.customImages.LIST })
             .setThumbnail(ctx.guild.iconURL({ extension: 'png', size: 4096 }));
 
          let autoroleEmbeds = [];

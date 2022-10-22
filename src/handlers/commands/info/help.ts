@@ -11,31 +11,34 @@ export default new Command(async (ctx: CommandContext) => {
    const command = ctx.client.handlers.commands.cache.get(commandId);
 
    if (!command)
-      return void ctx.errorReply('Invalid Command', 'Command not found. Try to wait for the autocomplete to prompt you an existing command.');
+      return void ctx.errorReply(
+         ctx.translate(`commands:help.errorTitles.invalidCommand`),
+         ctx.translate(`commands:help.errorDescriptions.invalidCommand`)
+      );
    
    const helpEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Command: /${command.data.name} (${CategoryNames[command.data.category]})`, iconURL: ctx.client.customImages.QUESTION_MARK })
+      .setAuthor({ name: `${ctx.translate(`commands:help.command`)}: /${command.data.name} (${ctx.translate(`common:categoryNames.${command.data.category}`)})`, iconURL: ctx.client.customImages.QUESTION_MARK })
       .setDescription(`> ${command.data.description}`)
       .addFields({
-         name: 'Formats',
+         name: ctx.translate(`commands:help.formats`),
          value: command.data.formats
             .map((f) => `${ctx.client.customEmojis.dot} ${f}`)
             .join('\n')
       }, {
-         name: 'Examples',
+         name: ctx.translate(`commands:help.examples`),
          value: command.data.examples
             .map((e) => `${ctx.client.customEmojis.dot} ${e}`)
             .join('\n')
       }, {
-         name: 'Required Permissions',
-         value: !command.data.memberPermissions.length ? 'None' : command.data.memberPermissions.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')
+         name: ctx.translate(`commands:help.requiredPerms`),
+         value: !command.data.memberPermissions.length ? ctx.translate(`common:none`) : command.data.memberPermissions.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')
       })
-      .setFooter({ text: 'Options: [required] (optional)' });
+      .setFooter({ text: ctx.translate(`commands:help.options`) });
 
    if (command.data.note)
       helpEmbed.addFields({
-         name: `Note`,
+         name: ctx.translate(`commands:help.note`),
          value: command.data.note
       });
 

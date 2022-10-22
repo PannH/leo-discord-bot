@@ -36,7 +36,10 @@ export default new Command(async (ctx: CommandContext) => {
          });
 
          if (!userMessages.length)
-            return void ctx.errorReply('No Message Found', 'There is no messages from this user in this channel.');
+            return void ctx.errorReply(
+               ctx.translate('commands:purge.errorTitles.noMessageFound'),
+               ctx.translate('commands:purge.errorDescriptions.noMessageFoundFromUser')
+            );
 
          try {
       
@@ -44,14 +47,19 @@ export default new Command(async (ctx: CommandContext) => {
       
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Message Purge', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> Purged **${purgedMessages.size}** message(s) from ${user}.`);
+               .setAuthor({ name: ctx.translate('commands:purge.messagePurge'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:purge.purgedMessages', { messageCount: purgedMessages.size })
+               );
       
             await ctx.interaction.editReply({ embeds: [successEmbed] });
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to purge the messages. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 
@@ -86,7 +94,10 @@ export default new Command(async (ctx: CommandContext) => {
          });
 
          if (!textMessages.length)
-            return void ctx.errorReply('No Message Found', 'There is no messages in this channel matching the provided text.');
+            return void ctx.errorReply(
+               ctx.translate('commands:purge.errorTitles.noMessageFound'),
+               ctx.translate('commands:purge.errorDescriptions.noMessageFoundMatchingText')
+            );
 
          try {
       
@@ -94,14 +105,19 @@ export default new Command(async (ctx: CommandContext) => {
       
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Message Purge', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> Purged **${purgedMessages.size}** message(s) containing \`${text}\`.`);
+               .setAuthor({ name: ctx.translate('commands:purge.messagePurge'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:purge.purgedMessages', { messageCount: purgedMessages.size })
+               );
       
             await ctx.interaction.editReply({ embeds: [successEmbed] });
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to purge the messages. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 
@@ -145,7 +161,10 @@ export default new Command(async (ctx: CommandContext) => {
          });
 
          if (!filteredMessages.length)
-            return void ctx.errorReply('No Message Found', 'No message found in this channel matching the filter');
+            return void ctx.errorReply(
+               ctx.translate('commands:purge.errorTitles.noMessageFound'),
+               ctx.translate('commands:purged.errorDescriptions.noMessageFoundMatchingFilter')
+            );
 
          try {
       
@@ -153,14 +172,19 @@ export default new Command(async (ctx: CommandContext) => {
       
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Message Purge', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> Purged **${purgedMessages.size}** message(s).`);
+               .setAuthor({ name: ctx.translate('commands:purge.messagePurged'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:purge.purgedMessages', { messageCount: purgedMessages.size })
+               );
       
             await ctx.interaction.editReply({ embeds: [successEmbed] });
             
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to purge the messages. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 

@@ -22,7 +22,9 @@ export default new Command(async (ctx: CommandContext) => {
 
    const sendingEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setDescription(`Sending the poll...`);
+      .setDescription(
+         ctx.translate('commands:poll.sendingThePoll')
+      );
 
    await ctx.interaction.reply({
       embeds: [sendingEmbed],
@@ -71,14 +73,19 @@ export default new Command(async (ctx: CommandContext) => {
 
       const confirmEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Poll Create', iconURL: ctx.client.customImages.GRAPH })
-         .setDescription(`> The [poll](${message.url}) has been sent in the ${channel} channel.`);
+         .setAuthor({ name: ctx.translate('commands:poll.pollCreate'), iconURL: ctx.client.customImages.GRAPH })
+         .setDescription(
+            ctx.translate('commands:poll.thePollHasBeenSent', { messageUrl: message.url, channelMention: channel.toString() })
+         );
 
       await ctx.interaction.editReply({ embeds: [confirmEmbed] });
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to send the poll. The error has been reported to the developer.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
 
       ctx.client.emit('error', error);
 

@@ -15,11 +15,14 @@ export default new Command(async (ctx: CommandContext) => {
                   .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
    if (!warns.length)
-      return void ctx.errorReply('Invalid User', 'The specified member does not have any warn.');
+      return void ctx.errorReply(
+         ctx.translate('commands:warnings.errorTitles.noWarnFound'),
+         ctx.translate('commands:warnings.errorDescriptions.noWarnFound')
+      );
 
    const baseEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Warnings: ${user.tag} (${warns.length})`, iconURL: ctx.client.customImages.LIST })
+      .setAuthor({ name: `${ctx.translate('commands:warnings.warnings')}: ${user.tag} (${warns.length})`, iconURL: ctx.client.customImages.LIST })
       .setThumbnail(user.displayAvatarURL({ extension: 'png', size: 4096 }));
 
    let warnEmbeds = [];
@@ -37,11 +40,11 @@ export default new Command(async (ctx: CommandContext) => {
             break;
 
          warnEmbeds[i] = pageEmbed.addFields({
-            name: `Warning #${warnIndex + 1}`,
-            value: `${ctx.client.customEmojis.dot} Identifier: \`${warn.id}\`\n` +
-                   `${ctx.client.customEmojis.dot} Date: ${timestamp(warn.createdAt.getTime(), 'f')} - ${timestamp(warn.createdAt.getTime(), 'R')}\n` +
-                   `${ctx.client.customEmojis.dot} Moderator: ${(await ctx.client.users.fetch(warn.moderatorId)) ?? 'Not found'}\n` +
-                   `${ctx.client.customEmojis.dot} Reason: \`${warn.reason}\``
+            name: `${ctx.translate('commands:warnings.warning')} #${warnIndex + 1}`,
+            value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:warnings.identifier')}: \`${warn.id}\`\n` +
+                   `${ctx.client.customEmojis.dot} ${ctx.translate('commands:warnings.date')}: ${timestamp(warn.createdAt.getTime(), 'f')} - ${timestamp(warn.createdAt.getTime(), 'R')}\n` +
+                   `${ctx.client.customEmojis.dot} ${ctx.translate('commands:warnings.moderator')}: ${(await ctx.client.users.fetch(warn.moderatorId)) ?? ctx.translate('commands:warnings.notFound')}\n` +
+                   `${ctx.client.customEmojis.dot} ${ctx.translate('commands:warnings.reason')}: \`${warn.reason ?? ctx.translate('common:none')}\``
          });
 
          warnIndex++;

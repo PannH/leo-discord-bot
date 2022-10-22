@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import type { LeoClient } from './LeoClient';
 import type { Command } from './Command';
 import type { Embed } from 'discord.js';
+import type { TOptions } from 'i18next';
 
 export class CommandContext {
 
@@ -56,6 +57,22 @@ export class CommandContext {
    public get executedTimestamp(): number {
 
       return this.interaction.createdTimestamp;
+
+   };
+
+   public get language(): string {
+
+      return this.client.prisma.cache.language.find((lang) => lang.guildId === this.guild.id)?.lang ?? 'en';
+
+   };
+
+   public translate(key: string, options?: TOptions): string {
+
+      options = options ?? {};
+
+      options.lng = this.language;
+
+      return this.client.locales.t(key, options);
 
    };
 

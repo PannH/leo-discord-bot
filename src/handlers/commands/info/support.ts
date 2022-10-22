@@ -6,8 +6,8 @@ export default new Command(async (ctx: CommandContext) => {
 
    const inviteEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Support Server: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.LINK })
-      .setDescription(`${ctx.client.customEmojis.dot} Invite: ${ctx.client.links.SUPPORT}`);
+      .setAuthor({ name: `${ctx.translate('commands:support.supportServer')}: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.LINK })
+      .setDescription(`${ctx.client.customEmojis.dot} ${ctx.translate('commands:support.invite')}: ${ctx.client.links.SUPPORT}`);
 
    ctx.interaction.reply({
       embeds: [inviteEmbed],

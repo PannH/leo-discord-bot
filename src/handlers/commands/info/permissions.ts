@@ -16,11 +16,14 @@ export default new Command(async (ctx: CommandContext) => {
          const member = ctx.interaction.options.getMember('user') as GuildMember;
 
          if (!member)
-            return void ctx.errorReply('Member Not Found', 'The user you provided was not found in this server.');
+            return void ctx.errorReply(
+               ctx.translate('commands:permissions.errorTitles.memberNotFound'),
+               ctx.translate('commands:permissions.errorDescriptions.memberNotFound')
+            );
 
          const permissionsEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: `Member Permissions: ${member.user.tag}`, iconURL: ctx.client.customImages.LIST })
+            .setAuthor({ name: `${ctx.translate('commands:permissions.memberPerms')}: ${member.user.tag}`, iconURL: ctx.client.customImages.LIST })
             .setThumbnail(member.user.displayAvatarURL({ extension: 'png', size: 4096 }))
             .setDescription(
                member.permissions
@@ -28,7 +31,7 @@ export default new Command(async (ctx: CommandContext) => {
                   .map((p) => `${ctx.client.customEmojis.dot} \`${PermissionNames[p.toString()]}\``)
                   .join('\n')
             )
-            .setFooter({ text: `Hierarchical Position: ${member.guild.roles.cache.size - member.roles.highest.position}/${member.guild.roles.cache.size} (based on roles)` });
+            .setFooter({ text: `${ctx.translate('commands:permissions.hierPosition')}: ${member.guild.roles.cache.size - member.roles.highest.position}/${member.guild.roles.cache.size} (${ctx.translate('commands:permissions.basedOnRoles')})` });
 
          ctx.interaction.reply({
             embeds: [permissionsEmbed],
@@ -45,7 +48,7 @@ export default new Command(async (ctx: CommandContext) => {
 
          const permissionsEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: `Role Permissions: ${role.name}`, iconURL: ctx.client.customImages.LIST })
+            .setAuthor({ name: `${ctx.translate('commands:permissions.rolePerms')}: ${role.name}`, iconURL: ctx.client.customImages.LIST })
             .setThumbnail(role.iconURL({ extension: 'png', size: 4096 }))
             .setDescription(
                role.permissions
@@ -53,7 +56,7 @@ export default new Command(async (ctx: CommandContext) => {
                   .map((p) => `${ctx.client.customEmojis.dot} \`${PermissionNames[p.toString()]}\``)
                   .join('\n')
             )
-            .setFooter({ text: `Hierarchical Position: ${role.guild.roles.cache.size - role.position}/${role.guild.roles.cache.size}` });
+            .setFooter({ text: `${ctx.translate('commands:permissions.hierPosition')}: ${role.guild.roles.cache.size - role.position}/${role.guild.roles.cache.size}` });
 
          ctx.interaction.reply({
             embeds: [permissionsEmbed],

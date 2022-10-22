@@ -7,32 +7,32 @@ export default new Command(async (ctx: CommandContext) => {
 
    const infoEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Information: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.INFO })
+      .setAuthor({ name: `${ctx.translate('commands:botInfo.information')}: ${ctx.client.user.username}`, iconURL: ctx.client.customImages.INFO })
       .setThumbnail(ctx.client.user.displayAvatarURL())
       .addFields({
-         name: 'Created by',
+         name: ctx.translate('commands:botInfo.createdBy'),
          value: `[\`${ctx.client.owner.tag}\`](${ctx.client.links.LINKTREE})`,
          inline: true
       }, {
-         name: 'Version',
+         name: ctx.translate('commands:botInfo.version'),
          value: `\`${ctx.client.version}\``,
          inline: true
       }, {
-         name: 'Uptime',
-         value: humanizeDuration(ctx.client.uptime, { largest: 2, maxDecimalPoints: 1 }),
+         name: ctx.translate('commands:botInfo.uptime'),
+         value: humanizeDuration(ctx.client.uptime, { largest: 2, maxDecimalPoints: 1, language: ctx.language }),
          inline: true
       }, {
-         name: 'Links',
-         value: `${ctx.client.customEmojis.dot} Support Server: [Join](${ctx.client.links.SUPPORT})\n` +
-                `${ctx.client.customEmojis.dot} GitHub Repository: [Go To](${ctx.client.links.GITHUB_REPO})\n` +
-                `${ctx.client.customEmojis.dot} Invite (As Admin): [Invite](${ctx.client.links.ADMIN_INVITE})\n` +
-                `${ctx.client.customEmojis.dot} Invite (Editable Perms): [Invite](${ctx.client.links.EDITABLE_PERMS_INVITE})\n` +
-                `${ctx.client.customEmojis.dot} Website: [leo.adkynet.eu](${ctx.client.links.WEBSITE})`,
+         name: ctx.translate('commands:botInfo.links'),
+         value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.supportServer')} [${ctx.translate('commands:botInfo.join')}](${ctx.client.links.SUPPORT})\n` +
+                `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.githubRepo')}: [${ctx.translate('commands:botInfo.goTo')}](${ctx.client.links.GITHUB_REPO})\n` +
+                `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.inviteAsAdmin')}: [${ctx.translate('commands:botInfo.invite')}](${ctx.client.links.ADMIN_INVITE})\n` +
+                `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.inviteEditablePerms')}: [${ctx.translate('commands:botInfo.invite')}](${ctx.client.links.EDITABLE_PERMS_INVITE})\n` +
+                `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.website')}: [leo.adkynet.eu](${ctx.client.links.WEBSITE})`,
          inline: true
       }, {
-         name: 'Statistics',
-         value: `${ctx.client.customEmojis.dot} Servers: ${ctx.client.guilds.cache.size}\n` +
-                `${ctx.client.customEmojis.dot} Users: ${ctx.client.users.cache.size}`,
+         name: ctx.translate('commands:botInfo.stats'),
+         value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.servers')}: ${ctx.client.guilds.cache.size}\n` +
+                `${ctx.client.customEmojis.dot} ${ctx.translate('commands:botInfo.users')}: ${ctx.client.users.cache.size}`,
          inline: true
       });
 

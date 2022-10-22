@@ -31,8 +31,10 @@ export default new Command(async (ctx: CommandContext) => {
 
                const winEmbed = new EmbedBuilder()
                   .setColor(ctx.client.colors.SUCCESS)
-                  .setAuthor({ name: `Flag Guesser | Player: ${ctx.executor.tag}`, iconURL: ctx.client.customImages.FLAG })
-                  .setDescription(`> 🎉 Congratulations! You found all the **${flags.length}** flags.`);
+                  .setAuthor({ name: `Flag Guesser | ${ctx.translate('commands:flagGuesser.player')}: ${ctx.executor.tag}`, iconURL: ctx.client.customImages.FLAG })
+                  .setDescription(
+                     ctx.translate('commands:flagGuesser.winDescription', { flagCount: flags.length })
+                  );
 
                await ctx.interaction.editReply({
                   embeds: [winEmbed],
@@ -62,10 +64,12 @@ export default new Command(async (ctx: CommandContext) => {
 
             const guessEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: `Flag Guesser | Player: ${ctx.executor.tag} (best score: ${bestScore})`, iconURL: ctx.client.customImages.FLAG })
-               .setDescription(`> Which flag is this ? 👇`)
+               .setAuthor({ name: `Flag Guesser | ${ctx.translate('commands:flagGuesser.player')}: ${ctx.executor.tag} (${ctx.translate('commands:flagGuesser.bestScore')}: ${bestScore})`, iconURL: ctx.client.customImages.FLAG })
+               .setDescription(
+                  ctx.translate('commands:flagGuesser.whichFlag')
+               )
                .setImage(currentFlag.IMAGE_URL)
-               .setFooter({ text: `Current Score: ${currentScore} / ${flags.length}` });
+               .setFooter({ text: `${ctx.translate('commands:flagGuesser.currentScore')}: ${currentScore} / ${flags.length}` });
 
             const buttonIds = {
                'flag.good': uuid(),
@@ -121,7 +125,7 @@ export default new Command(async (ctx: CommandContext) => {
                if (answerInter.customId === buttonIds['flag.good']) {
 
                   await answerInter.reply({
-                     content: `${ctx.client.customEmojis.checkmarkCircle} You found **${currentFlag.NAME}**.`,
+                     content: `${ctx.client.customEmojis.checkmarkCircle} ${ctx.translate('commands:flagGuesser.foundFlag', { flagName: currentFlag.NAME })}`,
                      ephemeral: true
                   });
 
@@ -132,7 +136,7 @@ export default new Command(async (ctx: CommandContext) => {
 
                   guessEmbed
                      .setColor(ctx.client.colors.ERROR)
-                     .setDescription(`>>> You lose... the right answer was **${currentFlag.NAME}**.\n${currentScore > bestScore ? `🎉 You broke your last best score! You found **${currentScore}** flag(s) (last best score: ${bestScore}).` : `You found **${currentScore}** flag(s).`}`);
+                     .setDescription(`${ctx.translate('commands:flagGuesser.loseDescription', { rightAnswer: currentFlag.NAME })}\n${currentScore > bestScore ? ctx.translate('commands:flagGuesser.bestScoreBreak', { lastBestScore: bestScore, score: currentScore }) : ctx.translate('commands:flagGuesser.foundFlags', { score: currentScore })}`);
 
                   guessEmbed.data.footer.text = '';
 
@@ -149,7 +153,7 @@ export default new Command(async (ctx: CommandContext) => {
 
                guessEmbed
                   .setColor(ctx.client.colors.ERROR)
-                  .setDescription(`>>> You lose... You did not respond in the 5 given minutes. The answer was **${currentFlag.NAME}**.\n${currentScore > bestScore ? `🎉 You broke your last best score! You found **${currentScore}** flag(s) (last best score: ${bestScore}).` : `You found **${currentScore}** flag(s).`}`);
+                  .setDescription(`${ctx.translate('commands:flagGuesser.loseByTimeDescription', { answer: currentFlag.NAME })}\n${currentScore > bestScore ? ctx.translate('commands:flagGuesser.bestScoreBreak', { lastBestScore: bestScore, score: currentScore }) : ctx.translate('commands:flagGuesser.foundFlags', { score: currentScore })}`);
 
                guessEmbed.data.footer.text = '';
 
@@ -194,9 +198,14 @@ export default new Command(async (ctx: CommandContext) => {
          const { bestScore } = ctx.client.prisma.cache.flagGuesserScore.find((x) => x.userId === ctx.executor.id) ?? { bestScore: 0 };
 
          if (!bestScore)
-            return void ctx.errorReply('Invalid Score', 'Your best score is already set to 0.');
+            return void ctx.errorReply(
+               ctx.translate('commands:flagGuesser.errorTitles.invalidScore'),
+               ctx.translate('commands:flagGuesser.errorDescriptions.invalidScore')
+            );
 
-         const confirmed = await ctx.confirmationRequest(`Are you sure about resetting your current best score (**${bestScore}**) to 0 ?`);
+         const confirmed = await ctx.confirmationRequest(
+            ctx.translate('commands:flagGuesser.resetConfirmRequest', { currentBestScore: bestScore })
+         );
 
          if (confirmed === undefined)
             return;
@@ -213,8 +222,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const confirmEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Score Reset', iconURL: ctx.client.customImages.ARROW_ROTATE })
-               .setDescription(`> Your best score has been reset to 0.`);
+               .setAuthor({ name: ctx.translate('commands:flagGuesser.scoreReset'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+               .setDescription(
+                  ctx.translate('commands:flagGuesser.bestScoreReset')
+               );
    
             await ctx.interaction.editReply({
                embeds: [confirmEmbed],
@@ -225,8 +236,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const cancelEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Cancellation', iconURL: ctx.client.customImages.ARROW_ROTATE })
-               .setDescription('> Your best score reset has been cancelled.');
+               .setAuthor({ name: ctx.translate('common:cancellation'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+               .setDescription(
+                  ctx.translate('commands:flagGuesser.bestScoreResetCancel')
+               );
       
             await ctx.interaction.editReply({
                embeds: [cancelEmbed],

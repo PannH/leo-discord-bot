@@ -13,15 +13,15 @@ export default new Command(async (ctx: CommandContext) => {
 
    const infoEmbed =  new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Information: ${role.name}`, iconURL: ctx.client.customImages.INFO })
+      .setAuthor({ name: `${ctx.translate('commands:roleInfo.information')}: ${role.name}`, iconURL: ctx.client.customImages.INFO })
       .setThumbnail(role.iconURL({ extension: 'png', size: 4096 }))
       .setDescription(role.toString())
       .addFields({
-         name: 'Identifier',
+         name: ctx.translate('commands:roleInfo.identifier'),
          value: `\`${role.id}\``,
          inline: true
       }, {
-         name: 'Members',
+         name: ctx.translate('commands:roleInfo.members'),
          value: `${role.members.size} (${percentage(role.members.size, role.guild.memberCount, 1)}%)`,
          inline: true
       }, {
@@ -29,22 +29,22 @@ export default new Command(async (ctx: CommandContext) => {
          value: '\u200b',
          inline: true
       }, {
-         name: 'Administrator',
+         name: ctx.translate('commands:roleInfo.administrator'),
          value: role.permissions.has('Administrator') ? ctx.client.customEmojis.checkmarkCircle.toString() : ctx.client.customEmojis.xmarkCircle.toString(),
          inline: true
       }, {
-         name: 'Mentionable',
+         name: ctx.translate('commands:roleInfo.mentionable'),
          value: role.mentionable ? ctx.client.customEmojis.checkmarkCircle.toString() : ctx.client.customEmojis.xmarkCircle.toString(),
          inline: true
       }, {
-         name: 'Displayed Separetly',
+         name: ctx.translate('commands:roleInfo.displayedSeparetly'),
          value: role.hoist ? ctx.client.customEmojis.checkmarkCircle.toString() : ctx.client.customEmojis.xmarkCircle.toString(),
          inline: true
       }, {
-         name: 'Creation Date',
+         name: ctx.translate('commands:roleInfo.creationDate'),
          value: `${timestamp(role.createdTimestamp, 'f')} - ${timestamp(role.createdTimestamp, 'R')}`
       }, {
-         name: 'Color',
+         name: ctx.translate('commands:roleInfo.color'),
          value: `${ctx.client.customEmojis.dot} HEX: \`${role.hexColor}\`\n` +
                 `${ctx.client.customEmojis.dot} RGB: \`(${hexToRGB(role.hexColor).rgb.join(', ')})\``
       });

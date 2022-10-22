@@ -10,11 +10,14 @@ export default new Command(async (ctx: CommandContext) => {
    const bans = await ctx.guild.bans.fetch();
 
    if (!bans.size)
-      return void ctx.errorReply('No Ban Found', 'This server does not have any ban.');
+      return void ctx.errorReply(
+         ctx.translate('commands:bans.errorTitles.noBanFound'),
+         ctx.translate('commands:bans.errorDescription.serverHasNoBan')
+      );
 
    const baseEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Bans: ${ctx.guild.name} (${bans.size})`, iconURL: ctx.client.customImages.LIST })
+      .setAuthor({ name: `${ctx.translate('commands:bans.bans')}: ${ctx.guild.name} (${bans.size})`, iconURL: ctx.client.customImages.LIST })
       .setThumbnail(ctx.guild.iconURL({ extension: 'png', size: 4096 }));
 
    let banEmbeds = [];
@@ -32,9 +35,9 @@ export default new Command(async (ctx: CommandContext) => {
             break;
 
          banEmbeds[i] = pageEmbed.addFields({
-            name: `Ban #${banIndex + 1}`,
-            value: `${ctx.client.customEmojis.dot} User: **${ban.user.tag}** (\`${ban.user.id}\`)\n` +
-                   `${ctx.client.customEmojis.dot} Reason: \`${ban.reason ?? 'No reason'}\``
+            name: `${ctx.translate('commands:bans.ban')} #${banIndex + 1}`,
+            value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:bans.user')}: **${ban.user.tag}** (\`${ban.user.id}\`)\n` +
+                   `${ctx.client.customEmojis.dot} ${ctx.translate('commands:bans.reason')}: \`${ban.reason ?? ctx.translate('common:none')}\``
          });
 
          banIndex++;

@@ -17,8 +17,8 @@ export default new Command(async (ctx: CommandContext) => {
       components: [{
          type: ComponentType.TextInput,
          customId: 'message.content',
-         label: 'Message Content',
-         placeholder: 'Hey @someone, ...',
+         label: ctx.translate('commands:say.messageContent'),
+         placeholder: ctx.translate('commands:say.modalPlaceholder'),
          maxLength: 2000,
          style: TextInputStyle.Paragraph,
          required: true
@@ -27,7 +27,7 @@ export default new Command(async (ctx: CommandContext) => {
 
    const messageContentModal = {
       customId: modalId,
-      title: 'Say - Message Content',
+      title: ctx.translate('commands:say.sayMessageContent'),
       components: modalComponents
    };
 
@@ -42,7 +42,9 @@ export default new Command(async (ctx: CommandContext) => {
 
       const sendingEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setDescription(`Sending message...`);
+         .setDescription(
+            ctx.translate('commands:say.sendingMessage')
+         );
 
       await submitInter.reply({
          embeds: [sendingEmbed],
@@ -59,13 +61,18 @@ export default new Command(async (ctx: CommandContext) => {
          const successEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
             .setAuthor({ name: 'Say', iconURL: ctx.client.customImages.TOOLS })
-            .setDescription(`> The message has been sent in the ${channel} channel.`);
+            .setDescription(
+               ctx.translate('commands:say.theMessageHasBeenSent', { channelMention: channel.toString() })
+            );
    
          await submitInter.editReply({ embeds: [successEmbed] });
 
       } catch (error) {
      
-         ctx.errorReply('Unexpected Error', 'An error occured while trying to send the message. The error has been reported to the developer.');
+         ctx.errorReply(
+            ctx.translate('common:unexpectedErrorTitle'),
+            ctx.translate('common:unexpectedErrorDescription')
+         );
    
          ctx.client.emit('error', error);
 

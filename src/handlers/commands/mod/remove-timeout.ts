@@ -10,10 +10,16 @@ export default new Command(async (ctx: CommandContext) => {
    const reason = ctx.interaction.options.getString('reason');
 
    if (!member)
-      return void ctx.errorReply('Invalid Member', 'The user you provded was not found in the server.');
+      return void ctx.errorReply(
+         ctx.translate('commands:removeTimeout.errorTitles.memberNotFound'),
+         ctx.translate('commands:removeTimeout.errorDescriptions.memberNotFound')
+      );
 
    if (!member.communicationDisabledUntilTimestamp)
-      return void ctx.errorReply('Invalid Member', 'The provided member is not timed out.');
+      return void ctx.errorReply(
+         ctx.translate('commands:removeTimeout.errorTitles.invalidMember'),
+         ctx.translate('commands:removeTimeout.errorDescriptions.memberNotTimedOut')
+      );
 
    await ctx.interaction.deferReply();
 
@@ -23,20 +29,29 @@ export default new Command(async (ctx: CommandContext) => {
 
       const successEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Member Timeout', iconURL: ctx.client.customImages.TOOLS })
-         .setDescription(`> **${member.user.tag}** timeout has been removed with reason: \`${reason ?? 'No reason'}\`.`);
+         .setAuthor({ name: ctx.translate('commands:removeTimeout.memberTimeoutRemove'), iconURL: ctx.client.customImages.TOOLS })
+         .setDescription(
+            ctx.translate('commands:removeTimeout.timeoutHasBeenRemoved', { memberMention: member.toString(), reason: reason ?? ctx.translate('common:none') })
+         );
 
       await ctx.interaction.editReply({ embeds: [successEmbed] });
 
       try {
-         await member.send({ content: `${ctx.client.customEmojis.bell} Your timeout has been removed in the server \`${ctx.guild.name}\` with reason: \`${reason ?? 'No reason'}\`.` });
+
+         await member.send({
+            content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:removeTimeout.yourTimeoutHasBeenRemoved', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}`
+         });
+
       } catch (_) {
          return;
       };
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to remove the member\'s timeout. The error has been reported to the developer.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
 
       ctx.client.emit('error', error);
 

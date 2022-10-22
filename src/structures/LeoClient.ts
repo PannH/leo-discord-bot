@@ -1,17 +1,20 @@
 import { Client, GatewayIntentBits, TextChannel } from 'discord.js';
 import { HandlerManager } from './HandlerManager';
 import { PrismaDatabase } from './PrismaDatabase';
+import { Locales } from './Locales';
 import type { Colors } from '../typings/Colors';
 import type { CustomEmojis } from '../typings/CustomEmojis';
 import type { CustomImages } from '../typings/CustomImages';
 import type { Links } from '../typings/Links';
 import type { User } from 'discord.js';
+import type { TOptions } from 'i18next';
 import { CustomChannels } from '../typings/CustomChannels';
 
 export class LeoClient extends Client {
 
    public handlers: HandlerManager;
    public prisma: PrismaDatabase;
+   public locales: Locales;
 
    constructor() {
 
@@ -27,6 +30,7 @@ export class LeoClient extends Client {
 
       this.handlers = new HandlerManager(this);
       this.prisma = new PrismaDatabase();
+      this.locales = new Locales();
 
    };
 
@@ -96,7 +100,8 @@ export class LeoClient extends Client {
          ARROW_ROTATE: process.env.IMAGE_ARROW_ROTATE,
          FLAG: process.env.IMAGE_FLAG,
          CLOUD: process.env.IMAGE_CLOUD,
-         GRAPH: process.env.IMAGE_GRAPH
+         GRAPH: process.env.IMAGE_GRAPH,
+         FILM: process.env.IMAGE_FILM
       }
    };
 
@@ -111,6 +116,12 @@ export class LeoClient extends Client {
 
       return require('../../package.json').version;
       
+   };
+
+   public translate(key, options?: TOptions): string {
+
+      return this.locales.t(key, options);
+
    };
 
 };

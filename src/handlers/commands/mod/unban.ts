@@ -10,7 +10,10 @@ export default new Command(async (ctx: CommandContext) => {
    const reason = ctx.interaction.options.getString('reason');
 
    if (!ban)
-      return void ctx.errorReply('Invalid User', 'The provided user was not found in the server bans. Try to wait for the autocomplete to prompt you the found bans.');
+      return void ctx.errorReply(
+         ctx.translate('commands:unban.errorTitles.userNotFound'),
+         ctx.translate('commands:unban.errorDescriptions.userNotFound')
+      );
 
    await ctx.interaction.deferReply();
 
@@ -20,20 +23,25 @@ export default new Command(async (ctx: CommandContext) => {
 
       const successEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Member Unban', iconURL: ctx.client.customImages.TOOLS })
-         .setDescription(`> **${ban.user.tag}** has been unbanned from the server with reason: \`${reason ?? 'No reason'}\`.`);
+         .setAuthor({ name: ctx.translate('commands:unban.userUnban'), iconURL: ctx.client.customImages.TOOLS })
+         .setDescription(
+            ctx.translate('commands:unban.userHasBeenUnbanned', { userTag: ban.user.tag, reason: reason ?? ctx.translate('common:none') })
+         );
 
       await ctx.interaction.editReply({ embeds: [successEmbed] });
 
       try {
-         await ban.user.send({ content: `${ctx.client.customEmojis.bell} You have been unbanned from the server \`${ctx.guild.name}\` with reason: \`${reason ?? 'No reason'}\`.` });
+         await ban.user.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:unban.youHaveBeenUnbanned', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}` });
       } catch (_) {
          return;
       };
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to unban the user. The error has been reported to the developer.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
 
       ctx.client.emit('error', error);
 

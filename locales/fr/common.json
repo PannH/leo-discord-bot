@@ -1,0 +1,13 @@
+{
+   "unexpectedErrorTitle": "Erreur Inattendue",
+   "unexpectedErrorDescription": "Une erreur est survenue durant le processus. Celle-ci a été signalée au développeur.",
+   "cancellation": "Annulation",
+   "categoryNames": {
+      "ADMINISTRATION": "Administration",
+      "MODERATION": "Modération",
+      "INFORMATION": "Information",
+      "UTILITY": "Utilitaire",
+      "FUN": "Fun"
+   },
+   "none": "Aucun(e)"
+}

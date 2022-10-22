@@ -7,6 +7,8 @@ import type { Command } from '../../../structures/Command';
 
 export default new Event('interactionCreate', async (client, interaction: Interaction) => {
 
+   const { lang: lng } = client.prisma.cache.language.find((language) => language.guildId === interaction.guild.id) ?? { lang: 'en' };
+
    switch (interaction.type) {
 
       case InteractionType.ApplicationCommand: {
@@ -21,14 +23,20 @@ export default new Event('interactionCreate', async (client, interaction: Intera
          );
 
          if (!!clientMissingPerms.length)
-            return void ctx.errorReply('Missing Permission', `I require the following permission(s) to run this command: ${clientMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')}`);
+            return void ctx.errorReply(
+               client.translate('events:client.interactionCreate.missingPerms', { lng }),
+               client.translate('events:client.interactionCreate.iRequireThePermissions', { lng, permissions: clientMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ') })
+            );
 
          const memberMissingPerms = command.data.memberPermissions.filter(
             (perm) => !commandInteraction.memberPermissions.has(perm)
          );
 
          if (!!memberMissingPerms.length)
-            return void ctx.errorReply('Missing Permission', `You must have the following permission(s) to use this command: ${memberMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ')}`);
+            return void ctx.errorReply(
+               client.translate('events:client.interactionCreate.missingPerms', { lng }),
+               client.translate('events:client.interactionCreate.youMuseHaveThePermissions', { lng, permissions: memberMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ') })
+            );
 
          command.run(ctx);
 

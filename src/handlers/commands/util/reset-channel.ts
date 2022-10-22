@@ -8,7 +8,9 @@ export default new Command(async (ctx: CommandContext) => {
 
    const channel = (ctx.interaction.options.getChannel('channel') ?? ctx.channel) as TextChannel;
 
-   const confirmed = await ctx.confirmationRequest(`You're about to reset the channel ${channel} and delete all its messages. Are you sure about it ?`);
+   const confirmed = await ctx.confirmationRequest(
+      ctx.translate('commands:resetChannel.resetConfirmRequest')
+   );
 
    if (confirmed === undefined)
       return;
@@ -25,20 +27,25 @@ export default new Command(async (ctx: CommandContext) => {
 
          const confirmEmbed = new EmbedBuilder()
             .setColor(ctx.client.colors.SECONDARY)
-            .setAuthor({ name: 'Channel Reset', iconURL: ctx.client.customImages.ARROW_ROTATE })
-            .setDescription(`> This channel has been reset by ${ctx.executor}.`);
+            .setAuthor({ name: ctx.translate('commands:resetChannel.channelReset'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+            .setDescription(
+               ctx.translate('commands:resetChannel.thisChannelHasBeenReset', { executorMention: ctx.executor.toString() })
+            );
 
          await clonedChannel.send({ embeds: [confirmEmbed] });
 
          try {
-            await ctx.successReply('Channel Reset', 'The channel has successfully been reset.');
+            await ctx.successReply(ctx.translate('commands:resetChannel.channelReset'), ctx.translate('commands:resetChannel.theChannelHasBeenReset'));
          } catch (_) {
             return;
          };
 
       } catch (error) {
      
-         ctx.errorReply('Unexpected Error', 'An error occured while trying to reset the channel. The error has been reported to the developer.');
+         ctx.errorReply(
+            ctx.translate('common:unexpectedErrorTitle'),
+            ctx.translate('common:unexpectedErrorDescription')
+         );
    
          ctx.client.emit('error', error);
 
@@ -48,8 +55,10 @@ export default new Command(async (ctx: CommandContext) => {
 
       const cancelEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: 'Cancellation', iconURL: ctx.client.customImages.ARROW_ROTATE })
-         .setDescription('> The channel reset has been cancelled.');
+         .setAuthor({ name: ctx.translate('common:cancellation'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+         .setDescription(
+            ctx.translate('commands:resetChannel.resetCancel')
+         );
 
       await ctx.interaction.editReply({
          embeds: [cancelEmbed],

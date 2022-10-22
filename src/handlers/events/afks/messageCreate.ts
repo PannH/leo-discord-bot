@@ -7,6 +7,8 @@ import { Afk } from '@prisma/client';
 
 export default new Event('messageCreate', async (client, message: Message) => {
 
+   const { lang: lng } = client.prisma.cache.language.find((language) => language.guildId === message.guild.id) ?? { lang: 'en' };
+
    if (message.author.bot || !message.guild)
       return;
 
@@ -27,7 +29,9 @@ export default new Event('messageCreate', async (client, message: Message) => {
 
          const embed = new EmbedBuilder()
             .setColor(client.colors.SECONDARY)
-            .setDescription(`You are not AFK anymore. You have been AFK for \`${humanizeDuration(Date.now() - authorAfk.createdAt.getTime(), { largest: 2, maxDecimalPoints: 1 })}\`.`);
+            .setDescription(
+               client.translate('events:afks.messageCreate.youAreNotAfkAnymore', { lng, duration: humanizeDuration(Date.now() - authorAfk.createdAt.getTime(), { largest: 2, maxDecimalPoints: 1 }) })
+            );
 
          await message.reply({
             embeds: [embed],
@@ -59,7 +63,9 @@ export default new Event('messageCreate', async (client, message: Message) => {
 
       const afkEmbed = new EmbedBuilder()
          .setColor(client.colors.SECONDARY)
-         .setDescription(`${user} is AFK and will probably not respond. AFK since ${timestamp(afk.createdAt.getTime(), 'f')} with reason: \`${afk.reason}\`.`);
+         .setDescription(
+            client.translate('events:afks.messageCreate.userIsAfk', { lng, userMention: user.toString(), timestamp: timestamp(afk.createdAt.getTime(), 'f'), reason: afk.reason ?? client.translate('common:none') })
+         );
 
       await message.reply({
          embeds: [afkEmbed],

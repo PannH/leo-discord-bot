@@ -1,7 +1,6 @@
 import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionType } from 'discord.js';
 import { EmbedBuilder } from '@discordjs/builders';
-import { CategoryNames } from '../../../utils/CategoryNames';
 import type { CommandContext } from '../../../structures/CommandContext';
 
 export default new Command(async (ctx: CommandContext) => {
@@ -12,7 +11,7 @@ export default new Command(async (ctx: CommandContext) => {
    const commandsEmbed = category ?
       new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Commands (${CategoryNames[category]})`, iconURL: ctx.client.customImages.LIST })
+         .setAuthor({ name: `${ctx.translate('commands:commands.commands')} (${ctx.translate(`common:categoryNames.${category}`)})`, iconURL: ctx.client.customImages.LIST })
          .setDescription(
             commands
                .map((c) => `${ctx.client.customEmojis.dot} ${c.mention(ctx.guild)}: ${c.data.description}`)
@@ -20,11 +19,11 @@ export default new Command(async (ctx: CommandContext) => {
          ) :
       new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Commands`, iconURL: ctx.client.customImages.LIST })
+         .setAuthor({ name: ctx.translate('commands:commands.commands'), iconURL: ctx.client.customImages.LIST })
          .addFields(
             ['ADMINISTRATION', 'MODERATION', 'UTILITY', 'INFORMATION', 'FUN'].map((cat) => {
                return {
-                  name: CategoryNames[cat],
+                  name: ctx.translate(`common:categoryNames.${cat}`),
                   value: commands
                      .filter((c) => c.data.category === cat)
                      .map((c) => c.mention(ctx.guild))

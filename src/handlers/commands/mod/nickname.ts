@@ -11,10 +11,16 @@ export default new Command(async (ctx: CommandContext) => {
    const reason = ctx.interaction.options.getString('reason');
 
    if (!member)
-      return void ctx.errorReply('Invalid Member', 'The provided member was not found in the server.');
+      return void ctx.errorReply(
+         ctx.translate('commands:nickname.errorTitles.memberNotFound'),
+         ctx.translate('commands:nickname.errorDescriptions.memberNotFound')
+      );
 
    if (!member.manageable && member.user.id !== ctx.client.user.id)
-      return void ctx.errorReply('Invalid Member', 'I cannot manage this member\'s nickname.');
+      return void ctx.errorReply(
+         ctx.translate('commands:nickname.errorTitles.missingPerm'),
+         ctx.translate('commands:nickname.errorDescriptions.cannotManageThisMember')
+      );
 
    switch (subCommand) {
 
@@ -30,20 +36,29 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Nickname Set', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> **${member}** nickname has been set to \`${nickname}\` with reason: \`${reason ?? 'No reason'}\`.`);
+               .setAuthor({ name: ctx.translate('commands:nickname.nicknameSet'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:nickname.nicknameHasBeenSet', { memberMention: member.toString(), nickname, reason: reason ?? ctx.translate('common:none') })
+               );
       
             await ctx.interaction.editReply({ embeds: [successEmbed] });
    
             try {
-               await member.send({ content: `${ctx.client.customEmojis.bell} Your nickname in the server \`${ctx.guild.name}\` has been set to \`${nickname}\` with reason: \`${reason ?? 'No reason'}\`.` });
+
+               await member.send({
+                  content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:nickname.yourNicknameHasBeenSet', { guildName: ctx.guild.name, nickname, reason: reason ?? ctx.translate('common:none') })}`
+               });
+
             } catch (_) {
                return;
             };
 
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to set the member\'s nickname. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 
@@ -67,9 +82,14 @@ export default new Command(async (ctx: CommandContext) => {
          };
 
          if (currentNickname === newNickname)
-            return void ctx.errorReply('Invalid Nickname', 'The member\'s nickname does not contain any fancy character to replace.');
+            return void ctx.errorReply(
+               ctx.translate('commands:nickname.errorTitles.invalidNickname'),
+               ctx.translate('commands:nickname.errorDescriptions.noFancyChar')
+            );
 
-         const confirmed = await ctx.confirmationRequest(`Are you sure to rename ${member} to \`${newNickname}\``);
+         const confirmed = await ctx.confirmationRequest(
+            ctx.translate('commands:nickname.renameConfirmRequest', { memberMention: member.toString(), nickname: newNickname })
+         );
 
          if (confirmed === undefined)
             return;
@@ -82,8 +102,10 @@ export default new Command(async (ctx: CommandContext) => {
    
                const successEmbed = new EmbedBuilder()
                   .setColor(ctx.client.colors.SECONDARY)
-                  .setAuthor({ name: 'Nickname Normalize', iconURL: ctx.client.customImages.TOOLS })
-                  .setDescription(`> **${member}** nickname has been normalized to \`${newNickname}\` with reason: \`${reason ?? 'No reason'}\`.`);
+                  .setAuthor({ name: ctx.translate('commands:nickname.nicknameNormalization'), iconURL: ctx.client.customImages.TOOLS })
+                  .setDescription(
+                     ctx.translate('commands:nickname.nicknameHasBeenNormalized', { memberMention: member.toString(), nickname: newNickname, reason: reason ?? ctx.translate('common:none') })
+                  );
          
                await ctx.interaction.editReply({
                   embeds: [successEmbed],
@@ -91,14 +113,21 @@ export default new Command(async (ctx: CommandContext) => {
                });
       
                try {
-                  await member.send({ content: `${ctx.client.customEmojis.bell} Your nickname in the server \`${ctx.guild.name}\` has been normalized to \`${newNickname}\` with reason: \`${reason ?? 'No reason'}\`.` });
+
+                  await member.send({
+                     content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:nickname.yourNicknameHasBeenNormalized', { guildName: ctx.guild.name, nickname: newNickname, reason: reason ?? ctx.translate('common:none') })}`
+                  });
+
                } catch (_) {
                   return;
                };
    
             } catch (error) {
-        
-               ctx.errorReply('Unexpected Error', 'An error occured while trying to normalize the member\'s nickname. The error has been reported to the developer.');
+     
+               ctx.errorReply(
+                  ctx.translate('common:unexpectedErrorTitle'),
+                  ctx.translate('common:unexpectedErrorDescription')
+               );
          
                ctx.client.emit('error', error);
    
@@ -108,8 +137,10 @@ export default new Command(async (ctx: CommandContext) => {
 
             const cancelEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Cancellation', iconURL: ctx.client.customImages.ARROW_ROTATE })
-               .setDescription('> The nickname normalization has been cancelled.');
+               .setAuthor({ name: ctx.translate('common:cancellation'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+               .setDescription(
+                  ctx.translate('commands:nickname.nicknameNormalizationCancel')
+               );
       
             await ctx.interaction.editReply({
                embeds: [cancelEmbed],
@@ -125,7 +156,10 @@ export default new Command(async (ctx: CommandContext) => {
       case 'reset': {
 
          if (!member.nickname)
-            return void ctx.errorReply('Invalid Member', 'This member does not have a nickname.');
+            return void ctx.errorReply(
+               ctx.translate('commands:nickname.errorTitles.invalidMember'),
+               ctx.translate('commands:nickname.errorDescriptions.noNickname')
+            );
 
          await ctx.interaction.deferReply();
 
@@ -135,20 +169,29 @@ export default new Command(async (ctx: CommandContext) => {
 
             const successEmbed = new EmbedBuilder()
                .setColor(ctx.client.colors.SECONDARY)
-               .setAuthor({ name: 'Nickname Reset', iconURL: ctx.client.customImages.TOOLS })
-               .setDescription(`> **${member}** nickname has been reset with reason: \`${reason ?? 'No reason'}\`.`);
+               .setAuthor({ name: ctx.translate('commands:nickname.nicknameReset'), iconURL: ctx.client.customImages.TOOLS })
+               .setDescription(
+                  ctx.translate('commands:nickname.nicknameHasBeenReset', { memberMention: member.toString(), reason: reason ?? ctx.translate('common:none') })
+               );
       
             await ctx.interaction.editReply({ embeds: [successEmbed] });
    
             try {
-               await member.send({ content: `${ctx.client.customEmojis.bell} Your nickname in the server \`${ctx.guild.name}\` has been reset with reason: \`${reason ?? 'No reason'}\`.` });
+
+               await member.send({ 
+                  content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:nickname.yourNicknameHasBeenReset', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}`
+               });
+
             } catch (_) {
                return;
             };
 
          } catch (error) {
      
-            ctx.errorReply('Unexpected Error', 'An error occured while trying to reset the member\'s nickname. The error has been reported to the developer.');
+            ctx.errorReply(
+               ctx.translate('common:unexpectedErrorTitle'),
+               ctx.translate('common:unexpectedErrorDescription')
+            );
       
             ctx.client.emit('error', error);
 

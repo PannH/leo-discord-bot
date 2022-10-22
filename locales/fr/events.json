@@ -1,0 +1,20 @@
+{
+   "afks": {
+      "messageCreate": {
+         "youAreNotAfkAnymore": "Vous n'êtes désormais plus inscrit comme AFK dans ce serveur. Vous l'avez été pendant `{{duration}}`.",
+         "userIsAfk": "{{userMention}} est inscrit comme AFK et ne verra probablement pas votre message. Il l'est depuis le {{timestamp}} avec comme raison: `{{reason}}`."
+      }
+   },
+   "autoroles": {
+      "guildMemberAdd": {
+         "autoroleSystem": "Système de rôle automatique"
+      }
+   },
+   "client": {
+      "interactionCreate": {
+         "missingPerms": "Permissions Manquantes",
+         "iRequireThePermissions": "Je nécessites la/les permission(s) suivante(s) pour exécuter cette commande: {{permissions}}.",
+         "youMuseHaveThePermissions": "Vous devez avoir la/les permission(s) suivante(s) pour utiliser cette commande: {{permissions}}."
+      }
+   }
+}

@@ -1,0 +1,13 @@
+{
+   "unexpectedErrorTitle": "Unexpected Error",
+   "unexpectedErrorDescription": "An error occured during the process. It has been reported to the developer.",
+   "cancellation": "Cancellation",
+   "categoryNames": {
+      "ADMINISTRATION": "Administration",
+      "MODERATION": "Moderation",
+      "INFORMATION": "Information",
+      "UTILITY": "Utility",
+      "FUN": "Fun"
+   },
+   "none": "None"
+}

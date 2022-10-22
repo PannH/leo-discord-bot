@@ -10,16 +10,28 @@ export default new Command(async (ctx: CommandContext) => {
    const reason = ctx.interaction.options.getString('reason');
 
    if (!member)
-      return void ctx.errorReply('Member Not Found', 'The user you provided was not found in the server.');
+      return void ctx.errorReply(
+         ctx.translate('commands:kick.errorTitles.memberNotFound'),
+         ctx.translate('commands:kick.errorDescriptions.memberNotFound')
+      );
 
    if (member.user.id === ctx.executor.id)
-      return void ctx.errorReply('Invalid Member', 'You cannot kick yourself.');
+      return void ctx.errorReply(
+         ctx.translate('commands:kick.errorTitles.invalidMember'),
+         ctx.translate('commands:kick.errorDescriptions.cannotKickYourself')
+      );
 
    if ((ctx.member.roles.highest.position <= member.roles.highest.position) && (ctx.guild.ownerId !== ctx.executor.id))
-      return void ctx.errorReply('Invalid Member', 'The provided member is hierarchically superior or equal to you.');
+      return void ctx.errorReply(
+         ctx.translate('commands:kick.errorTitles.invalidMember'),
+         ctx.translate('commands:kick.errorDescriptions.memberHierSupOrEqual')
+      );
 
    if (!member.kickable)
-      return void ctx.errorReply('Missing Permission', 'I cannot kick this member.');
+      return void ctx.errorReply(
+         ctx.translate('commands:kick.errorTitles.missingPerm'),
+         ctx.translate('commands:kick.errorDescriptions.cannotKickThisMember')
+      );
 
    await ctx.interaction.deferReply();
 
@@ -29,20 +41,29 @@ export default new Command(async (ctx: CommandContext) => {
 
       const successEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Member Kick`, iconURL: ctx.client.customImages.TOOLS })
-         .setDescription(`> **${member.user.tag}** has been kicked from the server with reason: \`${reason ?? 'No reason'}\`.`);
+         .setAuthor({ name: ctx.translate('commands:kick.memberKick'), iconURL: ctx.client.customImages.TOOLS })
+         .setDescription(
+            ctx.translate('commands:kick.memberHasBeenKicked', { userTag: member.user.tag, reason: reason ?? ctx.translate('common:none') })
+         );
       
       await ctx.interaction.editReply({ embeds: [successEmbed] });
 
       try {
-         await member.send({ content: `${ctx.client.customEmojis.bell} You have been kicked from the server \`${ctx.guild.name}\` with reason: \`${reason ?? 'No reason'}\`.` });
+
+         await member.send({
+            content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:kick.youHaveBeenKicked', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}`
+         });
+
       } catch (_) {
          return;
       };
 
    } catch (error) {
      
-      ctx.errorReply('Unexpected Error', 'An error occured while trying to kick the member. The error has been reported to the developer.');
+      ctx.errorReply(
+         ctx.translate('common:unexpectedErrorTitle'),
+         ctx.translate('common:unexpectedErrorDescription')
+      );
 
       ctx.client.emit('error', error);
 

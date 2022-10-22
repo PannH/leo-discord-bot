@@ -10,11 +10,14 @@ export default new Command(async (ctx: CommandContext) => {
                   .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
    if (!warns.length)
-      return void ctx.errorReply('Invalid User', 'You do not have any warning.');
+      return void ctx.errorReply(
+         ctx.translate('commands:myWarnings.errorTitles.invalidMember'),
+         ctx.translate('commands:myWarnings.errorDescriptions.noWarning')
+      );
 
       const baseEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
-         .setAuthor({ name: `Your Warnings (${warns.length})`, iconURL: ctx.client.customImages.LIST })
+         .setAuthor({ name: `${ctx.translate('commands:myWarnings.yourWarnings')} (${warns.length})`, iconURL: ctx.client.customImages.LIST })
          .setThumbnail(ctx.executor.displayAvatarURL({ extension: 'png', size: 4096 }));
    
       let warnEmbeds = [];
@@ -32,10 +35,10 @@ export default new Command(async (ctx: CommandContext) => {
                break;
    
             warnEmbeds[i] = pageEmbed.addFields({
-               name: `Warn #${warnIndex + 1}`,
-               value: `${ctx.client.customEmojis.dot} Date: ${timestamp(warn.createdAt.getTime(), 'f')} - ${timestamp(warn.createdAt.getTime(), 'R')}\n` +
-                      `${ctx.client.customEmojis.dot} Moderator: ${(await ctx.client.users.fetch(warn.moderatorId)) ?? 'Not found'}\n` +
-                      `${ctx.client.customEmojis.dot} Reason: \`${warn.reason}\``
+               name: `${ctx.translate('commands:myWarnings.warnings')} #${warnIndex + 1}`,
+               value: `${ctx.client.customEmojis.dot} ${ctx.translate('commands:myWarnings.date')}: ${timestamp(warn.createdAt.getTime(), 'f')} - ${timestamp(warn.createdAt.getTime(), 'R')}\n` +
+                      `${ctx.client.customEmojis.dot} ${ctx.translate('commands:myWarnings.moderator')}: ${(await ctx.client.users.fetch(warn.moderatorId)) ?? 'Not found'}\n` +
+                      `${ctx.client.customEmojis.dot} ${ctx.translate('commands:myWarnings.reason')}: \`${warn.reason}\``
             });
    
             warnIndex++;

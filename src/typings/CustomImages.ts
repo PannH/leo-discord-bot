@@ -12,4 +12,5 @@ export type CustomImages = {
    FLAG: string;
    CLOUD: string;
    GRAPH: string;
+   FILM: string;
 };

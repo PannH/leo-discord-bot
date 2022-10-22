@@ -9,8 +9,8 @@ import type { CommandContext } from '../../../structures/CommandContext';
 export default new Command(async (ctx: CommandContext) => {
 
    const fonts = require('../../../../data/text_fonts.json');
-
-   let currentText = 'Example text';
+   
+   let currentText = ctx.translate('commands:fontConverter.exampleText');
    let currentFontIndex = 4;
 
    function convertText(text: string, fontIndex: number) {
@@ -32,13 +32,13 @@ export default new Command(async (ctx: CommandContext) => {
 
    const converterEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
-      .setAuthor({ name: `Font Converter`, iconURL: ctx.client.customImages.ARROW_ROTATE })
-      .setDescription(`> Use the button to edit the text and the select menu to change the font.`)
+      .setAuthor({ name: ctx.translate('commands:fontConverter.fontConverter'), iconURL: ctx.client.customImages.ARROW_ROTATE })
+      .setDescription(ctx.translate('commands:fontConverter.converterDescription'))
       .addFields({
-         name: 'Text',
+         name: ctx.translate('commands:fontConverter.text'),
          value: currentText
       }, {
-         name: 'Converted Text',
+         name: ctx.translate('commands:fontConverter.convertedText'),
          value: convertText(currentText, currentFontIndex)
       });
 
@@ -52,7 +52,7 @@ export default new Command(async (ctx: CommandContext) => {
       components: [
          new SelectMenuBuilder()
             .setCustomId(componentIds['font.change'])
-            .setPlaceholder('Select a font')
+            .setPlaceholder(ctx.translate('commands:fontConverter.selectAFont'))
             .setOptions(
                new SelectMenuOptionBuilder()
                   .setLabel(convertText('Aa Bb Cc 123', 1))
@@ -116,7 +116,7 @@ export default new Command(async (ctx: CommandContext) => {
          new ButtonBuilder()
             .setCustomId(componentIds['text.edit'])
             .setStyle(ButtonStyle.Primary)
-            .setLabel('Edit Text')
+            .setLabel(ctx.translate('commands:fontConverter.editText'))
       ]
    }]
 
@@ -154,8 +154,8 @@ export default new Command(async (ctx: CommandContext) => {
             components: [{
                type: ComponentType.TextInput,
                customId: 'text',
-               label: 'Text',
-               placeholder: 'Example text',
+               label: ctx.translate('commands:fontConverter.text'),
+               placeholder: ctx.translate('commands:fontConverter.exampleText'),
                maxLength: 1024,
                style: TextInputStyle.Short,
                required: true
@@ -164,7 +164,7 @@ export default new Command(async (ctx: CommandContext) => {
       
          const messageContentModal = {
             customId: modalId,
-            title: 'Font Converter - Text',
+            title: ctx.translate('commands:fontConverter.fontConverterText'),
             components: modalComponents
          };
       
@@ -198,7 +198,9 @@ export default new Command(async (ctx: CommandContext) => {
             new ButtonBuilder()
                .setCustomId('.')
                .setStyle(ButtonStyle.Secondary)
-               .setLabel('The buttons expired.')
+               .setLabel(
+                  ctx.translate('commands:fontConverter.theButtonsHaveExpired')
+               )
                .setDisabled(true)
          ]
       };

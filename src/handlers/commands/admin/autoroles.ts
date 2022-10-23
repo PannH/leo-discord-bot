@@ -26,7 +26,7 @@ export default new Command(async (ctx: CommandContext) => {
                ctx.translate('commands:autoroles.errorDescriptions.cannotUseRole', { roleMention: ctx.guild.roles.everyone.toString() })
             );
 
-         if (role.id === ctx.guild.roles.premiumSubscriberRole.id)
+         if (role.id === ctx.guild.roles.premiumSubscriberRole?.id)
             return void ctx.errorReply(
                ctx.translate('commands:autoroles.errorTitles.invalidRole'),
                ctx.translate('commands:autoroles.errorDescriptions.cannotUseRole', { roleMention: ctx.guild.roles.premiumSubscriberRole.toString() })

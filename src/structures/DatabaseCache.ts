@@ -16,22 +16,22 @@ export class DatabaseCache {
       this.database = database;
       this.models = ['warn', 'afk', 'autorole', 'flagGuesserScore', 'language'];
 
-   };
+   }
 
    /**
     * @description Initialize the database's cache
     */
    public async initialize(): Promise<this> {
 
-      for (let model of this.models) {
+      for (const model of this.models) {
 
          this[model] = await this.database[model].findMany();
 
-      };
+      }
 
       return this;
 
-   };
+   }
 
    public async update(model: string): Promise<void> {
 
@@ -40,6 +40,6 @@ export class DatabaseCache {
 
       this[model] = await this.database[model].findMany();
 
-   };
+   }
 
-};
+}

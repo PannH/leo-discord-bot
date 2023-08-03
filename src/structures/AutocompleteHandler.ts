@@ -16,7 +16,7 @@ export class AutocompleteHandler {
       this.cache = new Collection();
       this.cached = false;
 
-   };
+   }
 
    /**
     * @description Cache the autocompletes.
@@ -26,7 +26,7 @@ export class AutocompleteHandler {
       if (this.cached)
          throw new Error('The autocomplete handler has already been prepared.');
 
-      for (let fileName of readdirSync(`./dist/handlers/autocompletes`)) {
+      for (const fileName of readdirSync(`./dist/handlers/autocompletes`)) {
 
          const autocomplete: Autocomplete = require(`../handlers/autocompletes/${fileName}`).default;
 
@@ -34,12 +34,12 @@ export class AutocompleteHandler {
 
          this.cache.set(autocomplete.id, autocomplete);
 
-      };
+      }
 
       this.cached = true;
 
       return this;
 
-   };
+   }
 
-};
+}

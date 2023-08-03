@@ -9,7 +9,7 @@ export default new Event('ready', async (client) => {
 
       return `/commands | ${client.guilds.cache.size} servers | v${client.version}`;
 
-   };
+   }
 
    client.user.setActivity({ name: getActivityName() });
 

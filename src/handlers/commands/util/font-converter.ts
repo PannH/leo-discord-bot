@@ -20,15 +20,15 @@ export default new Command(async (ctx: CommandContext) => {
       
       let convertedText = '';
 
-      for (let char of [...text]) {
+      for (const char of [...text]) {
 
          convertedText += font[normalFont.indexOf(char)] ?? char;
 
-      };
+      }
 
       return convertedText;
 
-   };
+   }
 
    const converterEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
@@ -186,7 +186,7 @@ export default new Command(async (ctx: CommandContext) => {
       
          }).catch(() => {});
 
-      };
+      }
 
    });
 

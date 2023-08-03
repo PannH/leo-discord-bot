@@ -32,7 +32,7 @@ export class LeoClient extends Client {
       this.prisma = new PrismaDatabase();
       this.locales = new Locales();
 
-   };
+   }
 
    /**
     * @description Login the client to Discord.
@@ -42,11 +42,11 @@ export class LeoClient extends Client {
       await this.login(process.env.CLIENT_TOKEN);
       return this;
 
-   };
+   }
 
    public get owner(): User {
       return this.users.cache.get(process.env.OWNER_ID);
-   };
+   }
 
    public get links(): Links {
       return {
@@ -57,7 +57,7 @@ export class LeoClient extends Client {
          GITHUB_REPO: process.env.LINK_GITHUB_REPO,
          LINKTREE: process.env.LINK_LINKTREE
       };
-   };
+   }
    
    public get colors(): Colors {
       return {
@@ -66,7 +66,7 @@ export class LeoClient extends Client {
          ERROR: 0xdd2e44,
          SUCCESS: 0x77b255
       };
-   };
+   }
 
    public get customEmojis(): CustomEmojis {
       return {
@@ -84,7 +84,7 @@ export class LeoClient extends Client {
          voteMinus: this.emojis.cache.get(process.env.EMOJI_VOTE_MINUS),
          voteNeutral: this.emojis.cache.get(process.env.EMOJI_VOTE_NEUTRAL)
       }
-   };
+   }
 
    public get customImages(): CustomImages {
       return {
@@ -103,25 +103,25 @@ export class LeoClient extends Client {
          GRAPH: process.env.IMAGE_GRAPH,
          FILM: process.env.IMAGE_FILM
       }
-   };
+   }
 
    public get customChannels(): CustomChannels {
       return {
          errors: this.channels.cache.get(process.env.CHANNEL_ERRORS) as TextChannel,
          guildLogs: this.channels.cache.get(process.env.CHANNEL_GUILD_LOGS) as TextChannel
       }
-   };
+   }
 
    public get version(): string {
 
       return require('../../package.json').version;
       
-   };
+   }
 
    public translate(key, options?: TOptions): string {
 
       return this.locales.t(key, options);
 
-   };
+   }
 
-};
+}

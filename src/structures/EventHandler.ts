@@ -17,7 +17,7 @@ export class EventHandler {
       this.cache = new Collection();
       this.cached = false;
 
-   };
+   }
 
    /**
     * @description Cache the events.
@@ -29,25 +29,25 @@ export class EventHandler {
 
       const EVENT_DIRS = ['client', 'afks', 'warns', 'autoroles'];
 
-      for (let dir of EVENT_DIRS) {
+      for (const dir of EVENT_DIRS) {
 
-         for (let fileName of readdirSync(`./dist/handlers/events/${dir}`)) {
+         for (const fileName of readdirSync(`./dist/handlers/events/${dir}`)) {
 
-            let event: (Event | RESTEvent) = require(`../handlers/events/${dir}/${fileName}`).default;
+            const event: (Event | RESTEvent) = require(`../handlers/events/${dir}/${fileName}`).default;
 
             event.id = SnowflakeUtil.generate().toString();
 
             this.cache.set(event.id, event);
 
-         };
+         }
 
-      };
+      }
 
       this.cached = true;
 
       return this;
 
-   };
+   }
 
    /**
     * @description Listen to the cached events.
@@ -68,6 +68,6 @@ export class EventHandler {
 
       return this.cache;
 
-   };
+   }
 
-};
+}

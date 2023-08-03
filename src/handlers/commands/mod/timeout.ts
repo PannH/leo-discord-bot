@@ -74,7 +74,7 @@ export default new Command(async (ctx: CommandContext) => {
          await member.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:timeout.youHaveBeenTimedOut', { guildName: ctx.guild.name, duration: humanizedDuration, reason: reason ?? ctx.translate('common:none') })}` });
       } catch (_) {
          return;
-      };
+      }
 
    } catch (error) {
      
@@ -85,7 +85,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       ctx.client.emit('error', error);
 
-   };
+   }
 
 }, {
    name: 'timeout',

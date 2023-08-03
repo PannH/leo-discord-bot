@@ -20,7 +20,7 @@ export default new Command(async (ctx: CommandContext) => {
       .setAuthor({ name: `${ctx.translate('commands:bans.bans')}: ${ctx.guild.name} (${bans.size})`, iconURL: ctx.client.customImages.LIST })
       .setThumbnail(ctx.guild.iconURL({ extension: 'png', size: 4096 }));
 
-   let banEmbeds = [];
+   const banEmbeds = [];
 
    let banIndex = 0;
    for (let i = 0; i < (bans.size / 5); i++) {
@@ -42,9 +42,9 @@ export default new Command(async (ctx: CommandContext) => {
 
          banIndex++;
 
-      };
+      }
 
-   };
+   }
 
    ctx.embedPagination(banEmbeds, true);
 

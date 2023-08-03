@@ -19,7 +19,7 @@ export default new Autocomplete('help', async (client, interaction) => {
          })
          .slice(0, 10);
 
-   };
+   }
 
    if (!input.length) {
 
@@ -33,7 +33,7 @@ export default new Autocomplete('help', async (client, interaction) => {
                   ? [{ name: 'No command found.', value: '' }]
                   : mapCommands(foundCommands);
 
-   };
+   }
 
    interaction.respond(choices);
 

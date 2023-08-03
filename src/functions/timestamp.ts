@@ -4,4 +4,4 @@ export function timestamp(ts: number, style: TimestampStylesString): string {
 
    return `<t:${parseInt(String(ts / 1000))}:${style}>`;
 
-};
+}

@@ -16,7 +16,7 @@ export class CommandHandler {
       this.cache = new Collection();
       this.cached = false;
 
-   };
+   }
 
    /**
     * @description Cache the commands.
@@ -26,9 +26,9 @@ export class CommandHandler {
       if (this.cached)
          throw new Error('The command handler has already been prepared.');
 
-      for (let dir of readdirSync(`./dist/handlers/commands`)) {
+      for (const dir of readdirSync(`./dist/handlers/commands`)) {
 
-         for (let fileName of readdirSync(`./dist/handlers/commands/${dir}`)) {
+         for (const fileName of readdirSync(`./dist/handlers/commands/${dir}`)) {
 
             const command: Command = require(`../handlers/commands/${dir}/${fileName}`).default;
 
@@ -36,15 +36,15 @@ export class CommandHandler {
 
             this.cache.set(command.id, command);
 
-         };
+         }
 
-      };
+      }
 
       this.cached = true;
 
       return this;
 
-   };
+   }
 
    /**
     * @description Deploy the cached slash commands to client's guilds.
@@ -66,6 +66,6 @@ export class CommandHandler {
 
       return this.cache;
 
-   };
+   }
 
-};
+}

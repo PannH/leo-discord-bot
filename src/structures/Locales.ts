@@ -4,7 +4,7 @@ export class Locales {
 
    public t: typeof i18next.t;
 
-   constructor() {};
+   constructor() {}
 
    /**
     * @description Initialize locales.
@@ -29,6 +29,6 @@ export class Locales {
          }
       });
 
-   };
+   }
 
-};
+}

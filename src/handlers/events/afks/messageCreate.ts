@@ -42,9 +42,9 @@ export default new Event('messageCreate', async (client, message: Message) => {
         
          client.emit('error', error);
 
-      };
+      }
 
-   };
+   }
 
    const mentionedAfks: Afk[] = [];
    for (const afk of guildAfks.filter((afk) => afk.userId !== message.author.id)) {
@@ -55,7 +55,7 @@ export default new Event('messageCreate', async (client, message: Message) => {
 
       }
 
-   };
+   }
 
    for (const afk of mentionedAfks) {
 
@@ -72,6 +72,6 @@ export default new Event('messageCreate', async (client, message: Message) => {
          allowedMentions: { repliedUser: false }
       });
 
-   };
+   }
 
 });

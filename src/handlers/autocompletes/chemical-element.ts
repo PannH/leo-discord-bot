@@ -15,7 +15,7 @@ export default new Autocomplete('chemical-element', async (client, interaction) 
                }))
                .slice(0, 10);
 
-   };
+   }
 
    let choices = [];
 
@@ -31,7 +31,7 @@ export default new Autocomplete('chemical-element', async (client, interaction) 
                   ? [{ name: 'No chemical element found.', value: '' }]
                   : mapElements(foundElements);
 
-   };
+   }
 
    await interaction.respond(choices);
 

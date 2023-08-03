@@ -34,7 +34,7 @@ export default new Command(async (ctx: CommandContext) => {
          await ban.user.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:unban.youHaveBeenUnbanned', { guildName: ctx.guild.name, reason: reason ?? ctx.translate('common:none') })}` });
       } catch (_) {
          return;
-      };
+      }
 
    } catch (error) {
      
@@ -45,7 +45,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       ctx.client.emit('error', error);
 
-   };
+   }
 
 }, {
    name: 'unban',

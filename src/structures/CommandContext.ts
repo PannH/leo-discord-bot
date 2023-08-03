@@ -16,55 +16,55 @@ export class CommandContext {
       this.client = client;
       this.interaction = interaction;
 
-   };
+   }
    
    public get me(): GuildMember {
 
       return this.interaction.guild.members.me;
       
-   };
+   }
 
    public get executor(): User {
 
       return this.interaction.user;
 
-   };
+   }
 
    public get member(): GuildMember {
 
       return this.interaction.guild.members.cache.get(this.interaction.user.id);
 
-   };
+   }
 
    public get guild(): Guild {
 
       return this.interaction.guild;
 
-   };
+   }
 
    public get channel(): GuildTextBasedChannel {
 
       return this.interaction.channel;
 
-   };
+   }
 
    public get command(): Command {
 
       return this.client.handlers.commands.cache.find((c) => c.data.name === this.interaction.commandName);
 
-   };
+   }
 
    public get executedTimestamp(): number {
 
       return this.interaction.createdTimestamp;
 
-   };
+   }
 
    public get language(): string {
 
       return this.client.prisma.cache.language.find((lang) => lang.guildId === this.guild.id)?.lang ?? 'en';
 
-   };
+   }
 
    public translate(key: string, options?: TOptions): string {
 
@@ -74,7 +74,7 @@ export class CommandContext {
 
       return this.client.locales.t(key, options);
 
-   };
+   }
 
    public async errorReply(title: string, message: string): Promise<void> {
 
@@ -88,7 +88,7 @@ export class CommandContext {
       else 
          return void await this.interaction.reply({ embeds: [errorEmbed], ephemeral: true });
 
-   };
+   }
 
    public async successReply(title: string, message: string): Promise<void> {
 
@@ -102,7 +102,7 @@ export class CommandContext {
       else 
          return void await this.interaction.reply({ embeds: [errorEmbed], ephemeral: true });
 
-   };
+   }
 
    public async confirmationRequest(message: string): Promise<(boolean | undefined)> {
 
@@ -163,9 +163,9 @@ export class CommandContext {
 
          return undefined;
 
-      };
+      }
 
-   };
+   }
 
    public async embedPagination(embeds: Embed[], ephemeral: boolean): Promise<void> {
 
@@ -215,7 +215,7 @@ export class CommandContext {
             ]
          }];
 
-      };
+      }
 
       if (this.interaction.deferred || this.interaction.replied)
          await this.interaction.editReply({
@@ -253,6 +253,6 @@ export class CommandContext {
 
       });
 
-   };
+   }
    
-};
+}

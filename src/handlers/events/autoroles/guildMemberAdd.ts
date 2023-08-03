@@ -16,6 +16,6 @@ export default new Event('guildMemberAdd', async (client, member: GuildMember) =
       await member.roles.add(roles, client.translate('events:autoroles.guildMemberAdd.autoroleSystem', { lng }));
    } catch (error) {
       console.log(error);
-   };
+   }
 
 });

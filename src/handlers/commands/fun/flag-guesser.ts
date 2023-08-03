@@ -58,7 +58,7 @@ export default new Command(async (ctx: CommandContext) => {
 
                return;
 
-            };
+            }
 
             const currentFlag = flags[currentFlagIndex];
 
@@ -147,7 +147,7 @@ export default new Command(async (ctx: CommandContext) => {
 
                   playing = false;
    
-               };
+               }
                
             } catch (_) {
 
@@ -164,9 +164,9 @@ export default new Command(async (ctx: CommandContext) => {
 
                playing = false;
 
-            };
+            }
 
-         };
+         }
 
          if (currentScore > bestScore) {
 
@@ -185,11 +185,11 @@ export default new Command(async (ctx: CommandContext) => {
 
             await ctx.client.prisma.cache.update('flagGuesserScore');
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'reset-score': {
 
@@ -246,16 +246,16 @@ export default new Command(async (ctx: CommandContext) => {
                components: []
             });
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 }, {
    name: 'flag-guesser',

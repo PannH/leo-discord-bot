@@ -40,4 +40,4 @@ export enum PermissionNames {
    SendMessagesInThreads = 'Send Messages In Threads',
    UseEmbeddedActivities = 'Use Activities',
    ModerateMembers = 'Timeout Member'
-};
+}

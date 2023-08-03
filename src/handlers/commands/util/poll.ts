@@ -31,14 +31,14 @@ export default new Command(async (ctx: CommandContext) => {
       ephemeral: true
    });
 
-   let pollEmbed = new EmbedBuilder()
+   const pollEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)
       .setAuthor({ name: question, iconURL: ctx.client.customImages.GRAPH })
 
    if (description)
       pollEmbed.setDescription(`> ${description}`);
 
-   if (!!options.length) {
+   if (options.length) {
 
       pollEmbed.setDescription(
          `${pollEmbed.data.description ?? ''}\n\n` +
@@ -47,29 +47,29 @@ export default new Command(async (ctx: CommandContext) => {
             .join('\n')
       );
 
-   };
+   }
 
    try {
 
       const message = await channel.send({ embeds: [pollEmbed] })
 
-      if (!!options.length) {
+      if (options.length) {
 
          for (let i=0; i<options.length; i++) {
 
             await message.react(numberEmojis[i]);
 
-         };
+         }
 
       } else {
 
-         for (let emoji of voteEmojis) {
+         for (const emoji of voteEmojis) {
 
             await message.react(emoji);
 
-         };
+         }
 
-      };
+      }
 
       const confirmEmbed = new EmbedBuilder()
          .setColor(ctx.client.colors.SECONDARY)
@@ -89,7 +89,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       ctx.client.emit('error', error);
 
-   };
+   }
 
 }, {
    name: 'poll',

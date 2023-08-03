@@ -22,7 +22,7 @@ export default new Event('interactionCreate', async (client, interaction: Intera
             (perm) => !commandInteraction.guild.members.cache.get(client.user.id).permissions.has(perm)
          );
 
-         if (!!clientMissingPerms.length)
+         if (clientMissingPerms.length)
             return void ctx.errorReply(
                client.translate('events:client.interactionCreate.missingPerms', { lng }),
                client.translate('events:client.interactionCreate.iRequireThePermissions', { lng, permissions: clientMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ') })
@@ -32,7 +32,7 @@ export default new Event('interactionCreate', async (client, interaction: Intera
             (perm) => !commandInteraction.memberPermissions.has(perm)
          );
 
-         if (!!memberMissingPerms.length)
+         if (memberMissingPerms.length)
             return void ctx.errorReply(
                client.translate('events:client.interactionCreate.missingPerms', { lng }),
                client.translate('events:client.interactionCreate.youMuseHaveThePermissions', { lng, permissions: memberMissingPerms.map((p) => `\`${PermissionNames[p.toString()]}\``).join(', ') })
@@ -42,7 +42,7 @@ export default new Event('interactionCreate', async (client, interaction: Intera
 
          break;
 
-      };
+      }
 
       case InteractionType.ApplicationCommandAutocomplete: {
 
@@ -52,11 +52,11 @@ export default new Event('interactionCreate', async (client, interaction: Intera
 
          autocomplete.run(client, autocompleteInteraction);
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 });

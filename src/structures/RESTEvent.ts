@@ -11,6 +11,6 @@ export class RESTEvent extends Event {
 
       this.rest = true;
 
-   };
+   }
 
-};
+}

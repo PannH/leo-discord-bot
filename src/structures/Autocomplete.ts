@@ -12,6 +12,6 @@ export class Autocomplete {
       this.commandName = commandName;
       this.run = runFn;
 
-   };
+   }
 
-};
+}

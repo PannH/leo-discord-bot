@@ -26,7 +26,7 @@ export default new Command(async (ctx: CommandContext) => {
             ctx.translate('commands:resetWarnings.errorDescriptions.memberHierSupOrEqual')
          );
 
-   };
+   }
 
    if (!warns.length)
       return void ctx.errorReply(
@@ -70,7 +70,7 @@ export default new Command(async (ctx: CommandContext) => {
             await member.send({ content: `${ctx.client.customEmojis.bell} ${ctx.translate('commands:resetWarnings.yourWarningsHaveBeenReset', { warnCount: warns.length, guildName: ctx.guild.name })}` });
          } catch (_) {
             return;
-         };
+         }
 
       } catch (error) {
      
@@ -81,7 +81,7 @@ export default new Command(async (ctx: CommandContext) => {
    
          ctx.client.emit('error', error);
          
-      };
+      }
 
    } else {
 
@@ -97,7 +97,7 @@ export default new Command(async (ctx: CommandContext) => {
          components: []
       });
 
-   };
+   }
 
 }, {
    name: 'reset-warnings',

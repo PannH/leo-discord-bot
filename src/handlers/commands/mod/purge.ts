@@ -31,7 +31,7 @@ export default new Command(async (ctx: CommandContext) => {
                userMessages.push(m);
                i++;
 
-            };
+            }
 
          });
 
@@ -63,11 +63,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };       
+         }       
 
          break;
 
-      };
+      }
 
       case 'contains': {
 
@@ -89,7 +89,7 @@ export default new Command(async (ctx: CommandContext) => {
                textMessages.push(m);
                i++;
 
-            };
+            }
 
          });
 
@@ -121,11 +121,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };       
+         }       
 
          break;
 
-      };
+      }
 
       default: {
 
@@ -156,7 +156,7 @@ export default new Command(async (ctx: CommandContext) => {
                filteredMessages.push(m);
                i++;
 
-            };
+            }
 
          });
 
@@ -188,13 +188,13 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };       
+         }       
 
          break;
 
-      };
+      }
 
-   };
+   }
    
 }, {
    name: 'purge',

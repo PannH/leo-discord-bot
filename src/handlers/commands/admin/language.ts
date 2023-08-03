@@ -55,7 +55,7 @@ export default new Command(async (ctx: CommandContext) => {
 
          break;
 
-      };
+      }
 
       case 'display': {
 
@@ -73,12 +73,12 @@ export default new Command(async (ctx: CommandContext) => {
 
          break;
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 }, {
    name: 'language',

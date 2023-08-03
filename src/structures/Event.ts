@@ -12,6 +12,6 @@ export class Event {
       this.name = name;
       this.run = runFn;
 
-   };
+   }
 
-};
+}

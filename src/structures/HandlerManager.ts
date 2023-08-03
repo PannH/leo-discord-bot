@@ -17,6 +17,6 @@ export class HandlerManager {
       this.commands = new CommandHandler(client);
       this.autocompletes = new AutocompleteHandler(client);
 
-   };
+   }
 
-};
+}

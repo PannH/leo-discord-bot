@@ -38,7 +38,7 @@ export default new Command(async (ctx: CommandContext) => {
             await ctx.successReply(ctx.translate('commands:resetChannel.channelReset'), ctx.translate('commands:resetChannel.theChannelHasBeenReset'));
          } catch (_) {
             return;
-         };
+         }
 
       } catch (error) {
      
@@ -49,7 +49,7 @@ export default new Command(async (ctx: CommandContext) => {
    
          ctx.client.emit('error', error);
 
-      };
+      }
 
    } else {
 
@@ -65,7 +65,7 @@ export default new Command(async (ctx: CommandContext) => {
          components: []
       });
 
-   };
+   }
 
 }, {
    name: 'reset-channel',

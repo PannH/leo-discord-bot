@@ -7,20 +7,20 @@ export class Logger {
 
       function format(x: number): string {
          return x < 10 ? `0${x}` : x.toString();
-      };
+      }
 
-      let date = new Date();
+      const date = new Date();
 
-      let d = format(date.getDate());
-      let mo = format(date.getMonth() + 1);
-      let h = format(date.getHours());
-      let min = format(date.getMinutes());
-      let s = format(date.getSeconds());
-      let ms = format(date.getMilliseconds());
+      const d = format(date.getDate());
+      const mo = format(date.getMonth() + 1);
+      const h = format(date.getHours());
+      const min = format(date.getMinutes());
+      const s = format(date.getSeconds());
+      const ms = format(date.getMilliseconds());
 
       return `${d}/${mo} ${h}:${min}:${s}.${ms}`;
 
-   };
+   }
 
    /**
     * @description Log a message as a debug message.
@@ -32,7 +32,7 @@ export class Logger {
       );
       
 
-   };
+   }
 
    /**
     * @description Log a message as a piece of information.
@@ -43,7 +43,7 @@ export class Logger {
          `[\u001b[38;5;12mINFO\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
-   };
+   }
 
    /**
     * @description Log a message as an error.
@@ -54,7 +54,7 @@ export class Logger {
          `[\u001b[38;5;1mERROR\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
-   };
+   }
 
    /**
     * @description Log a message as a success message.
@@ -65,7 +65,7 @@ export class Logger {
          `[\u001b[38;5;2mSUCCESS\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
-   };
+   }
 
    /**
     * @description Log a message as a warning message.
@@ -76,6 +76,6 @@ export class Logger {
          `[\u001b[38;5;3mWARN\u001b[0m](\u001b[38;5;8m${this.timestamp}\u001b[0m) ${message}`
       );
 
-   };
+   }
 
-};
+}

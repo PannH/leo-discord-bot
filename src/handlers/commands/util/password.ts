@@ -39,11 +39,11 @@ export default new Command(async (ctx: CommandContext) => {
 
          password += randomElement(chars);
 
-      };
+      }
 
       passwords.push(password);
 
-   };
+   }
 
    const passwordsEmbed = new EmbedBuilder()
       .setColor(ctx.client.colors.SECONDARY)

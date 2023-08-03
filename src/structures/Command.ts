@@ -14,7 +14,7 @@ export class Command {
       this.run = runFn;
       this.data = data;
 
-   };
+   }
 
    public mention(guild?: Guild): string {
 
@@ -24,6 +24,6 @@ export class Command {
       
       return `</${command.name}:${command.id}>`;
 
-   };
+   }
 
-};
+}

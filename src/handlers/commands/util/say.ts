@@ -76,7 +76,7 @@ export default new Command(async (ctx: CommandContext) => {
    
          ctx.client.emit('error', error);
 
-      };
+      }
 
    }).catch(() => {});
 

@@ -4,4 +4,4 @@ export enum CategoryNames {
    INFORMATION = 'Information',
    UTILITY = 'Utility',
    FUN = 'Fun'
-};
+}

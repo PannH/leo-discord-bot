@@ -77,11 +77,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'remove': {
 
@@ -125,11 +125,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'display': {
 
@@ -146,7 +146,7 @@ export default new Command(async (ctx: CommandContext) => {
             .setAuthor({ name: `${ctx.translate('commands:autoroles.autoroles')}: ${ctx.guild.name} (${autoroles.length})`, iconURL: ctx.client.customImages.LIST })
             .setThumbnail(ctx.guild.iconURL({ extension: 'png', size: 4096 }));
 
-         let autoroleEmbeds = [];
+         const autoroleEmbeds = [];
 
          let autoroleIndex = 0;
          for (let i = 0; i < (autoroles.length / 5); i++) {
@@ -167,20 +167,20 @@ export default new Command(async (ctx: CommandContext) => {
             
                autoroleIndex++;
             
-            };
+            }
          
-         };
+         }
       
          await ctx.embedPagination(autoroleEmbeds, true);
 
          break;
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 }, {
    name: 'autoroles',

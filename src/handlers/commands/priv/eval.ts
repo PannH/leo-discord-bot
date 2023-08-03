@@ -19,7 +19,7 @@ export default new Command(async (ctx: PrivateCommandContext) => {
       
       ctx.message.reply(`🖥️ Code Evaluation\n${codeBlock(`${code.split('\n').map((x) => `>>> ${x}`).join('\n')}\n${err}`)}`)
 
-   };
+   }
 
 }, {
    name: 'eval',

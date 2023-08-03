@@ -56,7 +56,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       } catch (_) {
          return;
-      };
+      }
 
    } catch (error) {
      
@@ -67,7 +67,7 @@ export default new Command(async (ctx: CommandContext) => {
 
       ctx.client.emit('error', error);
 
-   };
+   }
 
 }, {
    name: 'kick',

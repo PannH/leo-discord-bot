@@ -51,7 +51,7 @@ export default new Command(async (ctx: CommandContext) => {
 
             } catch (_) {
                return;
-            };
+            }
 
          } catch (error) {
      
@@ -62,11 +62,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'normalize': {
 
@@ -75,11 +75,11 @@ export default new Command(async (ctx: CommandContext) => {
          
          let newNickname = '';
 
-         for (let char of [...currentNickname]) {
+         for (const char of [...currentNickname]) {
 
             newNickname += fancyChars[char] ?? char;
 
-         };
+         }
 
          if (currentNickname === newNickname)
             return void ctx.errorReply(
@@ -120,7 +120,7 @@ export default new Command(async (ctx: CommandContext) => {
 
                } catch (_) {
                   return;
-               };
+               }
    
             } catch (error) {
      
@@ -131,7 +131,7 @@ export default new Command(async (ctx: CommandContext) => {
          
                ctx.client.emit('error', error);
    
-            };
+            }
 
          } else {
 
@@ -147,11 +147,11 @@ export default new Command(async (ctx: CommandContext) => {
                components: []
             });
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'reset': {
 
@@ -184,7 +184,7 @@ export default new Command(async (ctx: CommandContext) => {
 
             } catch (_) {
                return;
-            };
+            }
 
          } catch (error) {
      
@@ -195,16 +195,16 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 }, {
    name: 'nickname',

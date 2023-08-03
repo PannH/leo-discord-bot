@@ -11,6 +11,6 @@ export class PrismaDatabase extends PrismaClient {
 
       this.cache = new DatabaseCache(this);
 
-   };
+   }
 
-};
+}

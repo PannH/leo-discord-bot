@@ -57,11 +57,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'unset': {
 
@@ -104,11 +104,11 @@ export default new Command(async (ctx: CommandContext) => {
       
             ctx.client.emit('error', error);
 
-         };
+         }
 
          break;
 
-      };
+      }
 
       case 'display': {
 
@@ -127,7 +127,7 @@ export default new Command(async (ctx: CommandContext) => {
 
          await ctx.interaction.deferReply({ ephemeral: true });
       
-         let afkEmbeds = [];
+         const afkEmbeds = [];
       
          let afkIndex = 0;
          for (let i = 0; i < (afks.length / 5); i++) {
@@ -150,20 +150,20 @@ export default new Command(async (ctx: CommandContext) => {
       
                afkIndex++;
       
-            };
+            }
       
-         };
+         }
       
          ctx.embedPagination(afkEmbeds, true);
 
          break;
 
-      };
+      }
 
       default:
          break;
 
-   };
+   }
 
 }, {
    name: 'afk',

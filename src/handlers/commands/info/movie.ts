@@ -69,7 +69,7 @@ export default new Command(async (ctx: CommandContext) => {
          ctx.translate('common:unexpectedErrorDescription')
       );
 
-   };
+   }
 
 }, {
    name: 'movie',

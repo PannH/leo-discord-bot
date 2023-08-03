@@ -20,7 +20,7 @@ export default new Command(async (ctx: CommandContext) => {
          .setAuthor({ name: `${ctx.translate('commands:myWarnings.yourWarnings')} (${warns.length})`, iconURL: ctx.client.customImages.LIST })
          .setThumbnail(ctx.executor.displayAvatarURL({ extension: 'png', size: 4096 }));
    
-      let warnEmbeds = [];
+      const warnEmbeds = [];
    
       let warnIndex = 0;
       for (let i = 0; i < (warns.length / 5); i++) {
@@ -43,9 +43,9 @@ export default new Command(async (ctx: CommandContext) => {
    
             warnIndex++;
    
-         };
+         }
    
-      };
+      }
    
       ctx.embedPagination(warnEmbeds, true);
 
